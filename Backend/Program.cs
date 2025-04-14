@@ -1,42 +1,27 @@
-var builder = WebApplication.CreateBuilder(args);
+using Backend.Common.DbContext;
+using Backend.Common.Helpers;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.Services.AddEndpointsApiExplorer()
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
+    .AddAppSwagger(configuration)
+    .AddAppAuthentication(configuration)
+    .AddPersistence(configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.ConfigureSwagger(configuration);
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
+app.MapGet("/weatherforecast", async (ApplicationDbContext context) => { return await context.Comments.ToListAsync(); })
     .WithName("GetWeatherForecast")
     .WithOpenApi();
 
-app.Run();
+app.MapGet("/fuck", () => { return "fuck you"; })
+    .WithName("holy fuck")
+    .WithOpenApi();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 0;
-}
+
+app.Run();
