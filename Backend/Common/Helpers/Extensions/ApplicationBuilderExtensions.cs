@@ -1,4 +1,9 @@
+using System.Reflection;
+using Backend.Common.Middlewares;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Logging;
+using Backend.Common.Helpers.Interfaces;
+
 
 namespace Backend.Common.Helpers;
 
@@ -20,6 +25,32 @@ public static class ApplicationBuilderExtensions
             setup.OAuthAdditionalQueryStringParams(new Dictionary<string, string>()
                 { { "audience", configuration["OAuth:Audience"]! } });
         });
+
+        return app;
+    }
+
+    public static WebApplication UseAppMiddlewares(this WebApplication app)
+    {
+        app.UseMiddleware<UserSyncer>();
+        app.UseMiddleware<CurrentUserMiddleware>();
+
+        return app;
+    }
+
+    public static IApplicationBuilder MapEndpoints(
+        this WebApplication app,
+        RouteGroupBuilder? routeGroupBuilder = null)
+    {
+        var endpoints = app.Services
+            .GetRequiredService<IEnumerable<IEndPoint>>();
+
+        IEndpointRouteBuilder builder =
+            routeGroupBuilder is null ? app : routeGroupBuilder;
+
+        foreach (var endpoint in endpoints)
+        {
+            endpoint.MapEndpoint(builder);
+        }
 
         return app;
     }

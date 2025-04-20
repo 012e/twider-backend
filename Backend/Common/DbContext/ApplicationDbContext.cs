@@ -401,6 +401,11 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
             entity.HasIndex(e => e.Username, "users_username_key").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity
+                .HasIndex(e => e.OauthSub, "oauth_sub")
+                .IsUnique();
+            entity.Property(e => e.OauthSub)
+                .HasColumnName("oauth_sub");
             entity.Property(e => e.Bio).HasColumnName("bio");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -412,9 +417,6 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
             entity.Property(e => e.LastLogin).HasColumnName("last_login");
-            entity.Property(e => e.PasswordHash)
-                .HasMaxLength(255)
-                .HasColumnName("password_hash");
             entity.Property(e => e.ProfilePicture)
                 .HasMaxLength(255)
                 .HasColumnName("profile_picture");

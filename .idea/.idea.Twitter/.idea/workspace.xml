@@ -11,18 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/ApplicationBuilderExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/ServiceExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/475e41dc-45cc-4bcc-a4bf-c3f13e8f74aa.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Middlewares/CurrentUserMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twitter/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Middlewares/UserSyncer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Middlewares/UserSyncer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Scripts/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +41,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7684bf19fcff4c13897be5e8c711509421200/cd/14b75021/AuthenticationServiceCollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c58cde9f272b41c9ab6d39a0907878beb2e000/63/6bc14704/Monitor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/32b4a29d026a47f2b70331ba6315ff8f13200/c1/dfba174f/ISender.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c76a3b9ee90d40818185bfd493e0dd8a157a00/a8/31608804/JsonConverterFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -53,7 +58,7 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2vLn152xjiSSiVMsa2xsnUZeXbr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -64,11 +69,14 @@
   "keyToString": {
     ".NET Launch Settings Profile.Backend: http.executor": "Run",
     "Aspire Host.Twitter: http.executor": "Debug",
+    "Database Script.init.sql.executor": "Run",
     "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
     "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
     "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.Build.ShowToolbar": "false",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -81,6 +89,9 @@
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "postgresql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
     ]
   }
 }]]></component>
@@ -104,6 +115,7 @@
       </envs>
       <option name="USE_PODMAN_RUNTIME" value="0" />
       <option name="TRACK_URL" value="1" />
+      <option name="TRACK_BROWSER_LAUNCH" value="1" />
       <browser url="http://localhost:15043" start="true" />
       <method v="2">
         <option name="Build" />
@@ -128,10 +140,17 @@
       </envs>
       <option name="USE_PODMAN_RUNTIME" value="0" />
       <option name="TRACK_URL" value="1" />
+      <option name="TRACK_BROWSER_LAUNCH" value="1" />
       <browser url="https://localhost:17087" start="true" />
       <method v="2">
         <option name="Build" />
       </method>
+    </configuration>
+    <configuration name="init.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/Backend/Scripts/init.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="0d445bac-e93d-41cb-ba1f-0123b0a6e5dd" />
+      <method v="2" />
     </configuration>
     <configuration name="Backend: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Backend/Backend.csproj" />
@@ -179,6 +198,15 @@
             </list>
           </option>
           <option name="sourceFilePath" value="Backend/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Backend/compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="Backend/compose.yaml" />
         </settings>
       </deployment>
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
@@ -272,6 +300,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.init.sql" />
+        <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
@@ -288,8 +318,42 @@
       <updated>1743933003209</updated>
       <workItem from="1743933004314" duration="3502000" />
       <workItem from="1744212808243" duration="2902000" />
-      <workItem from="1744597507962" duration="4100000" />
+      <workItem from="1744597507962" duration="4929000" />
+      <workItem from="1744639847096" duration="20000" />
+      <workItem from="1745131949046" duration="2353000" />
+      <workItem from="1745138005642" duration="5901000" />
+      <workItem from="1745150216068" duration="4383000" />
+      <workItem from="1745161138692" duration="1192000" />
+      <workItem from="1745399542231" duration="1127000" />
+      <workItem from="1746192071048" duration="2439000" />
+      <workItem from="1746268411335" duration="2887000" />
+      <workItem from="1746283543505" duration="8842000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1744601920324</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744601920324</updated>
+    </task>
+    <task id="LOCAL-00002" summary="wip">
+      <option name="closed" value="true" />
+      <created>1746194705252</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746194705252</updated>
+    </task>
+    <task id="LOCAL-00003" summary="wip">
+      <option name="closed" value="true" />
+      <created>1746288905050</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746288905050</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,5 +363,26 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="init" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
