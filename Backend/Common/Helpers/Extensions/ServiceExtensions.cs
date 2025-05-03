@@ -1,4 +1,5 @@
 using System.Reflection;
+using Backend.Common.Configuration;
 using Backend.Common.DbContext;
 using Backend.Common.Helpers.Interfaces;
 using Backend.Common.Middlewares;
@@ -12,15 +13,40 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 
 namespace Backend.Common.Helpers;
 
 public static class ServiceExtensions
 {
+    public static IServiceCollection AddAppConfiguration(this IServiceCollection services, IConfiguration configuration)
+    {
+        // Register options with validation
+        services.AddOptions<DatabaseOptions>()
+            .Bind(configuration.GetSection(DatabaseOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+            
+        services.AddOptions<OAuthOptions>()
+            .Bind(configuration.GetSection(OAuthOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+            
+        services.AddOptions<KeycloakOptions>()
+            .Bind(configuration.GetSection(KeycloakOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+            
+        return services;
+    }
+
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContextPool<ApplicationDbContext>(opt =>
-            opt.UseNpgsql(configuration.GetConnectionString("ApplicationDbContext")));
+        {
+            var dbOptions = services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseOptions>>().Value;
+            opt.UseNpgsql(dbOptions.ApplicationDbContext);
+        });
         return services;
     }
 
@@ -29,6 +55,9 @@ public static class ServiceExtensions
         services.AddSwaggerGen(options =>
         {
             options.OperationFilter<SecurityRequirementsOperationFilter>();
+            
+            var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;
+            
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.OAuth2,
@@ -36,8 +65,8 @@ public static class ServiceExtensions
                 {
                     AuthorizationCode = new OpenApiOAuthFlow
                     {
-                        AuthorizationUrl = new Uri(configuration.GetValue<string>("OAuth:AuthorizationUrl")!),
-                        TokenUrl = new Uri(configuration.GetValue<string>("OAuth:TokenUrl")!),
+                        AuthorizationUrl = new Uri(oauthOptions.AuthorizationUrl),
+                        TokenUrl = new Uri(oauthOptions.TokenUrl),
                         Scopes = new Dictionary<string, string>()
                     }
                 },
@@ -67,17 +96,19 @@ public static class ServiceExtensions
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
         {
+            var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;
+            
             options.RequireHttpsMetadata = false;
             options.IncludeErrorDetails = true;
             options.UseSecurityTokenValidators = true;
-            options.Authority = configuration["OAuth:Authority"];
-            options.Audience = configuration["OAuth:Audience"];
+            options.Authority = oauthOptions.Authority;
+            options.Audience = oauthOptions.Audience;
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
                 ValidateAudience = false,
-                ValidAudience = configuration["OAuth:Audience"],
-                ValidIssuer = configuration["OAuth:Authority"]
+                ValidAudience = oauthOptions.Audience,
+                ValidIssuer = oauthOptions.Authority
             };
         });
 
@@ -89,12 +120,14 @@ public static class ServiceExtensions
     {
         services.AddSingleton(_ =>
         {
+            var keycloakOptions = services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
+            
             var credentials = new PasswordGrantFlow()
             {
-                KeycloakUrl = configuration["Keycloak:Url"],
-                Realm = configuration["Keycloak:Realm"],
-                UserName = configuration["Keycloak:UserName"],
-                Password = configuration["Keycloak:Password"],
+                KeycloakUrl = keycloakOptions.Url,
+                Realm = keycloakOptions.Realm,
+                UserName = keycloakOptions.Username,
+                Password = keycloakOptions.Password,
             };
             var httpClient = AuthenticationHttpClientFactory.Create(credentials);
             var usersApi = ApiClientFactory.Create<UsersApi>(httpClient);

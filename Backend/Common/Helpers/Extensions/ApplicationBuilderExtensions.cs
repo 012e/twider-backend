@@ -1,6 +1,8 @@
 using System.Reflection;
+using Backend.Common.Configuration;
 using Backend.Common.Middlewares;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Backend.Common.Helpers.Interfaces;
 
@@ -17,13 +19,15 @@ public static class ApplicationBuilderExtensions
         app.UseSwagger();
         app.UseSwaggerUI(setup =>
         {
+            var oauthOptions = app.Services.GetRequiredService<IOptions<OAuthOptions>>().Value;
+            
             setup.SwaggerEndpoint($"/swagger/v1/swagger.json", "Version 1.0");
-            setup.OAuthClientId(configuration["OAuth:ClientId"]);
+            setup.OAuthClientId(oauthOptions.ClientId);
             setup.OAuthAppName("Weather API");
             setup.OAuthScopeSeparator(" ");
             setup.OAuthUsePkce();
             setup.OAuthAdditionalQueryStringParams(new Dictionary<string, string>()
-                { { "audience", configuration["OAuth:Audience"]! } });
+                { { "audience", oauthOptions.Audience } });
         });
 
         return app;

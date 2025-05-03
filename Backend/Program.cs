@@ -7,46 +7,67 @@ using Microsoft.AspNetCore.Http.Json;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
+// Register services
 builder.Services
+    // Configuration
+    .AddAppConfiguration(configuration)
+
+    // Authentication and Authorization
     .AddAppAuthentication(configuration)
-    .AddAppServices(configuration)
-    .AddAppSwagger(configuration)
     .AddAuthorization()
+    .AddKeycloakAdminApi(configuration)
+
+    // API and Endpoint Configuration
     .AddEndpoints(typeof(Program).Assembly)
     .AddEndpointsApiExplorer()
-    .AddExceptionHandler<GlobalExceptionHandler>()
-    .AddHttpContextAccessor()
-    .AddKeycloakAdminApi(configuration)
+    .AddAppSwagger(configuration)
+
+    // Core Application Services
+    .AddAppServices(configuration)
+    .AddPersistence(configuration)
     .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
     .AddMemoryCache()
-    .AddPersistence(configuration)
+
+    // Error Handling
+    .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
+
+    // Utilities and Services
+    .AddHttpContextAccessor()
     .AddScoped<ICurrentUserService, CurrentUserService>();
 
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.SerializerOptions.Converters.Add(new ResultJsonConverterFactory());
-});
-
-builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.Converters.Add(new ResultJsonConverterFactory());
-});
+// Configure JSON serialization
+ConfigureJsonOptions(builder.Services);
 
 var app = builder.Build();
 
-app.ConfigureSwagger(configuration);
+// Configure the HTTP request pipeline
+if (app.Environment.IsDevelopment())
+{
+    app.ConfigureSwagger(configuration);
+}
 
-app
-    .UseHttpsRedirection()
+app.UseHttpsRedirection()
     .UseExceptionHandler()
-    .UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
+    .UseRouting()
+    .UseAuthentication()
+    .UseAuthorization();
 app.UseAppMiddlewares();
 
 app.MapEndpoints();
 
-
 app.Run();
+
+// Helper method for JSON configuration
+void ConfigureJsonOptions(IServiceCollection services)
+{
+    services.Configure<JsonOptions>(options =>
+    {
+        options.SerializerOptions.Converters.Add(new ResultJsonConverterFactory());
+    });
+
+    services.ConfigureHttpJsonOptions(options =>
+    {
+        options.SerializerOptions.Converters.Add(new ResultJsonConverterFactory());
+    });
+}

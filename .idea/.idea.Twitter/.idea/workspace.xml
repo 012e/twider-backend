@@ -11,16 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -321,7 +314,7 @@
       <workItem from="1745399542231" duration="1127000" />
       <workItem from="1746192071048" duration="2439000" />
       <workItem from="1746268411335" duration="2887000" />
-      <workItem from="1746283543505" duration="11479000" />
+      <workItem from="1746283543505" duration="12124000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -355,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746292977753</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability.">
+      <option name="closed" value="true" />
+      <created>1746295606983</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746295606983</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,7 +368,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
