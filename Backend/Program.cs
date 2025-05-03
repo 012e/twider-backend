@@ -7,20 +7,21 @@ using Microsoft.AspNetCore.Http.Json;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-builder.Services.AddEndpointsApiExplorer()
-    .AddScoped<ICurrentUserService, CurrentUserService>()
-    .AddHttpContextAccessor()
+builder.Services
     .AddAppAuthentication(configuration)
     .AddAppServices(configuration)
     .AddAppSwagger(configuration)
     .AddAuthorization()
+    .AddEndpoints(typeof(Program).Assembly)
+    .AddEndpointsApiExplorer()
     .AddExceptionHandler<GlobalExceptionHandler>()
+    .AddHttpContextAccessor()
     .AddKeycloakAdminApi(configuration)
     .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
     .AddMemoryCache()
+    .AddPersistence(configuration)
     .AddProblemDetails()
-    .AddEndpoints(typeof(Program).Assembly)
-    .AddPersistence(configuration);
+    .AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.Configure<JsonOptions>(options =>
 {

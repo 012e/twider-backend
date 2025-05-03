@@ -23,6 +23,7 @@ public class Result<T, E>
 
     public static Result<T, E> Ok(T value) => new(value);
     public static Result<T, E> Fail(E error) => new(error);
+
 }
 
 public class ApiResult<T> : Result<T, ProblemDetails>
@@ -56,6 +57,32 @@ public static class ApiResult
 {
     public static ApiResult<T> Ok<T>(T value) => ApiResult<T>.Ok(value);
     public static ApiResult<object> Fail(ProblemDetails error) => ApiResult<object>.Fail(error);
+}
+
+
+public static class ApiResultExtensions
+{
+    public static IResult ToIResult<T>(this ApiResult<T> result)
+    {
+        if (result.IsSuccess && result.Value is not null)
+        {
+            return Results.Ok(result.Value);
+        }
+        else if (result.IsFailed && result.Error is not null)
+        {
+            return Results.Problem(
+                title: result.Error.Title,
+                detail: result.Error.Detail,
+                statusCode: result.Error.Status,
+                type: result.Error.Type,
+                instance: result.Error.Instance
+            );
+        }
+        else
+        {
+            return Results.StatusCode(500);
+        }
+    }
 }
 
 public class ResultJsonConverter<T, E> : JsonConverter<Result<T, E>>

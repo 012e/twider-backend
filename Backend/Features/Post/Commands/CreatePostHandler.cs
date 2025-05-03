@@ -1,12 +1,12 @@
 using Backend.Common.DbContext;
+using Backend.Common.Helpers.Types;
 using Backend.Common.Services;
-using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Features.Post.Commands;
 
-public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<CreatePostResponse>>
+public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<CreatedId>>
 {
     private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
@@ -17,7 +17,7 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<Cr
         _currentUserService = currentUserService;
     }
 
-    public async Task<ApiResult<CreatePostResponse>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<CreatedId>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
     {
         var user = _currentUserService.User;
         if (user == null)
@@ -30,6 +30,14 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<Cr
             });
         }
 
-        return ApiResult.Ok(new CreatePostResponse(Id: 3223));
+        var post = _db.Posts.Add(new Common.DbContext.Post
+        {
+            Content = request.Content,
+            UserId = user.UserId
+        });
+
+        await _db.SaveChangesAsync(cancellationToken);
+
+        return ApiResult.Ok(new CreatedId(post.Entity.PostId));
     }
 }
