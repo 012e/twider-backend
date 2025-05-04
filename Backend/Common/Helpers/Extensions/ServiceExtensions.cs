@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Minio;
 
 namespace Backend.Common.Helpers;
 
@@ -26,21 +27,21 @@ public static class ServiceExtensions
             .Bind(configuration.GetSection(DatabaseOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
-            
+
         services.AddOptions<OAuthOptions>()
             .Bind(configuration.GetSection(OAuthOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
-            
+
         services.AddOptions<KeycloakOptions>()
             .Bind(configuration.GetSection(KeycloakOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
-            
+
         return services;
     }
 
-    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         services.AddDbContextPool<ApplicationDbContext>(opt =>
         {
@@ -50,14 +51,14 @@ public static class ServiceExtensions
         return services;
     }
 
-    public static IServiceCollection AddAppSwagger(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAppSwagger(this IServiceCollection services)
     {
         services.AddSwaggerGen(options =>
         {
             options.OperationFilter<SecurityRequirementsOperationFilter>();
-            
+
             var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;
-            
+
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.OAuth2,
@@ -91,13 +92,12 @@ public static class ServiceExtensions
         return services;
     }
 
-    public static IServiceCollection AddAppAuthentication(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddAppAuthentication(this IServiceCollection services)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
         {
             var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;
-            
+
             options.RequireHttpsMetadata = false;
             options.IncludeErrorDetails = true;
             options.UseSecurityTokenValidators = true;
@@ -115,13 +115,12 @@ public static class ServiceExtensions
         return services;
     }
 
-    public static IServiceCollection AddKeycloakAdminApi(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddKeycloakAdminApi(this IServiceCollection services)
     {
         services.AddSingleton(_ =>
         {
             var keycloakOptions = services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
-            
+
             var credentials = new PasswordGrantFlow()
             {
                 KeycloakUrl = keycloakOptions.Url,
@@ -141,6 +140,17 @@ public static class ServiceExtensions
     public static IServiceCollection AddAppServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        return services;
+    }
+
+    public static IServiceCollection AddMinio(this IServiceCollection services)
+    {
+        var minioOptions = services.BuildServiceProvider().GetRequiredService<IOptions<MinioOptions>>().Value;
+
+        services.AddMinio(configureClient => configureClient
+            .WithEndpoint(minioOptions.Endpoint)
+            .WithCredentials(minioOptions.AccessKey, minioOptions.SecretKey)
+            .Build());
 
         return services;
     }

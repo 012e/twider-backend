@@ -10,7 +10,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="" />
+    <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Configuration/MinioOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/compose.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,37 +56,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Backend: http.executor": "Run",
-    "Aspire Host.Twitter: http.executor": "Debug",
-    "Database Script.init.sql.executor": "Run",
-    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
-    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
-    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "ToolWindow.Build.ShowToolbar": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
+    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Debug&quot;,
+    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
+}</component>
+  <component name="RunManager" selected="Docker.Backend/compose.yaml: Compose Deployment">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
       <option name="PROJECT_TFM" value="net8.0" />
@@ -282,8 +291,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Database Script.init.sql" />
         <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
+        <item itemvalue="Database Script.init.sql" />
         <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
@@ -309,7 +318,8 @@
       <workItem from="1745399542231" duration="1127000" />
       <workItem from="1746192071048" duration="2439000" />
       <workItem from="1746268411335" duration="2887000" />
-      <workItem from="1746283543505" duration="12186000" />
+      <workItem from="1746283543505" duration="13122000" />
+      <workItem from="1746342258055" duration="1220000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -351,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746295606983</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update workspace.xml to remove outdated change entries">
+      <option name="closed" value="true" />
+      <created>1746296346653</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746296346653</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +382,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="wip" />
     <MESSAGE value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
+    <MESSAGE value="Update workspace.xml to remove outdated change entries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml to remove outdated change entries" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

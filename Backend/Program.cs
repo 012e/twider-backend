@@ -13,20 +13,21 @@ builder.Services
     .AddAppConfiguration(configuration)
 
     // Authentication and Authorization
-    .AddAppAuthentication(configuration)
+    .AddAppAuthentication()
     .AddAuthorization()
-    .AddKeycloakAdminApi(configuration)
+    .AddKeycloakAdminApi()
 
     // API and Endpoint Configuration
     .AddEndpoints(typeof(Program).Assembly)
     .AddEndpointsApiExplorer()
-    .AddAppSwagger(configuration)
+    .AddAppSwagger()
 
     // Core Application Services
     .AddAppServices(configuration)
-    .AddPersistence(configuration)
+    .AddPersistence()
     .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()))
     .AddMemoryCache()
+    .AddMinio()
 
     // Error Handling
     .AddExceptionHandler<GlobalExceptionHandler>()
