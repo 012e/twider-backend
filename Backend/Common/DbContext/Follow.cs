@@ -2,11 +2,11 @@
 
 public partial class Follow
 {
-    public int FollowId { get; set; }
+    public Guid FollowId { get; set; }
 
-    public int FollowerId { get; set; }
+    public Guid FollowerId { get; set; }
 
-    public int FollowingId { get; set; }
+    public Guid FollowingId { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

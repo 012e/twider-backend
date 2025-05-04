@@ -2,7 +2,7 @@
 
 public partial class UserSetting
 {
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public bool NotificationsEnabled { get; set; }
 

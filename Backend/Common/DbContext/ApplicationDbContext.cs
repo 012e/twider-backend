@@ -46,7 +46,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.ToTable("chats");
 
-            entity.Property(e => e.ChatId).HasColumnName("chat_id");
+            entity.Property(e => e.ChatId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("chat_id");
             entity.Property(e => e.ChatName)
                 .HasMaxLength(100)
                 .HasColumnName("chat_name");
@@ -104,7 +106,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.UserId, "idx_comments_user_id");
 
-            entity.Property(e => e.CommentId).HasColumnName("comment_id");
+            entity.Property(e => e.CommentId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("comment_id");
             entity.Property(e => e.Content).HasColumnName("content");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -143,7 +147,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.FollowingId, "idx_follows_following_id");
 
-            entity.Property(e => e.FollowId).HasColumnName("follow_id");
+            entity.Property(e => e.FollowId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("follow_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnName("created_at");
@@ -170,7 +176,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.Name, "hashtags_name_key").IsUnique();
 
-            entity.Property(e => e.HashtagId).HasColumnName("hashtag_id");
+            entity.Property(e => e.HashtagId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("hashtag_id");
             entity.Property(e => e.FirstUsed)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnName("first_used");
@@ -194,7 +202,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => new { e.UserId, e.ContentId, e.ContentType }, "likes_user_id_content_id_content_type_key").IsUnique();
 
-            entity.Property(e => e.LikeId).HasColumnName("like_id");
+            entity.Property(e => e.LikeId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("like_id");
             entity.Property(e => e.ContentId).HasColumnName("content_id");
             entity.Property(e => e.ContentType)
                 .HasMaxLength(10)
@@ -215,7 +225,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.ToTable("media");
 
-            entity.Property(e => e.MediaId).HasColumnName("media_id");
+            entity.Property(e => e.MediaId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("media_id");
             entity.Property(e => e.MediaType)
                 .HasMaxLength(50)
                 .HasColumnName("media_type");
@@ -245,7 +257,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.UserId, "idx_messages_user_id");
 
-            entity.Property(e => e.MessageId).HasColumnName("message_id");
+            entity.Property(e => e.MessageId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("message_id");
             entity.Property(e => e.ChatId).HasColumnName("chat_id");
             entity.Property(e => e.Content).HasColumnName("content");
             entity.Property(e => e.IsDeleted)
@@ -274,7 +288,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.MessageId, "idx_message_media_message_id");
 
-            entity.Property(e => e.MessageMediaId).HasColumnName("message_media_id");
+            entity.Property(e => e.MessageMediaId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("message_media_id");
             entity.Property(e => e.FileName)
                 .HasMaxLength(255)
                 .HasColumnName("file_name");
@@ -305,7 +321,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.UserId, "idx_notifications_user_id");
 
-            entity.Property(e => e.NotificationId).HasColumnName("notification_id");
+            entity.Property(e => e.NotificationId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("notification_id");
             entity.Property(e => e.ActorUserId).HasColumnName("actor_user_id");
             entity.Property(e => e.Content).HasColumnName("content");
             entity.Property(e => e.CreatedAt)
@@ -343,7 +361,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.UserId, "idx_posts_user_id");
 
-            entity.Property(e => e.PostId).HasColumnName("post_id");
+            entity.Property(e => e.PostId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("post_id");
             entity.Property(e => e.CommentCount)
                 .HasDefaultValue(0)
                 .HasColumnName("comment_count");
@@ -381,8 +401,8 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                         j.HasKey("PostId", "HashtagId").HasName("post_hashtags_pkey");
                         j.ToTable("post_hashtags");
                         j.HasIndex(new[] { "HashtagId" }, "idx_post_hashtags_hashtag_id");
-                        j.IndexerProperty<int>("PostId").HasColumnName("post_id");
-                        j.IndexerProperty<int>("HashtagId").HasColumnName("hashtag_id");
+                        j.IndexerProperty<Guid>("PostId").HasColumnName("post_id");
+                        j.IndexerProperty<Guid>("HashtagId").HasColumnName("hashtag_id");
                     });
         });
 
@@ -400,7 +420,9 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.Username, "users_username_key").IsUnique();
 
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.UserId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("user_id");
             entity
                 .HasIndex(e => e.OauthSub, "oauth_sub")
                 .IsUnique();

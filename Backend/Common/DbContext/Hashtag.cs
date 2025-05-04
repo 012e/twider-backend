@@ -2,7 +2,7 @@
 
 public partial class Hashtag
 {
-    public int HashtagId { get; set; }
+    public Guid HashtagId { get; set; }
 
     public string Name { get; set; } = null!;
 

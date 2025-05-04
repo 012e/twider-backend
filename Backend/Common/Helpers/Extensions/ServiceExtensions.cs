@@ -38,6 +38,11 @@ public static class ServiceExtensions
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        services.AddOptions<MinioOptions>()
+            .Bind(configuration.GetSection(MinioOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         return services;
     }
 

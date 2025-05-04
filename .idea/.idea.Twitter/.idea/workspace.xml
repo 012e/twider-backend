@@ -11,14 +11,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Configuration/MinioOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ChatParticipant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ChatParticipant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Follow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Follow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Hashtag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Hashtag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Like.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Message.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Message.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/MessageMedium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/MessageMedium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Notification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Notification.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/UserSetting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/UserSetting.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Scripts/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +98,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Docker.Backend/compose.yaml: Compose Deployment">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
       <option name="PROJECT_TFM" value="net8.0" />
@@ -291,8 +303,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Database Script.init.sql" />
+        <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
@@ -319,7 +331,7 @@
       <workItem from="1746192071048" duration="2439000" />
       <workItem from="1746268411335" duration="2887000" />
       <workItem from="1746283543505" duration="13122000" />
-      <workItem from="1746342258055" duration="1220000" />
+      <workItem from="1746342258055" duration="2639000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -383,7 +395,7 @@
     <MESSAGE value="wip" />
     <MESSAGE value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
     <MESSAGE value="Update workspace.xml to remove outdated change entries" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml to remove outdated change entries" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

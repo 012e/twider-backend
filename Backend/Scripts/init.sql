@@ -14,10 +14,13 @@ DROP TABLE IF EXISTS follows CASCADE;
 DROP TABLE IF EXISTS user_settings CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 
+-- Enable the UUID extension if not already enabled
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Core User Components
 CREATE TABLE users
 (
-    user_id             SERIAL PRIMARY KEY,
+    user_id             UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     username            VARCHAR(50)              NOT NULL UNIQUE,
     oauth_sub           TEXT UNIQUE              NOT NULL,
     email               VARCHAR(255)             UNIQUE,
@@ -32,19 +35,18 @@ CREATE TABLE users
 CREATE TABLE user_settings
 (
     -- Using user_id as PK enforces a 1-to-1 relationship with users
-    user_id               INTEGER PRIMARY KEY REFERENCES users (user_id) ON DELETE CASCADE,
+    user_id               UUID PRIMARY KEY REFERENCES users (user_id) ON DELETE CASCADE,
     notifications_enabled BOOLEAN NOT NULL DEFAULT TRUE,
     private_account       BOOLEAN NOT NULL DEFAULT FALSE,
     theme_preference      VARCHAR(20)      DEFAULT 'system', -- e.g., 'light', 'dark', 'system'
     language_preference   VARCHAR(10)      DEFAULT 'en'      -- e.g., 'en', 'es', 'fr'
-    -- No setting_id needed if user_id is the PK
 );
 
 CREATE TABLE follows
 (
-    follow_id    SERIAL PRIMARY KEY,
-    follower_id  INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
-    following_id INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    follow_id    UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    follower_id  UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    following_id UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
     created_at   TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     is_approved  BOOLEAN                  NOT NULL DEFAULT TRUE, -- For follow requests on private accounts
     UNIQUE (follower_id, following_id),                          -- Prevent duplicate follow entries
@@ -54,8 +56,8 @@ CREATE TABLE follows
 -- Content Components
 CREATE TABLE posts
 (
-    post_id       SERIAL PRIMARY KEY,
-    user_id       INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    post_id       UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id       UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
     content       TEXT,                                        -- Can be NULL if the post is only media
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP WITH TIME ZONE,
@@ -63,26 +65,24 @@ CREATE TABLE posts
     like_count    INTEGER                  NOT NULL DEFAULT 0, -- Denormalized count, update via triggers or app logic
     comment_count INTEGER                  NOT NULL DEFAULT 0, -- Denormalized count
     share_count   INTEGER                  NOT NULL DEFAULT 0  -- Denormalized count
-    -- CHECK constraint on content or associated media ensures post isn't empty could be added if needed
 );
 
 CREATE TABLE media
 (
-    media_id      SERIAL PRIMARY KEY,
-    post_id       INTEGER                  NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
+    media_id      UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    post_id       UUID                      NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
     media_type    VARCHAR(50)              NOT NULL, -- e.g., 'image/jpeg', 'video/mp4', 'image/gif'
     media_url     VARCHAR(255)             NOT NULL, -- URL to the media file (e.g., S3 link)
     thumbnail_url VARCHAR(255),                      -- Optional URL for video/image thumbnails
     uploaded_at   TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
-    -- Could add user_id FK here as well if needed for direct user media library management
 );
 
 CREATE TABLE comments
 (
-    comment_id        SERIAL PRIMARY KEY,
-    post_id           INTEGER                  NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
-    user_id           INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
-    parent_comment_id INTEGER REFERENCES comments (comment_id) ON DELETE CASCADE, -- For nested comments (replies)
+    comment_id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    post_id           UUID                      NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
+    user_id           UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    parent_comment_id UUID REFERENCES comments (comment_id) ON DELETE CASCADE, -- For nested comments (replies)
     content           TEXT                     NOT NULL,
     created_at        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at        TIMESTAMP WITH TIME ZONE,
@@ -91,9 +91,9 @@ CREATE TABLE comments
 
 CREATE TABLE likes
 (
-    like_id      SERIAL PRIMARY KEY,
-    user_id      INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
-    content_id   INTEGER                  NOT NULL,                                             -- Refers to either post_id or comment_id
+    like_id      UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id      UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    content_id   UUID                      NOT NULL,                                             -- Refers to either post_id or comment_id
     content_type VARCHAR(10)              NOT NULL CHECK (content_type IN ('post', 'comment')), -- Specifies which table content_id refers to
     created_at   TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (user_id, content_id, content_type)                                                  -- Ensures a user can only like a specific piece of content once
@@ -101,31 +101,29 @@ CREATE TABLE likes
 
 CREATE TABLE hashtags
 (
-    hashtag_id  SERIAL PRIMARY KEY,
+    hashtag_id  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name        VARCHAR(100)             NOT NULL UNIQUE,    -- Store normalized (e.g., lowercase)
     usage_count INTEGER                  NOT NULL DEFAULT 0, -- Denormalized count, update via triggers or app logic
     first_used  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
-    -- created_at might be more intuitive than first_used
 );
 
 CREATE TABLE post_hashtags
 (
     -- Using composite PK for efficiency and uniqueness guarantee
-    post_id    INTEGER NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
-    hashtag_id INTEGER NOT NULL REFERENCES hashtags (hashtag_id) ON DELETE CASCADE,
+    post_id    UUID NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
+    hashtag_id UUID NOT NULL REFERENCES hashtags (hashtag_id) ON DELETE CASCADE,
     PRIMARY KEY (post_id, hashtag_id)
-    -- No separate post_hashtag_id needed
 );
 
 -- Activity Tracking
 CREATE TABLE notifications
 (
-    notification_id   SERIAL PRIMARY KEY,
-    user_id           INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE, -- The user receiving the notification
-    actor_user_id     INTEGER                  REFERENCES users (user_id) ON DELETE SET NULL,         -- Optional: The user who caused the notification (liked, commented, followed)
+    notification_id   UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id           UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE, -- The user receiving the notification
+    actor_user_id     UUID                      REFERENCES users (user_id) ON DELETE SET NULL,         -- Optional: The user who caused the notification (liked, commented, followed)
     notification_type VARCHAR(50)              NOT NULL,                                              -- e.g., 'new_follower', 'like_post', 'comment_post', 'mention', 'like_comment'
     content           TEXT,                                                                           -- Optional brief text content for the notification
-    reference_id      INTEGER,                                                                        -- ID of the related entity (e.g., post_id, comment_id, follower's user_id)
+    reference_id      UUID,                                                                        -- ID of the related entity (e.g., post_id, comment_id, follower's user_id)
     reference_type    VARCHAR(20),                                                                    -- Clarifies what reference_id refers to (e.g., 'post', 'comment', 'user')
     is_read           BOOLEAN                  NOT NULL DEFAULT FALSE,
     created_at        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -134,44 +132,39 @@ CREATE TABLE notifications
 -- Chat System
 CREATE TABLE chats
 (
-    chat_id       SERIAL PRIMARY KEY,
+    chat_id       UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     chat_name     VARCHAR(100),                               -- Primarily for group chats
     chat_type     VARCHAR(20)              NOT NULL CHECK (chat_type IN ('direct', 'group')),
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    -- updated_at could track the timestamp of the last message - maintain via trigger/app logic
     updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     message_count INTEGER                  NOT NULL DEFAULT 0 -- Denormalized count, could be useful for chat list UI
-    -- creator_user_id INTEGER REFERENCES users(user_id) ON DELETE SET NULL -- Optional: track who created the chat
 );
 
 CREATE TABLE chat_participants
 (
     -- Composite PK ensures a user is only in a chat once
-    chat_id              INTEGER                  NOT NULL REFERENCES chats (chat_id) ON DELETE CASCADE,
-    user_id              INTEGER                  NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    chat_id              UUID                      NOT NULL REFERENCES chats (chat_id) ON DELETE CASCADE,
+    user_id              UUID                      NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
     joined_at            TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     role                 VARCHAR(20)              NOT NULL DEFAULT 'member' CHECK (role IN ('member', 'admin', 'owner')), -- e.g., 'member', 'admin'
-    last_read_message_id BIGINT,                                                                                          -- Tracks the ID of the last message read by this user in this chat (use BIGINT if message_id is BIGSERIAL)
-    -- last_read timestamp might be an alternative to last_read_message_id
+    last_read_message_id UUID,                                                                                          -- Tracks the ID of the last message read by this user in this chat
     PRIMARY KEY (chat_id, user_id)
 );
 
 CREATE TABLE messages
 (
-    message_id BIGSERIAL PRIMARY KEY,                                                  -- Use BIGSERIAL for potentially high volume
-    chat_id    INTEGER                  NOT NULL REFERENCES chats (chat_id) ON DELETE CASCADE,
-    user_id    INTEGER                  REFERENCES users (user_id) ON DELETE SET NULL, -- Keep message history even if user is deleted, but show as 'deleted user'
+    message_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    chat_id    UUID                      NOT NULL REFERENCES chats (chat_id) ON DELETE CASCADE,
+    user_id    UUID                      REFERENCES users (user_id) ON DELETE SET NULL, -- Keep message history even if user is deleted, but show as 'deleted user'
     content    TEXT,                                                                   -- Can be NULL if it's only media
     sent_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    -- is_read is better tracked per participant in chat_participants (using last_read_message_id or similar)
     is_deleted BOOLEAN                  NOT NULL DEFAULT FALSE                         -- For soft deletes
-    -- CHECK constraint on content or associated message_media ensures message isn't empty could be added
 );
 
 CREATE TABLE message_media
 (
-    message_media_id SERIAL PRIMARY KEY,
-    message_id       BIGINT                   NOT NULL REFERENCES messages (message_id) ON DELETE CASCADE, -- Match BIGINT type
+    message_media_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    message_id       UUID                      NOT NULL REFERENCES messages (message_id) ON DELETE CASCADE,
     media_type       VARCHAR(50)              NOT NULL,                                                    -- e.g., 'image/jpeg', 'application/pdf', 'audio/mpeg'
     media_url        VARCHAR(255)             NOT NULL,                                                    -- URL to the media file
     file_name        VARCHAR(255),                                                                         -- Optional: original file name

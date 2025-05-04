@@ -2,9 +2,9 @@
 
 public partial class MessageMedium
 {
-    public int MessageMediaId { get; set; }
+    public Guid MessageMediaId { get; set; }
 
-    public long MessageId { get; set; }
+    public Guid MessageId { get; set; }
 
     public string MediaType { get; set; } = null!;
 

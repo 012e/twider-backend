@@ -1,3 +1,3 @@
 namespace Backend.Common.Helpers.Types;
 
-public record CreatedId(int Id);
+public record CreatedId(Guid Id);

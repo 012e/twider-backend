@@ -2,7 +2,7 @@
 
 public partial class Chat
 {
-    public int ChatId { get; set; }
+    public Guid ChatId { get; set; }
 
     public string? ChatName { get; set; }
 

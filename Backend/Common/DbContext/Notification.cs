@@ -2,17 +2,17 @@
 
 public partial class Notification
 {
-    public int NotificationId { get; set; }
+    public Guid NotificationId { get; set; }
 
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
 
-    public int? ActorUserId { get; set; }
+    public Guid? ActorUserId { get; set; }
 
     public string NotificationType { get; set; } = null!;
 
     public string? Content { get; set; }
 
-    public int? ReferenceId { get; set; }
+    public Guid? ReferenceId { get; set; }
 
     public string? ReferenceType { get; set; }
 

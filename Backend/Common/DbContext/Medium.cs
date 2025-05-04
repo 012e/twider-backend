@@ -2,9 +2,9 @@
 
 public partial class Medium
 {
-    public int MediaId { get; set; }
+    public Guid MediaId { get; set; }
 
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
 
     public string MediaType { get; set; } = null!;
 
