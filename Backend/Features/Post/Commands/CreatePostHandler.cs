@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Features.Post.Commands;
 
-public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<CreatedId>>
+public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<ItemId>>
 {
     private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
@@ -17,7 +17,7 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<Cr
         _currentUserService = currentUserService;
     }
 
-    public async Task<ApiResult<CreatedId>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<ItemId>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
     {
         var user = _currentUserService.User;
         if (user == null)
@@ -38,6 +38,6 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<Cr
 
         await _db.SaveChangesAsync(cancellationToken);
 
-        return ApiResult.Ok(new CreatedId(post.Entity.PostId));
+        return ApiResult.Ok(new ItemId(post.Entity.PostId));
     }
 }

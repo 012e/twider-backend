@@ -11,7 +11,11 @@ public class Routes : IEndPoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/users/{id}", async (int id, IMediator mediator) =>
+        var group = app
+            .MapGroup("users")
+            .WithTags("Users");
+
+        group.MapGet("{id}", async (int id, IMediator mediator) =>
                 {
                     var query = new GetUserByIdQuery
                     {

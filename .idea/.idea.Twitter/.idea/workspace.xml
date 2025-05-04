@@ -11,26 +11,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/CursorEncoder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/InfiniteCursorPage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/InfinitePaginationRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/Services/PaginationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Mappers/PostMapper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ChatParticipant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ChatParticipant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Follow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Follow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Hashtag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Hashtag.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Like.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Message.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Message.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/MessageMedium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/MessageMedium.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Notification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Notification.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/UserSetting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/UserSetting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Scripts/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/ItemId.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +46,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/32b4a29d026a47f2b70331ba6315ff8f13200/c1/dfba174f/ISender.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/f5/ba8e05e9/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/71bf40584f9445c2b1fe8786b744981c2c400/cd/1c95d7da/ValidationContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c76a3b9ee90d40818185bfd493e0dd8a157a00/a8/31608804/JsonConverterFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
@@ -68,36 +71,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
-    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Debug&quot;,
-    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Backend: http.executor": "Run",
+    "Aspire Host.Twitter: http.executor": "Debug",
+    "Database Script.init.sql.executor": "Run",
+    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.Build.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
+    "RunConfigurationTargetLRU": [
+      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
@@ -331,7 +334,8 @@
       <workItem from="1746192071048" duration="2439000" />
       <workItem from="1746268411335" duration="2887000" />
       <workItem from="1746283543505" duration="13122000" />
-      <workItem from="1746342258055" duration="2639000" />
+      <workItem from="1746342258055" duration="8862000" />
+      <workItem from="1746352422481" duration="1363000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -381,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746296346653</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactor ID types from int to Guid and add Minio config.">
+      <option name="closed" value="true" />
+      <created>1746344902028</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746344902028</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +407,8 @@
     <MESSAGE value="wip" />
     <MESSAGE value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
     <MESSAGE value="Update workspace.xml to remove outdated change entries" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Refactor ID types from int to Guid and add Minio config." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor ID types from int to Guid and add Minio config." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -23,6 +23,7 @@
         <PackageReference Include="Minio" Version="6.0.4" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+        <PackageReference Include="Riok.Mapperly" Version="4.2.1" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.1.13" />
         <PackageReference Include="Schick.Keycloak.RestApiClient" Version="26.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>

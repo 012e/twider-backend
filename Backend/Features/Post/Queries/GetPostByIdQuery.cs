@@ -2,4 +2,4 @@ using MediatR;
 
 namespace Backend.Features.Post.Queries;
 
-public record GetPostByIdQuery(int Id) : IRequest<ApiResult<GetPostByIdResponse>>;
+public record GetPostByIdQuery(Guid Id) : IRequest<ApiResult<GetPostByIdResponse>>;

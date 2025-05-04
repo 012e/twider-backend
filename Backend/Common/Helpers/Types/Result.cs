@@ -23,13 +23,17 @@ public class Result<T, E>
 
     public static Result<T, E> Ok(T value) => new(value);
     public static Result<T, E> Fail(E error) => new(error);
-
 }
 
 public class ApiResult<T> : Result<T, ProblemDetails>
 {
-    private ApiResult(T value) : base(value) { }
-    private ApiResult(ProblemDetails error) : base(error) { }
+    private ApiResult(T value) : base(value)
+    {
+    }
+
+    private ApiResult(ProblemDetails error) : base(error)
+    {
+    }
 
     public static implicit operator ApiResult<T>(T value) => new(value);
     public static implicit operator ApiResult<T>(ProblemDetails error) => new(error);
@@ -44,7 +48,8 @@ public class ApiResult<T> : Result<T, ProblemDetails>
             if (result.Value is T value)
                 return new ApiResult<T>(value);
 
-            throw new InvalidCastException($"Cannot convert value of type '{result.Value?.GetType()}' to '{typeof(T)}'.");
+            throw new InvalidCastException(
+                $"Cannot convert value of type '{result.Value?.GetType()}' to '{typeof(T)}'.");
         }
         else
         {
@@ -62,26 +67,25 @@ public static class ApiResult
 
 public static class ApiResultExtensions
 {
-    public static IResult ToIResult<T>(this ApiResult<T> result)
+    public static IResult ToErrorResponse<T>(this ApiResult<T> result)
     {
-        if (result.IsSuccess && result.Value is not null)
+        if (result.IsSuccess)
         {
-            return Results.Ok(result.Value);
+            throw new InvalidOperationException("Cannot convert successful result to error response.");
         }
-        else if (result.IsFailed && result.Error is not null)
+
+        if (result.Error is null)
         {
-            return Results.Problem(
-                title: result.Error.Title,
-                detail: result.Error.Detail,
-                statusCode: result.Error.Status,
-                type: result.Error.Type,
-                instance: result.Error.Instance
-            );
+            throw new InvalidOperationException("Error is null.");
         }
-        else
-        {
-            return Results.StatusCode(500);
-        }
+
+        return Results.Problem(
+            title: result.Error.Title,
+            detail: result.Error.Detail,
+            statusCode: result.Error.Status,
+            type: result.Error.Type,
+            instance: result.Error.Instance
+        );
     }
 }
 

@@ -4,11 +4,8 @@ using MediatR;
 
 namespace Backend.Features.Post.Commands;
 
-public class CreatePostCommand : IRequest<ApiResult<CreatedId>>
+public class CreatePostCommand : IRequest<ApiResult<ItemId>>
 {
-    [Required]
-    public string Title { get; set; } = null!;
-
     [Required]
     public string Content { get; set; } = null!;
 }
