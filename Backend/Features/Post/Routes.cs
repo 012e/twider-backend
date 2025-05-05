@@ -68,5 +68,27 @@ public class Routes : IEndPoint
                 })
             .Produces<InfiniteCursorPage<GetPostByIdResponse>>()
             .Produces<ProblemDetails>(400);
+
+        group.MapPut("{id:guid}",
+            async (IMediator mediator, [FromRoute] Guid id, [FromBody] UpdatePostCommand.UpdateContent request) =>
+            {
+                Validator.ValidateObject(request, new ValidationContext(request), true);
+                var command = new UpdatePostCommand
+                {
+                    PostId = id,
+                    Content = request,
+                };
+
+                var response = await mediator.Send(command);
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.NoContent();
+            })
+            .Produces<ProblemDetails>(400)
+            .Produces<Unit>(204)
+            .Produces<ProblemDetails>(404);
     }
 }
