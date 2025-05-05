@@ -33,14 +33,18 @@ public class Routes : IEndPoint
 
         group.MapDelete("{id}", async ([FromRoute] Guid id, IMediator mediator) =>
             {
-                var response = await mediator.Send(new ItemId(id));
+                var response = await mediator.Send(new DeletePostCommand(id));
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
                 return Results.NoContent();
             })
             .Produces(204)
             .Produces<ProblemDetails>(404);
 
         group.MapGet("",
-                async ([FromQuery(Name = "cursor")] string? cursor, [FromQuery] int pageSize, IMediator mediator) =>
+                async ([FromQuery(Name = "cursor")] string? cursor, IMediator mediator, [FromQuery] int pageSize = 10) =>
                 {
                     var request = new GetPostsQuery
                     {

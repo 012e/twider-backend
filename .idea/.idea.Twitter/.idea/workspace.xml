@@ -11,26 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/CursorEncoder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/InfiniteCursorPage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/InfinitePaginationRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Common/Services/PaginationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Mappers/PostMapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Queries/CommentDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Queries/GetCommentsByPostHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Queries/GetCommentsByPostQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Routes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackendTest/Features/Comments/Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/CreatedId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/ItemId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Types/Result.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Services/PaginationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Services/PaginationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twitter.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +41,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/f5/ba8e05e9/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/71bf40584f9445c2b1fe8786b744981c2c400/cd/1c95d7da/ValidationContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c76a3b9ee90d40818185bfd493e0dd8a157a00/a8/31608804/JsonConverterFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -74,6 +67,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Backend: http.executor": "Run",
+    "368e02ef-7a19-49ca-b256-30aab29dd21d.executor": "Debug",
     "Aspire Host.Twitter: http.executor": "Debug",
     "Database Script.init.sql.executor": "Run",
     "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
@@ -306,8 +300,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Database Script.init.sql" />
         <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
+        <item itemvalue="Database Script.init.sql" />
         <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
@@ -335,7 +329,8 @@
       <workItem from="1746268411335" duration="2887000" />
       <workItem from="1746283543505" duration="13122000" />
       <workItem from="1746342258055" duration="8862000" />
-      <workItem from="1746352422481" duration="1363000" />
+      <workItem from="1746352422481" duration="14551000" />
+      <workItem from="1746445487807" duration="4991000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -393,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746344902028</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add infinite cursor pagination for posts with optimized APIs">
+      <option name="closed" value="true" />
+      <created>1746354282369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746354282369</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +411,8 @@
     <MESSAGE value="Refactor result handling and remove FluentResults dependency&#10;&#10;Replaced FluentResults with custom ApiResult and extensions for improved error handling and consistency. Introduced `CreatedId` type for simplifying ID responses and updated related features, commands, and routes accordingly. Cleaned up `Program.cs` service registration for better readability." />
     <MESSAGE value="Update workspace.xml to remove outdated change entries" />
     <MESSAGE value="Refactor ID types from int to Guid and add Minio config." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor ID types from int to Guid and add Minio config." />
+    <MESSAGE value="Add infinite cursor pagination for posts with optimized APIs" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -424,6 +428,12 @@
         <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.ArgumentException" breakIfHandledByUserCode="true" isInternal="false" displayValue="ArgumentException" namespaceName="System">
+            <option name="internal" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

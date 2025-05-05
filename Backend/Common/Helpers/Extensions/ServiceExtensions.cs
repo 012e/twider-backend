@@ -60,6 +60,7 @@ public static class ServiceExtensions
     {
         services.AddSwaggerGen(options =>
         {
+            options.CustomSchemaIds(type => type.ToString());
             options.OperationFilter<SecurityRequirementsOperationFilter>();
 
             var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;

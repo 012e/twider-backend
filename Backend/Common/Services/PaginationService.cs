@@ -18,7 +18,7 @@ public static class InfinitePaginationService
         bool ascending = true)
     {
         // Now explicitly passing Guid as the key type
-        return PaginateInternalAsync<T, Guid, TResult>(source, keySelector, mapper, after, limit, ascending);
+        return PaginateInternalAsync(source, keySelector, mapper, after, limit, ascending);
     }
 
     // This overload already uses Guid as the key type
@@ -55,7 +55,7 @@ public static class InfinitePaginationService
 
         if (totalCount == 0)
         {
-            // Return empty page if there are no items
+            // Return an empty page if there are no items
             return new InfiniteCursorPage<TResult>(
                 items: new List<TResult>(),
                 nextCursor: null,
@@ -63,18 +63,22 @@ public static class InfinitePaginationService
             );
         }
 
-        TKey? cursorValue = default;
+        TKey? cursorValue = null;
         if (after != null)
         {
             // Decode the cursor to get the key value
-            string decodedCursor = CursorEncoder.Decode(after);
-
-            // Parse the decoded string to the appropriate key type
-            if (typeof(TKey) == typeof(Guid) && Guid.TryParse(decodedCursor, out Guid parsedGuid))
+            try
             {
-                cursorValue = (TKey)(object)parsedGuid;
+                string decodedCursor = CursorEncoder.Decode(after);
+
+                // TODO: looks complicated, plz refactor this
+                if (typeof(TKey) != typeof(Guid))
+                {
+                    throw new ValidationException("Invalid cursor type.");
+                }
+                cursorValue = (TKey)(object)Guid.Parse(decodedCursor);
             }
-            else
+            catch (FormatException)
             {
                 throw new ValidationException("Invalid cursor format.");
             }
@@ -121,7 +125,8 @@ public static class InfinitePaginationService
             var constant = Expression.Constant(firstItemKey, typeof(TKey));
             Expression comparison = ascending
                 ? Expression.LessThan(propertyAccess, constant) // For ascending, get items less than the first key
-                : Expression.GreaterThan(propertyAccess, constant); // For descending, get items greater than the first key
+                : Expression.GreaterThan(propertyAccess,
+                    constant); // For descending, get items greater than the first key
             var lambda = Expression.Lambda<Func<T, bool>>(comparison, param);
             // Apply Where and then re-apply the ordering to maintain IOrderedQueryable
             IQueryable<T> filteredSource = wrappedSource.Where(lambda);
@@ -149,7 +154,7 @@ public static class InfinitePaginationService
         }
         else if (items.Count < limit && totalCount <= limit)
         {
-            hasMore = false; // Returned less than limit and total is within limit
+            hasMore = false; // Returned less than the limit and total is within the limit
         }
         else
         {
