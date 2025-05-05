@@ -1,5 +1,3 @@
-using Backend.Common.Helpers;
-
 namespace BackendTest.Features.Comments;
 
 using Xunit;
