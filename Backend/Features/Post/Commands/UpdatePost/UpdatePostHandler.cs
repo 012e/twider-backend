@@ -1,9 +1,10 @@
 using Backend.Common.DbContext;
+using Backend.Features.Post.Commands.UpdatePost;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.AddReaction;
 
 public class UpdatePostHandler : IRequestHandler<UpdatePostCommand, ApiResult<Unit>>
 {

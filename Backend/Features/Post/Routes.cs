@@ -1,7 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Interfaces;
 using Backend.Common.Helpers.Types;
-using Backend.Features.Post.Commands;
+using Backend.Features.Post.Commands.AddReaction;
+using Backend.Features.Post.Commands.CreatePost;
+using Backend.Features.Post.Commands.DeletePost;
+using Backend.Features.Post.Commands.DeleteReaction;
+using Backend.Features.Post.Commands.UpdatePost;
 using Backend.Features.Post.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +14,22 @@ namespace Backend.Features.Post;
 
 public class Routes : IEndPoint
 {
+    public class ReactionTypeDto
+    {
+        public string ReactionType { get; set; } = null!;
+    }
+
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        var group = app
+        var post = app
             .MapGroup("posts")
             .WithTags("Posts");
 
-        group.MapGet("{id:guid}", async (Guid id, IMediator mediator) =>
+        var reaction = app
+            .MapGroup("posts")
+            .WithTags("Post reactions");
+
+        post.MapGet("{id:guid}", async (Guid id, IMediator mediator) =>
             {
                 var response = await mediator.Send(new GetPostByIdQuery(id));
 
@@ -30,7 +43,7 @@ public class Routes : IEndPoint
             .Produces<GetPostByIdResponse>()
             .Produces<ProblemDetails>(404);
 
-        group.MapPost("", async ([FromBody] CreatePostCommand request, IMediator mediator) =>
+        post.MapPost("", async ([FromBody] CreatePostCommand request, IMediator mediator) =>
             {
                 var response = await mediator.Send(request);
 
@@ -45,7 +58,7 @@ public class Routes : IEndPoint
             .Produces<ItemId>(201)
             .Produces<ProblemDetails>(400);
 
-        group.MapDelete("{id}", async ([FromRoute] Guid id, IMediator mediator) =>
+        post.MapDelete("{id}", async ([FromRoute] Guid id, IMediator mediator) =>
             {
                 var response = await mediator.Send(new DeletePostCommand(id));
                 if (response.IsFailed)
@@ -58,7 +71,7 @@ public class Routes : IEndPoint
             .Produces(204)
             .Produces<ProblemDetails>(404);
 
-        group.MapGet("",
+        post.MapGet("",
                 async ([FromQuery(Name = "cursor")] string? cursor, IMediator mediator,
                     [FromQuery] int pageSize = 10) =>
                 {
@@ -85,7 +98,7 @@ public class Routes : IEndPoint
             .Produces<InfiniteCursorPage<GetPostByIdResponse>>()
             .Produces<ProblemDetails>(400);
 
-        group.MapPut("{id:guid}",
+        post.MapPut("{id:guid}",
                 async (IMediator mediator, [FromRoute] Guid id, [FromBody] UpdatePostCommand.UpdateContent request) =>
                 {
                     Validator.ValidateObject(request, new ValidationContext(request), true);
@@ -107,17 +120,17 @@ public class Routes : IEndPoint
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
 
-        group.MapPost("{id:guid}/react", async
-                ([FromRoute] Guid id, IMediator mediator, [FromBody] string reactionType) =>
+        reaction.MapPost("{id:guid}/react", async
+                ([FromRoute] Guid id, IMediator mediator, [FromBody] ReactionTypeDto reactionType) =>
             {
-                ReactionTypeHelper.Validate(reactionType);
+                ReactionTypeHelper.Validate(reactionType.ReactionType);
 
                 var command = new PostReactionCommand
                 {
                     PostId = id,
                     ReactionType = new PostReactionCommand.ReactionDto
                     {
-                        ReactionType = reactionType.ToReactionTypeEnum()
+                        ReactionType = reactionType.ReactionType.ToReactionTypeEnum()
                     }
                 };
                 Validator.ValidateObject(command, new ValidationContext(command), true);
@@ -131,6 +144,26 @@ public class Routes : IEndPoint
                 return Results.NoContent();
             })
             .Produces<ProblemDetails>(400)
+            .Produces<Unit>(204)
+            .Produces<ProblemDetails>(404);
+
+        reaction.MapDelete("{id:guid}/react", async
+                ([FromRoute] Guid id, IMediator mediator) =>
+            {
+                var command = new RemoveReactionCommand
+                {
+                    PostId = id,
+                };
+                Validator.ValidateObject(command, new ValidationContext(command), true);
+
+                var response = await mediator.Send(command);
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.NoContent();
+            })
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
     }

@@ -1,10 +1,11 @@
 using Backend.Common.DbContext;
+using Backend.Common.DbContext.Reaction;
 using Backend.Common.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.AddReaction;
 
 public class PostReactionHandler : IRequestHandler<PostReactionCommand, ApiResult<Unit>>
 {
@@ -72,7 +73,7 @@ public class PostReactionHandler : IRequestHandler<PostReactionCommand, ApiResul
             CreatedAt = DateTime.UtcNow,
         };
 
-        await _db.Reactions.AddAsync(reaction, cancellationToken);
+        await _db.PostReactions.AddAsync(reaction, cancellationToken);
 
         await _db.SaveChangesAsync(cancellationToken);
         return Unit.Value;

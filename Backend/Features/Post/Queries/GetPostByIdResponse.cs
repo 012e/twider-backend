@@ -1,4 +1,4 @@
-using Backend.Features.Post.Commands;
+using Backend.Features.Post.Commands.AddReaction;
 using Riok.Mapperly.Abstractions;
 
 namespace Backend.Features.Post.Queries;

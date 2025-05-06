@@ -1,4 +1,5 @@
-﻿using Backend.Common.Helpers.Types;
+﻿using Backend.Common.DbContext.Reaction;
+using Backend.Common.Helpers.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -39,8 +40,6 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSetting> UserSettings { get; set; }
-
-    public virtual DbSet<Reaction> Reactions { get; set; }
 
     public virtual DbSet<PostReaction> PostReactions { get; set; }
 
@@ -406,7 +405,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                     });
         });
 
-        modelBuilder.Entity<Reaction>(entity =>
+        modelBuilder.Entity<Reaction.Reaction>(entity =>
         {
             entity.HasKey(e => e.ReactionId).HasName("reactions_pkey");
 
@@ -542,7 +541,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
     }
 
     private static void MapBaseReaction<T>(EntityTypeBuilder<T> entity)
-        where T : Reaction, new()
+        where T : Reaction.Reaction, new()
     {
         entity.ToTable("reactions");
 

@@ -1,4 +1,4 @@
-namespace Backend.Common.DbContext;
+namespace Backend.Common.DbContext.Reaction;
 
 public class PostReaction : Reaction
 {

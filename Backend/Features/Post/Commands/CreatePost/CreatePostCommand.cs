@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Types;
 using MediatR;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.CreatePost;
 
 public class CreatePostCommand : IRequest<ApiResult<ItemId>>
 {

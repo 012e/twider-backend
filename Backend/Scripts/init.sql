@@ -221,3 +221,33 @@ CREATE INDEX idx_messages_user_id ON messages (user_id);
 
 -- MESSAGE_MEDIA table
 CREATE INDEX idx_message_media_message_id ON message_media (message_id);
+
+-- Renew `updated_at` column on update
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+    RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- POSTS
+CREATE TRIGGER set_updated_at_posts
+    BEFORE UPDATE ON posts
+    FOR EACH ROW
+    WHEN (OLD.* IS DISTINCT FROM NEW.*)
+EXECUTE FUNCTION update_updated_at_column();
+
+-- COMMENTS
+CREATE TRIGGER set_updated_at_comments
+    BEFORE UPDATE ON comments
+    FOR EACH ROW
+    WHEN (OLD.* IS DISTINCT FROM NEW.*)
+EXECUTE FUNCTION update_updated_at_column();
+
+-- CHATS
+CREATE TRIGGER set_updated_at_chats
+    BEFORE UPDATE ON chats
+    FOR EACH ROW
+    WHEN (OLD.* IS DISTINCT FROM NEW.*)
+EXECUTE FUNCTION update_updated_at_column();

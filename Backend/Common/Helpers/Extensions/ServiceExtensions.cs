@@ -64,6 +64,10 @@ public static class ServiceExtensions
             options.CustomSchemaIds(type => type.ToString());
             options.OperationFilter<SecurityRequirementsOperationFilter>();
 
+            // support for nested classes
+            // https://stackoverflow.com/questions/65196695/swagger-swashbuckle-does-not-support-nested-class-as-action-method-parameter
+            options.CustomSchemaIds(s => s.FullName?.Replace("+", "."));
+
             var oauthOptions = services.BuildServiceProvider().GetRequiredService<IOptions<OAuthOptions>>().Value;
 
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

@@ -1,4 +1,6 @@
-﻿namespace Backend.Common.DbContext;
+﻿using Backend.Common.DbContext.Reaction;
+
+namespace Backend.Common.DbContext;
 
 public partial class Post
 {

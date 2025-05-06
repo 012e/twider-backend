@@ -1,3 +1,5 @@
+using Backend.Features.Post.Commands.UpdatePost;
+
 namespace BackendTest.Features.Post.Commands;
 
 using Xunit;
@@ -8,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Common.DbContext;
-using Backend.Features.Post.Commands; // Assuming the command is in this namespace
+using Backend.Features.Post.Commands.AddReaction; // Assuming the command is in this namespace
 using MediatR; // For Unit type
 using Microsoft.AspNetCore.Http; // For StatusCodes
 using System;

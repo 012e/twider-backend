@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.DeletePost;
 
 public class DeletePostHandler : IRequestHandler<DeletePostCommand, ApiResult<Unit>>
 {

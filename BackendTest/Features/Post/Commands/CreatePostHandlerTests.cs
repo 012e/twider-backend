@@ -1,3 +1,5 @@
+using Backend.Features.Post.Commands.CreatePost;
+
 namespace BackendTest.Features.Post.Commands;
 
 using Xunit;
@@ -6,7 +8,7 @@ using AutoFixture;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Common.DbContext;
-using Backend.Features.Post.Commands; // Assuming command is here
+using Backend.Features.Post.Commands.AddReaction; // Assuming command is here
 using Backend.Common.Helpers.Types;
 using Backend.Common.Services; // For ICurrentUserService
 // For IRequestHandler

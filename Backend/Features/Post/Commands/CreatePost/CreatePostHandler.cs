@@ -4,7 +4,7 @@ using Backend.Common.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.CreatePost;
 
 public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<ItemId>>
 {

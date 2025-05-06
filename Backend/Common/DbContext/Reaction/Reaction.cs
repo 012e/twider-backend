@@ -1,9 +1,8 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Common.Helpers.Types;
 
-namespace Backend.Common.DbContext;
+namespace Backend.Common.DbContext.Reaction;
 
-public partial class Reaction
+public abstract class Reaction
 {
     public Guid ReactionId { get; set; }
 

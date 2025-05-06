@@ -30,7 +30,7 @@ public partial class User
 
     public virtual ICollection<Follow> FollowFollowings { get; set; } = new List<Follow>();
 
-    public virtual ICollection<Reaction> Reactions { get; set; } = new List<Reaction>();
+    public virtual ICollection<Reaction.Reaction> Reactions { get; set; } = new List<Reaction.Reaction>();
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
 

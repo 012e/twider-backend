@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Types;
 using MediatR;
 
-namespace Backend.Features.Post.Commands;
+namespace Backend.Features.Post.Commands.AddReaction;
 
 public class PostReactionCommand : IRequest<ApiResult<Unit>>
 {
