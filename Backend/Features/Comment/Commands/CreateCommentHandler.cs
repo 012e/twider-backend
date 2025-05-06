@@ -81,6 +81,7 @@ public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiRes
             ParentCommentId = request.ParentCommentId
         };
 
+        //  TODO: Update CommentCount in Post
         _db.Comments.Add(comment);
         await _db.SaveChangesAsync(cancellationToken);
 

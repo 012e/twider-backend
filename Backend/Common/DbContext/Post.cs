@@ -6,15 +6,13 @@ public partial class Post
 
     public Guid UserId { get; set; }
 
-    public string? Content { get; set; }
+    public string Content { get; set; } = string.Empty;
 
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 
     public short PrivacyLevel { get; set; }
-
-    public int LikeCount { get; set; }
 
     public int CommentCount { get; set; }
 
@@ -27,4 +25,6 @@ public partial class Post
     public virtual User User { get; set; } = null!;
 
     public virtual ICollection<Hashtag> Hashtags { get; set; } = new List<Hashtag>();
+
+    public virtual ICollection<PostReaction> Reactions { get; set; } = new List<PostReaction>();
 }

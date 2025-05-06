@@ -90,5 +90,32 @@ public class Routes : IEndPoint
             .Produces<ProblemDetails>(400)
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
+
+        group.MapPost("{id:guid}/react", async
+            ([FromRoute] Guid id, IMediator mediator, [FromBody] string reactionType) =>
+            {
+                ReactionTypeHelper.Validate(reactionType);
+
+                var command = new PostReactionCommand
+                {
+                    PostId = id,
+                    ReactionType = new PostReactionCommand.ReactionDto
+                    {
+                        ReactionType = reactionType.ToReactionTypeEnum()
+                    }
+                };
+                Validator.ValidateObject(command, new ValidationContext(command), true);
+
+                var response = await mediator.Send(command);
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.NoContent();
+            })
+            .Produces<ProblemDetails>(400)
+            .Produces<Unit>(204)
+            .Produces<ProblemDetails>(404);
     }
 }

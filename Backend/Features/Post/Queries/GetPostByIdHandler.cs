@@ -16,9 +16,22 @@ public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, ApiResult<Ge
         _db = db;
     }
 
-    public async Task<ApiResult<GetPostByIdResponse>> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ApiResult<GetPostByIdResponse>> Handle(GetPostByIdQuery request,
+        CancellationToken cancellationToken)
     {
-        var post = await _db.Posts.FirstOrDefaultAsync(p => p.PostId == request.Id, cancellationToken);
+        var post = await _db.Posts
+            .Include(p => p.User)
+            .Select(p => new GetPostByIdResponse
+                {
+                    PostId = p.PostId,
+                    Content = p.Content,
+                    User = p.User.ToUserDto(),
+                    CreatedAt = p.CreatedAt,
+                    UpdatedAt = p.UpdatedAt,
+                    Reactions = p.Reactions.ExtractReactionCount()
+                }
+            )
+            .FirstOrDefaultAsync(p => p.PostId == request.Id, cancellationToken);
         if (post is null)
         {
             return ApiResult<GetPostByIdResponse>.Fail(new ProblemDetails
@@ -28,6 +41,7 @@ public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, ApiResult<Ge
                 Status = StatusCodes.Status404NotFound
             });
         }
-        return ApiResult.Ok(post.ToResponse());
+
+        return ApiResult.Ok(post);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Backend.Common.Helpers.Types;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Backend.Common.DbContext;
 
@@ -37,6 +39,12 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSetting> UserSettings { get; set; }
+
+    public virtual DbSet<Reaction> Reactions { get; set; }
+
+    public virtual DbSet<PostReaction> PostReactions { get; set; }
+
+    public virtual DbSet<CommentReaction> CommentReactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -113,9 +121,6 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnName("created_at");
-            entity.Property(e => e.LikeCount)
-                .HasDefaultValue(0)
-                .HasColumnName("like_count");
             entity.Property(e => e.ParentCommentId).HasColumnName("parent_comment_id");
             entity.Property(e => e.PostId).HasColumnName("post_id");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
@@ -141,7 +146,8 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.ToTable("follows");
 
-            entity.HasIndex(e => new { e.FollowerId, e.FollowingId }, "follows_follower_id_following_id_key").IsUnique();
+            entity.HasIndex(e => new { e.FollowerId, e.FollowingId }, "follows_follower_id_following_id_key")
+                .IsUnique();
 
             entity.HasIndex(e => e.FollowerId, "idx_follows_follower_id");
 
@@ -200,7 +206,8 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
             entity.HasIndex(e => e.UserId, "idx_likes_user_id");
 
-            entity.HasIndex(e => new { e.UserId, e.ContentId, e.ContentType }, "likes_user_id_content_id_content_type_key").IsUnique();
+            entity.HasIndex(e => new { e.UserId, e.ContentId, e.ContentType },
+                "likes_user_id_content_id_content_type_key").IsUnique();
 
             entity.Property(e => e.LikeId)
                 .HasDefaultValueSql("gen_random_uuid()")
@@ -213,10 +220,6 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnName("created_at");
             entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Likes)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("likes_user_id_fkey");
         });
 
         modelBuilder.Entity<Medium>(entity =>
@@ -371,9 +374,6 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnName("created_at");
-            entity.Property(e => e.LikeCount)
-                .HasDefaultValue(0)
-                .HasColumnName("like_count");
             entity.Property(e => e.PrivacyLevel)
                 .HasDefaultValue((short)0)
                 .HasColumnName("privacy_level");
@@ -404,6 +404,64 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                         j.IndexerProperty<Guid>("PostId").HasColumnName("post_id");
                         j.IndexerProperty<Guid>("HashtagId").HasColumnName("hashtag_id");
                     });
+        });
+
+        modelBuilder.Entity<Reaction>(entity =>
+        {
+            entity.HasKey(e => e.ReactionId).HasName("reactions_pkey");
+
+            entity.ToTable("reactions");
+
+            entity.HasDiscriminator(e => e.ContentType)
+                .HasValue<PostReaction>("post")
+                .HasValue<CommentReaction>("comment");
+
+            entity.HasIndex(e => new { e.ContentType, e.ContentId }, "idx_reactions_content");
+
+            entity.HasIndex(e => e.UserId, "idx_reactions_user_id");
+
+            entity.HasIndex(e => new { e.UserId, e.ContentId, e.ContentType },
+                "reactions_user_id_content_id_content_type_key").IsUnique();
+
+            entity.Property(e => e.ReactionId)
+                .HasDefaultValueSql("gen_random_uuid()")
+                .HasColumnName("reaction_id");
+            entity.Property(e => e.ContentId).HasColumnName("content_id");
+            entity.Property(e => e.ContentType)
+                .HasMaxLength(10)
+                .HasColumnName("content_type");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnName("created_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Reactions)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("reactions_user_id_fkey");
+
+            entity.Property(d => d.ReactionType)
+                .HasColumnType("smallint")
+                .HasColumnName("reaction_type");
+        });
+
+        modelBuilder.Entity<CommentReaction>(p =>
+        {
+            MapBaseReaction(p);
+            p.Property(d => d.ContentType)
+                .HasMaxLength(10)
+                .HasDefaultValue("comment");
+
+            p.HasOne(p => p.Comment).WithMany(p => p.Reactions)
+                .HasForeignKey(p => p.ContentId);
+        });
+        modelBuilder.Entity<PostReaction>(p =>
+        {
+            MapBaseReaction(p);
+            p.Property(d => d.ContentType)
+                .HasMaxLength(10)
+                .HasDefaultValue("post");
+            p.HasOne(p => p.Post).WithMany(p => p.Reactions)
+                .HasForeignKey(p => p.ContentId);
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -481,6 +539,36 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
         });
 
         OnModelCreatingPartial(modelBuilder);
+    }
+
+    private static void MapBaseReaction<T>(EntityTypeBuilder<T> entity)
+        where T : Reaction, new()
+    {
+        entity.ToTable("reactions");
+
+        entity.HasIndex(e => new { e.ContentType, e.ContentId }, "idx_reactions_content");
+
+        entity.HasIndex(e => e.UserId, "idx_reactions_user_id");
+
+        entity.HasIndex(e => new { e.UserId, e.ContentId, e.ContentType },
+            "reactions_user_id_content_id_content_type_key").IsUnique();
+
+        entity.Property(e => e.ReactionId)
+            .HasDefaultValueSql("gen_random_uuid()")
+            .HasColumnName("reaction_id");
+        entity.Property(e => e.ContentId).HasColumnName("content_id");
+        entity.Property(e => e.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .HasColumnName("created_at");
+        entity.Property(e => e.UserId).HasColumnName("user_id");
+
+        entity.Property(d => d.ReactionType)
+            .HasColumnType("smallint")
+            .HasColumnName("reaction_type");
+
+        entity.Property(e => e.ContentType)
+            .HasMaxLength(10)
+            .HasColumnName("content_type");
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

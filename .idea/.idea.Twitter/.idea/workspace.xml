@@ -11,16 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePostCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePostHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendTest/Features/Comment/Commands/CreateCommentHandlerTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/UpdatePostHandlerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendTest/BackendTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/BackendTest.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Comments/Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/Features/Comment/Queries/GetCommentsByPostHandlerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendTest/UnitTest1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +25,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/199530afd6d1435da78e764a836af77438400/a3/5d40c7b8/Ok`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/32b4a29d026a47f2b70331ba6315ff8f13200/c1/dfba174f/ISender.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/18/5228fa58/NullReferenceException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/26/1d1d40cb/ConfiguredCancelableAsyncEnumerable`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/36/e1d01539/ArgumentNullException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4363be3555734c96804bc429c863e56ab2e200/f5/ba8e05e9/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/71bf40584f9445c2b1fe8786b744981c2c400/cd/1c95d7da/ValidationContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c76a3b9ee90d40818185bfd493e0dd8a157a00/a8/31608804/JsonConverterFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b3b6985aad11c5d633d75b545f5f5f4fc7e50918ad1cb9f6b615682f5bfb76d/SingleQueryingEnumerable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c69576b4a074ad2839225611609498e344b7e2819997af48dbb2d2f8257f3/EntityFrameworkQueryableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebfd60d582c50e7123fd83fb530894b816559627ebdf43445a58a5c8160e/InternalDbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/Twitter/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/Twitter/Backend/Features/Post/Queries/GetPostByIdResponse.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -61,37 +61,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
-    &quot;368e02ef-7a19-49ca-b256-30aab29dd21d.executor&quot;: &quot;Debug&quot;,
-    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Debug&quot;,
-    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Backend: http.executor": "Debug",
+    "368e02ef-7a19-49ca-b256-30aab29dd21d.executor": "Debug",
+    "Aspire Host.Twitter: http.executor": "Debug",
+    "Database Script.init.sql.executor": "Run",
+    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.Build.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
+    "RunConfigurationTargetLRU": [
+      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
@@ -297,8 +297,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Database Script.init.sql" />
+        <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
         <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
@@ -328,6 +328,8 @@
       <workItem from="1746342258055" duration="8862000" />
       <workItem from="1746352422481" duration="14551000" />
       <workItem from="1746445487807" duration="4991000" />
+      <workItem from="1746506556431" duration="5746000" />
+      <workItem from="1746519287679" duration="7309000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -393,7 +395,31 @@
       <option name="project" value="LOCAL" />
       <updated>1746354282369</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add functionality to update posts">
+      <option name="closed" value="true" />
+      <created>1746456412846</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746456412846</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add unit tests for comment creation and post update handlers">
+      <option name="closed" value="true" />
+      <created>1746456443939</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746456443939</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Refactor likes to reactions and add reaction functionality">
+      <option name="closed" value="true" />
+      <created>1746526543574</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746526543574</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +435,10 @@
     <MESSAGE value="Update workspace.xml to remove outdated change entries" />
     <MESSAGE value="Refactor ID types from int to Guid and add Minio config." />
     <MESSAGE value="Add infinite cursor pagination for posts with optimized APIs" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Add functionality to update posts" />
+    <MESSAGE value="Add unit tests for comment creation and post update handlers" />
+    <MESSAGE value="Refactor likes to reactions and add reaction functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor likes to reactions and add reaction functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -432,7 +461,37 @@
           </properties>
           <option name="timeStamp" value="5" />
         </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.NullReferenceException" breakIfHandledByUserCode="true" isInternal="false" displayValue="NullReferenceException" namespaceName="System">
+            <option name="internal" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs</url>
+          <line>38</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" containingFunctionPresentation="Method 'Handle'">
+            <startOffsets>
+              <option value="1176" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1222" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#Result`2" memberName="Value" />
+        <PinnedItemInfo parentTag="Type#Npgsql.PostgresException" memberName="Detail" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="LaunchSettings">
+        <watch expression="((Npgsql.PostgresException) $exception.InnerException).InvariantSeverity" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

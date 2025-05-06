@@ -16,7 +16,7 @@ public partial class Comment
 
     public DateTime? UpdatedAt { get; set; }
 
-    public int LikeCount { get; set; }
+    public virtual ICollection<CommentReaction> Reactions { get; set; } = [];
 
     public virtual ICollection<Comment> InverseParentComment { get; set; } = new List<Comment>();
 

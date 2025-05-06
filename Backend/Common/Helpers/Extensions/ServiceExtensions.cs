@@ -52,6 +52,7 @@ public static class ServiceExtensions
         {
             var dbOptions = services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseOptions>>().Value;
             opt.UseNpgsql(dbOptions.ApplicationDbContext);
+            opt.EnableSensitiveDataLogging();
         });
         return services;
     }

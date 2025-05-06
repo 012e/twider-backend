@@ -25,10 +25,19 @@ public class GetPostsHandler : IRequestHandler<GetPostsQuery, ApiResult<Infinite
         var pageSize = request.PaginationMeta.PageSize;
 
         var posts = await InfinitePaginationService.PaginateAsync(
-            source: _db.Posts.Include(post => post.User),
+            source: _db.Posts
+                .Include(post => post.User)
+                .Select(b => new GetPostByIdResponse
+                {
+                    PostId = b.PostId,
+                    Content = b.Content,
+                    CreatedAt = b.CreatedAt,
+                    User = b.User.ToUserDto(),
+                    UpdatedAt = b.UpdatedAt,
+                    Reactions = b.Reactions.ExtractReactionCount()
+                }),
             keySelector: x => x.PostId,
             after: cursor,
-            mapper: i => i.ToResponse(),
             limit: pageSize
         );
 
