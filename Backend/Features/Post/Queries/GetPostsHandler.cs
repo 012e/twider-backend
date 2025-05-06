@@ -34,7 +34,9 @@ public class GetPostsHandler : IRequestHandler<GetPostsQuery, ApiResult<Infinite
                     CreatedAt = b.CreatedAt,
                     User = b.User.ToUserDto(),
                     UpdatedAt = b.UpdatedAt,
-                    Reactions = b.Reactions.ExtractReactionCount()
+                    Reactions = b.Reactions.ExtractReactionCount(),
+                    ReactionCount = b.Reactions.Count(),
+                    CommentCount = b.Comments.Count()
                 }),
             keySelector: x => x.PostId,
             after: cursor,

@@ -28,7 +28,9 @@ public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, ApiResult<Ge
                     User = p.User.ToUserDto(),
                     CreatedAt = p.CreatedAt,
                     UpdatedAt = p.UpdatedAt,
-                    Reactions = p.Reactions.ExtractReactionCount()
+                    Reactions = p.Reactions.ExtractReactionCount(),
+                    ReactionCount = p.CommentCount,
+                    CommentCount = p.Reactions.Count()
                 }
             )
             .FirstOrDefaultAsync(p => p.PostId == request.Id, cancellationToken);

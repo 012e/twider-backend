@@ -11,7 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +42,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/huy/personal/any/Twitter/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/huy/personal/any/Twitter/Backend/Features/Post/Queries/GetPostByIdResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/Twitter/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twitter/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -80,7 +84,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
+    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -329,7 +333,7 @@
       <workItem from="1746352422481" duration="14551000" />
       <workItem from="1746445487807" duration="4991000" />
       <workItem from="1746506556431" duration="5746000" />
-      <workItem from="1746519287679" duration="7309000" />
+      <workItem from="1746519287679" duration="7526000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -419,7 +423,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746526543574</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Refactor likes to reactions and add reaction functionality">
+      <option name="closed" value="true" />
+      <created>1746526756457</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746526756457</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

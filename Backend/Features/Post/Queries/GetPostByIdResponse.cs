@@ -13,28 +13,30 @@ public class GetPostByIdResponse
     public required DateTime? UpdatedAt { get; set; }
 
     public required ReactionDto Reactions { get; set; }
+    public required int ReactionCount { get; set; } = 0;
+    public required int CommentCount { get; set; } = 0;
 
     public class UserDto
     {
-        public Guid UserId { get; set; }
+        public required Guid UserId { get; set; }
 
-        public string OauthSub { get; set; }
+        public required string OauthSub { get; set; }
 
-        public string Username { get; set; } = null!;
+        public required string Username { get; set; } = null!;
 
-        public string? Email { get; set; } = null!;
+        public required string? Email { get; set; } = null!;
 
-        public string? ProfilePicture { get; set; }
+        public required string? ProfilePicture { get; set; }
 
-        public string? Bio { get; set; }
+        public required string? Bio { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public required DateTime CreatedAt { get; set; }
 
-        public DateTime? LastLogin { get; set; }
+        public required DateTime? LastLogin { get; set; }
 
-        public bool IsActive { get; set; }
+        public required bool IsActive { get; set; }
 
-        public string VerificationStatus { get; set; } = null!;
+        public required string VerificationStatus { get; set; } = null!;
     }
 
     public class ReactionDto
