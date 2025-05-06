@@ -12,9 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +331,7 @@
       <workItem from="1746352422481" duration="14551000" />
       <workItem from="1746445487807" duration="4991000" />
       <workItem from="1746506556431" duration="5746000" />
-      <workItem from="1746519287679" duration="7526000" />
+      <workItem from="1746519287679" duration="7824000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -431,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746526756457</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add reaction and comment counts to post query responses">
+      <option name="closed" value="true" />
+      <created>1746528308415</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746528308415</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +456,8 @@
     <MESSAGE value="Add functionality to update posts" />
     <MESSAGE value="Add unit tests for comment creation and post update handlers" />
     <MESSAGE value="Refactor likes to reactions and add reaction functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor likes to reactions and add reaction functionality" />
+    <MESSAGE value="Add reaction and comment counts to post query responses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add reaction and comment counts to post query responses" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
