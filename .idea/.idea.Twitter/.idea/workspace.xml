@@ -11,31 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeleteReaction/RemoveReactionCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeleteReaction/RemoveReactionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/CommentReaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/CommentReaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/PostReaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/PostReaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/Reaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePost/CreatePostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePost/CreatePostHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePost/DeletePostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/DeletePost/DeletePostHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/PostReactionCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/AddReaction/PostReactionCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/PostReactionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/AddReaction/PostReactionHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePost/UpdatePostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/UpdatePost/UpdatePostHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Mappers/ReactionMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Mappers/ReactionMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostByIdResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Scripts/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/CreatePostHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/CreatePostHandlerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/UpdatePostHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/UpdatePostHandlerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,7 +334,7 @@
       <workItem from="1746352422481" duration="14551000" />
       <workItem from="1746445487807" duration="4991000" />
       <workItem from="1746506556431" duration="5746000" />
-      <workItem from="1746519287679" duration="10510000" />
+      <workItem from="1746519287679" duration="11247000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -468,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746528534785</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix: wrong ef core configuration">
+      <option name="closed" value="true" />
+      <created>1746531294937</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746531294937</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +477,8 @@
     <MESSAGE value="Refactor likes to reactions and add reaction functionality" />
     <MESSAGE value="Add reaction and comment counts to post query responses" />
     <MESSAGE value="Add GetPostById endpoint to post routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add GetPostById endpoint to post routes" />
+    <MESSAGE value="fix: wrong ef core configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: wrong ef core configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

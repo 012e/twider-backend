@@ -52,8 +52,9 @@ app.UseHttpsRedirection()
     .UseExceptionHandler()
     .UseRouting()
     .UseAuthentication()
-    .UseAuthorization();
-app.UseAppMiddlewares();
+    .UseAuthorization()
+    .UseAppMiddlewares()
+    .SetupCors();
 
 app.MapEndpoints();
 

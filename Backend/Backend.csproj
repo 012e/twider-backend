@@ -37,6 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Features\Chat\" />
       <Folder Include="Features\Reaction\Commands\" />
       <Folder Include="Features\User\Commands\" />
     </ItemGroup>

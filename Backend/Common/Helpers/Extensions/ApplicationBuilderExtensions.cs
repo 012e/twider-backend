@@ -11,7 +11,7 @@ namespace Backend.Common.Helpers;
 
 public static class ApplicationBuilderExtensions
 {
-    public static WebApplication ConfigureSwagger(this WebApplication app, IConfiguration configuration)
+    public static IApplicationBuilder ConfigureSwagger(this WebApplication app, IConfiguration configuration)
     {
         if (!app.Environment.IsDevelopment()) return app;
         IdentityModelEventSource.ShowPII = true;
@@ -20,7 +20,7 @@ public static class ApplicationBuilderExtensions
         app.UseSwaggerUI(setup =>
         {
             var oauthOptions = app.Services.GetRequiredService<IOptions<OAuthOptions>>().Value;
-            
+
             setup.SwaggerEndpoint($"/swagger/v1/swagger.json", "Version 1.0");
             setup.OAuthClientId(oauthOptions.ClientId);
             setup.OAuthAppName("Weather API");
@@ -33,10 +33,23 @@ public static class ApplicationBuilderExtensions
         return app;
     }
 
-    public static WebApplication UseAppMiddlewares(this WebApplication app)
+    public static IApplicationBuilder UseAppMiddlewares(this IApplicationBuilder app)
     {
         app.UseMiddleware<UserSyncer>();
         app.UseMiddleware<CurrentUserMiddleware>();
+
+        return app;
+    }
+
+    public static IApplicationBuilder SetupCors(this IApplicationBuilder app)
+    {
+        app.UseCors(options =>
+        {
+            options.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .SetIsOriginAllowed(_ => true);
+        });
 
         return app;
     }
