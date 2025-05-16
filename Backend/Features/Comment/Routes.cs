@@ -32,6 +32,7 @@ public class Routes : IEndPoint
 
                     return Results.Created($"/posts/{command.PostId}/comments/{response.Value}", response.Value);
                 })
+            .WithName("CreateCommentWithParent")
             .RequireAuthorization()
             .Produces<ItemId>(201)
             .Produces<ProblemDetails>(404)
@@ -56,6 +57,7 @@ public class Routes : IEndPoint
 
                     return Results.Created($"/posts/{command.PostId}/comments/{response.Value}", response.Value);
                 })
+            .WithName("CreateComment")
             .RequireAuthorization()
             .Produces<ItemId>(201)
             .Produces<ProblemDetails>(404)
@@ -82,6 +84,7 @@ public class Routes : IEndPoint
 
                 return Results.Ok(response.Value);
             })
+            .WithName("GetCommentsByPostAndCommentId")
             .Produces<CommentDto>()
             .Produces<ProblemDetails>(404);
 
@@ -103,6 +106,7 @@ public class Routes : IEndPoint
 
                 return Results.Ok(response.Value);
             })
+            .WithName("GetCommentsByPostId")
             .Produces<CommentDto>()
             .Produces<ProblemDetails>(404);
     }

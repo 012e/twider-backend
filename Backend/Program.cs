@@ -21,6 +21,7 @@ builder.Services
     .AddEndpoints(typeof(Program).Assembly)
     .AddEndpointsApiExplorer()
     .AddAppSwagger()
+    .AddCors()
 
     // Core Application Services
     .AddAppServices(configuration)
@@ -59,6 +60,7 @@ app.UseHttpsRedirection()
 app.MapEndpoints();
 
 app.Run();
+return;
 
 // Helper method for JSON configuration
 void ConfigureJsonOptions(IServiceCollection services)

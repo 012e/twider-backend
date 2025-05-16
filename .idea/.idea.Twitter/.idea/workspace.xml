@@ -12,10 +12,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Comment/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Comment/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Health/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Health/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,37 +69,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Backend: http.executor": "Run",
-    "368e02ef-7a19-49ca-b256-30aab29dd21d.executor": "Debug",
-    "Aspire Host.Twitter: http.executor": "Debug",
-    "Database Script.init.sql.executor": "Run",
-    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
-    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
-    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "ToolWindow.Build.ShowToolbar": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
+    &quot;368e02ef-7a19-49ca-b256-30aab29dd21d.executor&quot;: &quot;Debug&quot;,
+    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
@@ -334,7 +337,10 @@
       <workItem from="1746352422481" duration="14551000" />
       <workItem from="1746445487807" duration="4991000" />
       <workItem from="1746506556431" duration="5746000" />
-      <workItem from="1746519287679" duration="11247000" />
+      <workItem from="1746519287679" duration="13931000" />
+      <workItem from="1746682412880" duration="1710000" />
+      <workItem from="1747145671470" duration="2429000" />
+      <workItem from="1747208259552" duration="1651000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -456,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746531294937</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Update cors configuration">
+      <option name="closed" value="true" />
+      <created>1746531965709</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746531965709</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +492,8 @@
     <MESSAGE value="Add reaction and comment counts to post query responses" />
     <MESSAGE value="Add GetPostById endpoint to post routes" />
     <MESSAGE value="fix: wrong ef core configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: wrong ef core configuration" />
+    <MESSAGE value="Update cors configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update cors configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

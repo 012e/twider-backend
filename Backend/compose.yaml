@@ -7,6 +7,9 @@ services:
       POSTGRES_PASSWORD: user
     ports:
       - "5432:5432"
+    volumes:
+      - ./cache/postgres/data:/var/lib/postgresql/data
+    user: "${UID}:${GID}"
 
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.7
@@ -17,6 +20,9 @@ services:
       - "6969:8080"
     command:
       - start-dev
+    volumes:
+      - ./cache/keycloak/data:/opt/keycloak/data
+    user: "${UID}:${GID}"
 
   minio:
     image: quay.io/minio/minio

@@ -6,6 +6,6 @@ public class Routes : IEndPoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("/health/hello", () => "OK");
+        app.MapGet("/health/hello", () => "OK").WithName("HealthCheckHello");
     }
 }

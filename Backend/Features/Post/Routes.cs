@@ -40,6 +40,7 @@ public class Routes : IEndPoint
 
                 return Results.Ok(response.Value);
             })
+            .WithName("GetPostById")
             .Produces<GetPostByIdResponse>()
             .Produces<ProblemDetails>(404);
 
@@ -54,6 +55,7 @@ public class Routes : IEndPoint
 
                 return Results.Created($"/posts/{response.Value}", response.Value);
             })
+            .WithName("CreatePost")
             .RequireAuthorization()
             .Produces<ItemId>(201)
             .Produces<ProblemDetails>(400);
@@ -68,6 +70,7 @@ public class Routes : IEndPoint
 
                 return Results.NoContent();
             })
+            .WithName("DeletePost")
             .Produces(204)
             .Produces<ProblemDetails>(404);
 
@@ -95,6 +98,7 @@ public class Routes : IEndPoint
 
                     return Results.Ok(response.Value);
                 })
+            .WithName("GetPosts")
             .Produces<InfiniteCursorPage<GetPostByIdResponse>>()
             .Produces<ProblemDetails>(400);
 
@@ -116,6 +120,7 @@ public class Routes : IEndPoint
 
                     return Results.NoContent();
                 })
+            .WithName("UpdatePost")
             .Produces<ProblemDetails>(400)
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
@@ -143,6 +148,7 @@ public class Routes : IEndPoint
 
                 return Results.NoContent();
             })
+            .WithName("AddReactionToPost")
             .Produces<ProblemDetails>(400)
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
@@ -157,13 +163,9 @@ public class Routes : IEndPoint
                 Validator.ValidateObject(command, new ValidationContext(command), true);
 
                 var response = await mediator.Send(command);
-                if (response.IsFailed)
-                {
-                    return response.ToErrorResponse();
-                }
-
-                return Results.NoContent();
+                return response.IsFailed ? response.ToErrorResponse() : Results.NoContent();
             })
+            .WithName("RemoveReactionFromPost")
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
     }
