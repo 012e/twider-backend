@@ -49,7 +49,6 @@ if (app.Environment.IsDevelopment())
     app.ConfigureSwagger(configuration);
 }
 
-
 app.UseHttpsRedirection()
     .UseExceptionHandler()
     .UseRouting()
