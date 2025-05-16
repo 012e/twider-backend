@@ -1,3 +1,5 @@
+using Backend.Common.DbContext.Post;
+
 namespace Backend.Common.DbContext.Reaction;
 
 public class CommentReaction : Reaction

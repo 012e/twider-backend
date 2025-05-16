@@ -30,7 +30,7 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<It
             });
         }
 
-        var post = _db.Posts.Add(new Common.DbContext.Post
+        var post = _db.Posts.Add(new Common.DbContext.Post.Post
         {
             Content = request.Content,
             UserId = user.UserId

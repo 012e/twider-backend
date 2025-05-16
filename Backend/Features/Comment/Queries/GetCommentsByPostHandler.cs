@@ -52,7 +52,7 @@ public class GetCommentsByPostHandler :
 
 
     private async Task<InfiniteCursorPage<CommentDto>> GetReplies(InfiniteCursorPaginationMeta meta,
-        Common.DbContext.Post post, Guid? commentId,
+        Common.DbContext.Post.Post post, Guid? commentId,
         CancellationToken cancellationToken)
     {
         var query = _db.Comments

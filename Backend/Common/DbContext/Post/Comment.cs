@@ -1,6 +1,6 @@
 ﻿using Backend.Common.DbContext.Reaction;
 
-namespace Backend.Common.DbContext;
+namespace Backend.Common.DbContext.Post;
 
 public partial class Comment
 {

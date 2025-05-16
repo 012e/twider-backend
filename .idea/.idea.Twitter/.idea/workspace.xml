@@ -12,7 +12,26 @@
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat/Chat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ChatParticipant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat/ChatParticipant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Hashtag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Hashtag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Like.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Medium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Message.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat/Message.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/MessageMedium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Chat/MessageMedium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Post.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/CommentReaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/CommentReaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/PostReaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Reaction/PostReaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Comment/Queries/GetCommentsByPostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Comment/Queries/GetCommentsByPostHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePost/CreatePostHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePost/CreatePostHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Comment/Commands/CreateCommentHandlerTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Comment/Queries/GetCommentsByPostHandlerTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/CreatePostHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/CreatePostHandlerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/UpdatePostHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BackendTest/Features/Post/Commands/UpdatePostHandlerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +57,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c69576b4a074ad2839225611609498e344b7e2819997af48dbb2d2f8257f3/EntityFrameworkQueryableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebfd60d582c50e7123fd83fb530894b816559627ebdf43445a58a5c8160e/InternalDbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Common/DbContext/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -46,7 +68,7 @@
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="SWEA" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -477,7 +499,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747402685192</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="minor changes">
+      <option name="closed" value="true" />
+      <created>1747402767675</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747402767675</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +531,8 @@
     <MESSAGE value="fix: wrong ef core configuration" />
     <MESSAGE value="Update cors configuration" />
     <MESSAGE value="Minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <MESSAGE value="minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -530,19 +561,6 @@
           </properties>
           <option name="timeStamp" value="8" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePost/CreatePostHandler.cs</url>
-          <line>38</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/Features/Post/Commands/CreatePostHandler.cs" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="1187" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1233" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

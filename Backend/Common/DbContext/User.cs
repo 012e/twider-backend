@@ -1,4 +1,7 @@
-﻿namespace Backend.Common.DbContext;
+﻿using Backend.Common.DbContext.Chat;
+using Backend.Common.DbContext.Post;
+
+namespace Backend.Common.DbContext;
 
 public partial class User
 {
@@ -38,7 +41,7 @@ public partial class User
 
     public virtual ICollection<Notification> NotificationUsers { get; set; } = new List<Notification>();
 
-    public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
+    public virtual ICollection<Post.Post> Posts { get; set; } = new List<Post.Post>();
 
     public virtual UserSetting? UserSetting { get; set; }
 }

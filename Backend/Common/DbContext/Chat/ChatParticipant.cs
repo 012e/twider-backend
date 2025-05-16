@@ -1,4 +1,4 @@
-﻿namespace Backend.Common.DbContext;
+﻿namespace Backend.Common.DbContext.Chat;
 
 public partial class ChatParticipant
 {
@@ -12,7 +12,7 @@ public partial class ChatParticipant
 
     public Guid? LastReadMessageId { get; set; }
 
-    public virtual Chat Chat { get; set; } = null!;
+    public virtual DbContext.Chat.Chat Chat { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
 }

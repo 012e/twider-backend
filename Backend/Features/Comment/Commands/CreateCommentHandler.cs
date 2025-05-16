@@ -73,7 +73,7 @@ public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiRes
             });
         }
 
-        var comment = new Common.DbContext.Comment
+        var comment = new Common.DbContext.Post.Comment
         {
             PostId = request.PostId,
             Content = content.Content,

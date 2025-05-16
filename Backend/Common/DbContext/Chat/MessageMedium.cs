@@ -1,4 +1,4 @@
-﻿namespace Backend.Common.DbContext;
+﻿namespace Backend.Common.DbContext.Chat;
 
 public partial class MessageMedium
 {

@@ -31,7 +31,7 @@ public class UpdatePostHandlerTests
     public async Task Handle_ShouldUpdatePostContent_WhenPostExists()
     {
         // Arrange
-        var existingPost = _fixture.Create<Post>();
+        var existingPost = _fixture.Create<Backend.Common.DbContext.Post.Post>();
         var newContent = _fixture.Create<string>();
 
         var command = _fixture.Build<UpdatePostCommand>()
@@ -44,7 +44,7 @@ public class UpdatePostHandlerTests
 
         // Setup DbContext mock to return the existing post
         // Use a List and AsQueryable() to simulate DbSet behavior for Find/FirstOrDefault
-        var postsList = new List<Post> { existingPost };
+        var postsList = new List<Backend.Common.DbContext.Post.Post> { existingPost };
         _mockDbContext.Setup(x => x.Posts).ReturnsDbSet(postsList);
 
         // Setup SaveChangesAsync mock
@@ -77,7 +77,7 @@ public class UpdatePostHandlerTests
             .Create();
 
         // Setup DbContext mock to return an empty DbSet for Posts
-        _mockDbContext.Setup(x => x.Posts).ReturnsDbSet(new List<Post>());
+        _mockDbContext.Setup(x => x.Posts).ReturnsDbSet(new List<Backend.Common.DbContext.Post.Post>());
 
         var handler = new UpdatePostHandler(_mockDbContext.Object);
 

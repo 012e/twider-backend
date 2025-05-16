@@ -1,4 +1,4 @@
-﻿namespace Backend.Common.DbContext;
+﻿namespace Backend.Common.DbContext.Chat;
 
 public partial class Message
 {
@@ -14,7 +14,7 @@ public partial class Message
 
     public bool IsDeleted { get; set; }
 
-    public virtual Chat Chat { get; set; } = null!;
+    public virtual DbContext.Chat.Chat Chat { get; set; } = null!;
 
     public virtual ICollection<MessageMedium> MessageMedia { get; set; } = new List<MessageMedium>();
 

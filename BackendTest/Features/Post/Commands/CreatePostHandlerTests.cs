@@ -51,7 +51,7 @@ public class CreatePostHandlerTests
         _fixture.Customize<User>(c => c.With(u => u.UserId, Guid.NewGuid()));
 
          // Ensure Post can be created with a PostId and UserId
-        _fixture.Customize<Post>(c => c
+        _fixture.Customize<Backend.Common.DbContext.Post.Post>(c => c
             .With(p => p.PostId, Guid.NewGuid())
             .With(p => p.UserId, Guid.NewGuid()));
 
@@ -68,12 +68,12 @@ public class CreatePostHandlerTests
         _mockCurrentUserService.Setup(x => x.User).Returns(currentUser);
 
         // --- Local DbSet Mocking ---
-        var mockPostsDbSet = new Mock<DbSet<Post>>();
+        var mockPostsDbSet = new Mock<DbSet<Backend.Common.DbContext.Post.Post>>();
 
-        mockPostsDbSet.Setup(x => x.Add(It.IsAny<Post>()))
-             .Returns<Post>((post) => {
+        mockPostsDbSet.Setup(x => x.Add(It.IsAny<Backend.Common.DbContext.Post.Post>()))
+             .Returns<Backend.Common.DbContext.Post.Post>((post) => {
                 // Create a mock EntityEntry for the post that was just "added"
-                var entityEntryMock = new Mock<EntityEntry<Post>>();
+                var entityEntryMock = new Mock<EntityEntry<Backend.Common.DbContext.Post.Post>>();
                 // Ensure the Entity property points back to the passed-in post
                 entityEntryMock.SetupGet(e => e.Entity).Returns(post);
                 // Assign a PostId to the passed-in post object
@@ -105,7 +105,7 @@ public class CreatePostHandlerTests
 
         // Verify that Add was called on the mocked DbSet (accessed via DbContext.Posts)
         // Use It.Is<Post> to verify the properties of the post that was added
-        mockPostsDbSet.Verify(x => x.Add(It.Is<Post>(p =>
+        mockPostsDbSet.Verify(x => x.Add(It.Is<Backend.Common.DbContext.Post.Post>(p =>
             p.Content == command.Content && // Verify content matches command
             p.UserId == currentUser.UserId && // Verify UserId matches current user
             p.PostId != Guid.Empty // Verify a PostId was assigned by the mock Add setup

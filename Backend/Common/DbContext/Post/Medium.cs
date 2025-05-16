@@ -14,5 +14,5 @@ public partial class Medium
 
     public DateTime UploadedAt { get; set; }
 
-    public virtual Post Post { get; set; } = null!;
+    public virtual Post.Post Post { get; set; } = null!;
 }

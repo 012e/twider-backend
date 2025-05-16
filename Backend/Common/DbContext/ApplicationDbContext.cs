@@ -1,4 +1,6 @@
-﻿using Backend.Common.DbContext.Reaction;
+﻿using Backend.Common.DbContext.Chat;
+using Backend.Common.DbContext.Post;
+using Backend.Common.DbContext.Reaction;
 using Backend.Common.Helpers.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,7 +18,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
     {
     }
 
-    public virtual DbSet<Chat> Chats { get; set; }
+    public virtual DbSet<Chat.Chat> Chats { get; set; }
 
     public virtual DbSet<ChatParticipant> ChatParticipants { get; set; }
     public virtual DbSet<Comment> Comments { get; set; }
@@ -35,7 +37,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
     public virtual DbSet<Notification> Notifications { get; set; }
 
-    public virtual DbSet<Post> Posts { get; set; }
+    public virtual DbSet<Post.Post> Posts { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -47,7 +49,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Chat>(entity =>
+        modelBuilder.Entity<Chat.Chat>(entity =>
         {
             entity.HasKey(e => e.ChatId).HasName("chats_pkey");
 
@@ -353,7 +355,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                 .HasConstraintName("notifications_user_id_fkey");
         });
 
-        modelBuilder.Entity<Post>(entity =>
+        modelBuilder.Entity<Post.Post>(entity =>
         {
             entity.HasKey(e => e.PostId).HasName("posts_pkey");
 
@@ -392,7 +394,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
                     r => r.HasOne<Hashtag>().WithMany()
                         .HasForeignKey("HashtagId")
                         .HasConstraintName("post_hashtags_hashtag_id_fkey"),
-                    l => l.HasOne<Post>().WithMany()
+                    l => l.HasOne<Post.Post>().WithMany()
                         .HasForeignKey("PostId")
                         .HasConstraintName("post_hashtags_post_id_fkey"),
                     j =>
