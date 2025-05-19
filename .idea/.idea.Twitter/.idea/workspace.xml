@@ -11,14 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/DeleteCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/DeleteCommentCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/UpdateCommentCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/UpdateCommentHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/CommentMedium.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/PostMedium.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Comment/Commands/CreateCommentCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Comment/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Comment/Routes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Like.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +42,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c69576b4a074ad2839225611609498e344b7e2819997af48dbb2d2f8257f3/EntityFrameworkQueryableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebfd60d582c50e7123fd83fb530894b816559627ebdf43445a58a5c8160e/InternalDbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Common/DbContext/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Reaction/Reaction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Features/Comment/Commands/CreateCommentCommand.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -345,7 +342,7 @@
       <workItem from="1747469610304" duration="124000" />
       <workItem from="1747469753226" duration="399000" />
       <workItem from="1747641987617" duration="2061000" />
-      <workItem from="1747656529415" duration="4909000" />
+      <workItem from="1747656529415" duration="6769000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -507,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747403640114</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Add delete and update comment functionality with validation">
+      <option name="closed" value="true" />
+      <created>1747664924281</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747664924281</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +538,8 @@
     <MESSAGE value="Minor changes" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="Refactor DbContext structure and update namespaces for Chat and Post entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor DbContext structure and update namespaces for Chat and Post entities" />
+    <MESSAGE value="Add delete and update comment functionality with validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add delete and update comment functionality with validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

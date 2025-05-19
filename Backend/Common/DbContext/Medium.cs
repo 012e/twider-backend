@@ -1,10 +1,8 @@
 ﻿namespace Backend.Common.DbContext;
 
-public partial class Medium
+public abstract class Medium
 {
     public Guid MediaId { get; set; }
-
-    public Guid PostId { get; set; }
 
     public string MediaType { get; set; } = null!;
 
@@ -13,6 +11,4 @@ public partial class Medium
     public string? ThumbnailUrl { get; set; }
 
     public DateTime UploadedAt { get; set; }
-
-    public virtual Post.Post Post { get; set; } = null!;
 }

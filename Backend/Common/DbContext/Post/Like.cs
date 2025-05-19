@@ -1,4 +1,4 @@
-﻿namespace Backend.Common.DbContext;
+﻿namespace Backend.Common.DbContext.Post;
 
 public partial class Like
 {
