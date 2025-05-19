@@ -99,6 +99,7 @@ public class Routes : IEndPoint
                     return Results.Ok(response.Value);
                 })
             .WithName("GetPosts")
+            .RequireAuthorization()
             .Produces<InfiniteCursorPage<GetPostByIdResponse>>()
             .Produces<ProblemDetails>(400);
 

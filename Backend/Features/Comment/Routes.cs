@@ -109,5 +109,55 @@ public class Routes : IEndPoint
             .WithName("GetCommentsByPostId")
             .Produces<CommentDto>()
             .Produces<ProblemDetails>(404);
+
+        group.MapPut("/posts/{postId:guid}/comments/{commentId:guid}",
+                async ([FromRoute] Guid postId, [FromRoute] Guid commentId,
+                    [FromBody] CommentContent content, IMediator mediator) =>
+                {
+                    var command = new UpdateCommentCommand
+                    {
+                        PostId = postId,
+                        CommentId = commentId,
+                        Content = content
+                    };
+
+                    var response = await mediator.Send(command);
+                    if (response.IsFailed)
+                    {
+                        return response.ToErrorResponse();
+                    }
+
+                    return Results.NoContent();
+                })
+            .WithName("UpdateComment")
+            .RequireAuthorization()
+            .Produces(204)
+            .Produces<ProblemDetails>(404)
+            .Produces<ProblemDetails>(400);
+
+        group.MapDelete("/posts/{postId:guid}/comments/{commentId:guid}",
+                async ([FromRoute] Guid postId, [FromRoute] Guid commentId,
+                    IMediator mediator) =>
+                {
+                    var command = new DeleteCommentCommand
+                    {
+                        PostId = postId,
+                        CommentId = commentId
+                    };
+
+                    var response = await mediator.Send(command);
+                    if (response.IsFailed)
+                    {
+                        return response.ToErrorResponse();
+                    }
+
+                    return Results.NoContent();
+                })
+
+            .WithName("DeleteComment")
+            .RequireAuthorization()
+            .Produces(204)
+            .Produces<ProblemDetails>(404)
+            .Produces<ProblemDetails>(400);
     }
 }

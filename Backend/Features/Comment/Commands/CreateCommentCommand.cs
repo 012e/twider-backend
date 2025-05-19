@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Types;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,11 @@ public class CreateCommentCommand : IRequest<ApiResult<ItemId>>
     public Guid? ParentCommentId { get; set; }
 
     public CommentContent Content { get; set; } = null!;
-
 }
 
 public class CommentContent
 {
+    [Required(AllowEmptyStrings = false)]
+    [DisplayFormat(ConvertEmptyStringToNull = false)]
     public string Content { get; set; } = null!;
 }
-
