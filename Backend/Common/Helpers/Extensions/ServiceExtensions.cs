@@ -161,6 +161,7 @@ public static class ServiceExtensions
         services.AddMinio(configureClient => configureClient
             .WithEndpoint(minioOptions.Endpoint)
             .WithCredentials(minioOptions.AccessKey, minioOptions.SecretKey)
+            .WithSSL(false)
             .Build());
 
         return services;

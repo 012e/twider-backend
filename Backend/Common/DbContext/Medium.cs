@@ -6,8 +6,11 @@ public abstract class Medium
 
     public string MediaType { get; set; } = null!;
 
-    public string MediaUrl { get; set; } = null!;
+    public virtual string? MediaOwnerType { get; set; }
 
+    public string MediaPath { get; set; } = null!;
+
+    [Obsolete]
     public string? ThumbnailUrl { get; set; }
 
     public DateTime UploadedAt { get; set; }

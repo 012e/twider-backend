@@ -69,12 +69,15 @@ CREATE TABLE posts
 
 CREATE TABLE media
 (
-    media_id      UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
-    post_id       UUID                     NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
-    media_type    VARCHAR(50)              NOT NULL, -- e.g., 'image/jpeg', 'video/mp4', 'image/gif'
-    media_url     VARCHAR(255)             NOT NULL, -- URL to the media file (e.g., S3 link)
-    thumbnail_url VARCHAR(255),                      -- Optional URL for video/image thumbnails
-    uploaded_at   TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+    media_id         UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
+    post_id          UUID                     NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
+    media_type       VARCHAR(50)              NOT NULL, -- E.g., 'image/jpeg', 'video/mp4', 'image/gif'
+    -- Discriminates between comment, post,... media.
+    -- Nullable because when the link is created, it is not known yet
+    media_owner_type VARCHAR(50),
+    media_url        VARCHAR(255)             NOT NULL, -- URL to the media file (e.g., S3 link)
+    thumbnail_url    VARCHAR(255),                      -- Optional URL for video/image thumbnails
+    uploaded_at      TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE comments
@@ -166,7 +169,7 @@ CREATE TABLE message_media
 (
     message_media_id UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
     message_id       UUID                     NOT NULL REFERENCES messages (message_id) ON DELETE CASCADE,
-    media_type       VARCHAR(50)              NOT NULL, -- e.g., 'image/jpeg', 'application/pdf', 'audio/mpeg'
+    media_type       VARCHAR(50)              , -- e.g., 'image/jpeg', 'application/pdf', 'audio/mpeg'
     media_url        VARCHAR(255)             NOT NULL, -- URL to the media file
     file_name        VARCHAR(255),                      -- Optional: original file name
     file_size_bytes  BIGINT,                            -- Optional: file size
@@ -224,7 +227,8 @@ CREATE INDEX idx_message_media_message_id ON message_media (message_id);
 
 -- Renew `updated_at` column on update
 CREATE OR REPLACE FUNCTION update_updated_at_column()
-    RETURNS TRIGGER AS $$
+    RETURNS TRIGGER AS
+$$
 BEGIN
     NEW.updated_at = CURRENT_TIMESTAMP;
     RETURN NEW;
@@ -233,21 +237,24 @@ $$ LANGUAGE plpgsql;
 
 -- POSTS
 CREATE TRIGGER set_updated_at_posts
-    BEFORE UPDATE ON posts
+    BEFORE UPDATE
+    ON posts
     FOR EACH ROW
     WHEN (OLD.* IS DISTINCT FROM NEW.*)
 EXECUTE FUNCTION update_updated_at_column();
 
 -- COMMENTS
 CREATE TRIGGER set_updated_at_comments
-    BEFORE UPDATE ON comments
+    BEFORE UPDATE
+    ON comments
     FOR EACH ROW
     WHEN (OLD.* IS DISTINCT FROM NEW.*)
 EXECUTE FUNCTION update_updated_at_column();
 
 -- CHATS
 CREATE TRIGGER set_updated_at_chats
-    BEFORE UPDATE ON chats
+    BEFORE UPDATE
+    ON chats
     FOR EACH ROW
     WHEN (OLD.* IS DISTINCT FROM NEW.*)
 EXECUTE FUNCTION update_updated_at_column();

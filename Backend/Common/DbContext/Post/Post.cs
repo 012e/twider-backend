@@ -22,7 +22,7 @@ public partial class Post
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual ICollection<Medium> Media { get; set; } = new List<Medium>();
+    public virtual ICollection<PostMedium> Media { get; set; } = new List<PostMedium>();
 
     public virtual User User { get; set; } = null!;
 

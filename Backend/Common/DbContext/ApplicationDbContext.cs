@@ -1,7 +1,6 @@
 ﻿using Backend.Common.DbContext.Chat;
 using Backend.Common.DbContext.Post;
 using Backend.Common.DbContext.Reaction;
-using Backend.Common.Helpers.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -42,6 +41,10 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserSetting> UserSettings { get; set; }
+
+    public virtual DbSet<UnknownMedium> UnknownMedia { get; set; }
+    public virtual DbSet<PostMedium> PostMedia { get; set; }
+    public virtual DbSet<CommentMedium> CommentMedia { get; set; }
 
     public virtual DbSet<PostReaction> PostReactions { get; set; }
 
@@ -225,27 +228,43 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
 
         modelBuilder.Entity<Medium>(entity =>
         {
+            MapBaseMedium(entity);
             entity.HasKey(e => e.MediaId).HasName("media_pkey");
-            entity.HasDiscriminator(e => e.MediaType)
-                .HasValue<PostMedium>("post")
-                .HasValue<CommentMedium>("comment");
 
-            entity.ToTable("media");
-            entity.Property(e => e.MediaId)
-                .HasDefaultValueSql("gen_random_uuid()")
-                .HasColumnName("media_id");
-            entity.Property(e => e.MediaType)
+            entity.HasDiscriminator(e => e.MediaOwnerType)
+                .HasValue<PostMedium>("post")
+                .HasValue<CommentMedium>("comment")
+                .HasValue<UnknownMedium>("unknown");
+        });
+
+        modelBuilder.Entity<CommentMedium>(entity =>
+        {
+            MapBaseMedium(entity);
+
+            entity.Property(e => e.MediaOwnerType)
                 .HasMaxLength(50)
-                .HasColumnName("media_type");
-            entity.Property(e => e.MediaUrl)
-                .HasMaxLength(255)
-                .HasColumnName("media_url");
-            entity.Property(e => e.ThumbnailUrl)
-                .HasMaxLength(255)
-                .HasColumnName("thumbnail_url");
-            entity.Property(e => e.UploadedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnName("uploaded_at");
+                .HasColumnName("media_owner_type")
+                .HasDefaultValue("comment");
+        });
+
+        modelBuilder.Entity<PostMedium>(entity =>
+        {
+            MapBaseMedium(entity);
+
+            entity.Property(e => e.MediaOwnerType)
+                .HasMaxLength(50)
+                .HasColumnName("media_owner_type")
+                .HasDefaultValue("post");
+        });
+
+        modelBuilder.Entity<UnknownMedium>(entity =>
+        {
+            MapBaseMedium(entity);
+
+            entity.Property(e => e.MediaOwnerType)
+                .HasMaxLength(50)
+                .HasColumnName("media_owner_type")
+                .HasDefaultValue("unknown");
         });
 
         modelBuilder.Entity<Message>(entity =>
@@ -407,20 +426,20 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
         modelBuilder.Entity<Reaction.Reaction>(entity =>
         {
             MapBaseReaction(entity);
+            entity
+                .HasKey(e => e.ReactionId)
+                .HasName("reactions_pkey");
 
             entity.HasDiscriminator(e => e.ContentType)
                 .HasValue<PostReaction>("post")
                 .HasValue<CommentReaction>("comment");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Reactions)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("reactions_user_id_fkey");
         });
 
         modelBuilder.Entity<CommentReaction>(p =>
         {
             MapBaseReaction(p);
             p.Property(d => d.ContentType)
+                .HasColumnName("content_type")
                 .HasMaxLength(10)
                 .HasDefaultValue("comment");
             p.HasOne(a => a.Comment).WithMany(a => a.Reactions)
@@ -431,6 +450,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
         {
             MapBaseReaction(p);
             p.Property(d => d.ContentType)
+                .HasColumnName("content_type")
                 .HasMaxLength(10)
                 .HasDefaultValue("post");
             p.HasOne(a => a.Post).WithMany(a => a.Reactions)
@@ -514,13 +534,33 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
         OnModelCreatingPartial(modelBuilder);
     }
 
+    private static void MapBaseMedium<T>(EntityTypeBuilder<T> entity)
+        where T : Medium
+    {
+        entity.ToTable("media");
+        entity.Property(e => e.MediaId)
+            .HasDefaultValueSql("gen_random_uuid()")
+            .HasColumnName("media_id");
+        entity.Property(e => e.MediaOwnerType)
+            .HasMaxLength(50)
+            .HasColumnName("media_owner_type");
+        entity.Property(e => e.MediaType)
+            .HasMaxLength(50)
+            .HasColumnName("media_type");
+        entity.Property(e => e.MediaPath)
+            .HasMaxLength(255)
+            .HasColumnName("media_url");
+        entity.Property(e => e.ThumbnailUrl)
+            .HasMaxLength(255)
+            .HasColumnName("thumbnail_url");
+        entity.Property(e => e.UploadedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .HasColumnName("uploaded_at");
+    }
+
     private static void MapBaseReaction<T>(EntityTypeBuilder<T> entity)
         where T : Reaction.Reaction
     {
-        entity
-            .HasKey(e => e.ReactionId)
-            .HasName("reactions_pkey");
-
         entity.ToTable("reactions");
         entity.HasIndex(e => new { e.ContentType, e.ContentId }, "idx_reactions_content");
         entity.HasIndex(e => e.UserId, "idx_reactions_user_id");
@@ -536,8 +576,8 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
             .HasColumnName("created_at");
         entity.Property(e => e.UserId).HasColumnName("user_id");
         entity.Property(d => d.ReactionType)
-            .HasColumnType("smallint")
-            .HasColumnName("reaction_type");
+            .HasColumnName("reaction_type")
+            .HasMaxLength(10);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

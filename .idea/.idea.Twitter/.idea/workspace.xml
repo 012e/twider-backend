@@ -11,12 +11,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/CommentMedium.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/PostMedium.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/UnknownMedium.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Media/Commands/GenerateUploadUrlCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Media/Commands/GenerateUploadUrlHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Media/Commands/GenerateUploadUrlResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Media/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources/0d445bac-e93d-41cb-ba1f-0123b0a6e5dd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Like.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/Post/Post.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/DbContext/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Scripts/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Scripts/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +49,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c76a3b9ee90d40818185bfd493e0dd8a157a00/a8/31608804/JsonConverterFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b3b6985aad11c5d633d75b545f5f5f4fc7e50918ad1cb9f6b615682f5bfb76d/SingleQueryingEnumerable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c69576b4a074ad2839225611609498e344b7e2819997af48dbb2d2f8257f3/EntityFrameworkQueryableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e0a1b44db18ac79690f2cc6980f338f54171bdd565f0db3efde3485febdf4e0/PresignedPutObjectArgs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebfd60d582c50e7123fd83fb530894b816559627ebdf43445a58a5c8160e/InternalDbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Reaction/Reaction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Features/Comment/Commands/CreateCommentCommand.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -52,7 +61,7 @@
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="SWEA" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -65,38 +74,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
-    &quot;368e02ef-7a19-49ca-b256-30aab29dd21d.executor&quot;: &quot;Debug&quot;,
-    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Run&quot;,
-    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/huy/personal/any/twider/twider-backend/Twitter.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Backend: http.executor": "Run",
+    "368e02ef-7a19-49ca-b256-30aab29dd21d.executor": "Debug",
+    "Aspire Host.Twitter: http.executor": "Run",
+    "Database Script.init.sql.executor": "Run",
+    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.minio: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.Build.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/huy/personal/any/twider/twider-backend/Twitter.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
+    "RunConfigurationTargetLRU": [
+      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
@@ -242,6 +252,20 @@
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
+    <configuration name="Backend/compose.yaml.minio: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="minio" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Backend/compose.yaml" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="Twitter/Dockerfile: Compose Deployment" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
@@ -286,27 +310,13 @@
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml.database: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="database" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="compose.yaml" />
-        </settings>
-      </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
+        <item itemvalue="Docker.Backend/compose.yaml.minio: Compose Deployment" />
+        <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.Backend/compose.yaml: Compose Deployment" />
         <item itemvalue="Database Script.init.sql" />
-        <item itemvalue="Docker.Backend/compose.yaml.keycloak: Compose Deployment" />
-        <item itemvalue="Docker.Backend/compose.yaml.database: Compose Deployment" />
-        <item itemvalue="Docker.compose.yaml.database: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -342,7 +352,8 @@
       <workItem from="1747469610304" duration="124000" />
       <workItem from="1747469753226" duration="399000" />
       <workItem from="1747641987617" duration="2061000" />
-      <workItem from="1747656529415" duration="6769000" />
+      <workItem from="1747656529415" duration="10116000" />
+      <workItem from="1747722248322" duration="4709000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -512,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747664924281</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Minor refactor for DbContext setup">
+      <option name="closed" value="true" />
+      <created>1747667869928</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747667869928</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,6 +539,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init" />
@@ -539,7 +569,8 @@
     <MESSAGE value="minor changes" />
     <MESSAGE value="Refactor DbContext structure and update namespaces for Chat and Post entities" />
     <MESSAGE value="Add delete and update comment functionality with validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add delete and update comment functionality with validation" />
+    <MESSAGE value="Minor refactor for DbContext setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor refactor for DbContext setup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
