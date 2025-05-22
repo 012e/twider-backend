@@ -29,5 +29,12 @@ public class Routes : IEndPoint
             .RequireAuthorization()
             .Produces<GetUserByIdResponse>()
             .Produces<ProblemDetails>(404);
+
+        group.MapGet("current",
+                async (IMediator mediator) => await mediator.Send(new GetCurrentLoggedInUserQuery()))
+            .WithName("GetCurrentUser")
+            .RequireAuthorization()
+            .Produces<GetUserByIdResponse>()
+            .Produces<ProblemDetails>(404);
     }
 }

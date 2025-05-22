@@ -11,14 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetUserPosts.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +49,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Medium.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/Common/DbContext/Reaction/Reaction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/huy/personal/any/twider/twider-backend/Backend/Common/Services/CurrentUserService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -69,40 +70,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Backend: http.executor&quot;: &quot;Run&quot;,
-    &quot;368e02ef-7a19-49ca-b256-30aab29dd21d.executor&quot;: &quot;Debug&quot;,
-    &quot;Aspire Host.Twitter: http.executor&quot;: &quot;Run&quot;,
-    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml.minio: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Backend/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.compose.yaml.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;ToolWindow.Build.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/huy/personal/any/twider/twider-backend/Twitter.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Backend: http.executor": "Run",
+    "368e02ef-7a19-49ca-b256-30aab29dd21d.executor": "Debug",
+    "Aspire Host.Twitter: http.executor": "Run",
+    "Database Script.init.sql.executor": "Run",
+    "Docker.Backend/compose.yaml.database: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml.minio: Compose Deployment.executor": "Run",
+    "Docker.Backend/compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.compose.yaml.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.Build.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/huy/personal/any/twider/twider-backend/Twitter.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;0d445bac-e93d-41cb-ba1f-0123b0a6e5dd&quot;
+    "RunConfigurationTargetLRU": [
+      "0d445bac-e93d-41cb-ba1f-0123b0a6e5dd"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
@@ -353,7 +354,7 @@
       <workItem from="1747810895607" duration="6651000" />
       <workItem from="1747832267282" duration="15331000" />
       <workItem from="1747906858473" duration="207000" />
-      <workItem from="1747917321499" duration="4497000" />
+      <workItem from="1747917321499" duration="5970000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -547,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747918199782</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: get posts by user">
+      <option name="closed" value="true" />
+      <created>1747921977357</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1747921977357</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +597,8 @@
     <MESSAGE value="Minor refactor for DbContext setup" />
     <MESSAGE value="Refactor reaction handling and enhance post retrieval with user-specific reaction data" />
     <MESSAGE value="Minor file organizations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor file organizations" />
+    <MESSAGE value="feat: get posts by user" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: get posts by user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -629,6 +639,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs</url>
+          <line>24</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs" containingFunctionPresentation="Method 'Handle'">
+            <startOffsets>
+              <option value="798" />
+            </startOffsets>
+            <endOffsets>
+              <option value="841" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

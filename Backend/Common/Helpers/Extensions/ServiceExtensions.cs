@@ -2,6 +2,7 @@ using System.Reflection;
 using Backend.Common.Configuration;
 using Backend.Common.DbContext;
 using Backend.Common.Helpers.Interfaces;
+using Backend.Common.Services;
 using FS.Keycloak.RestApiClient.Api;
 using FS.Keycloak.RestApiClient.Authentication.ClientFactory;
 using FS.Keycloak.RestApiClient.Authentication.Flow;
@@ -150,7 +151,8 @@ public static class ServiceExtensions
     public static IServiceCollection AddAppServices(this IServiceCollection services,
         IConfiguration configuration)
     {
-        // services.AddSignalR();
+        services.AddSignalR();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
         return services;
     }
 

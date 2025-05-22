@@ -36,8 +36,7 @@ builder.Services
     .AddProblemDetails()
 
     // Utilities and Services
-    .AddHttpContextAccessor()
-    .AddScoped<ICurrentUserService, CurrentUserService>();
+    .AddHttpContextAccessor();
 
 // Configure JSON serialization
 ConfigureJsonOptions(builder.Services);
