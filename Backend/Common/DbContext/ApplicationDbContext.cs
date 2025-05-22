@@ -433,28 +433,30 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
             entity.HasDiscriminator(e => e.ContentType)
                 .HasValue<PostReaction>("post")
                 .HasValue<CommentReaction>("comment");
+
+            entity.Property(e => e.ContentType)
+                .HasColumnType("varchar(50)")
+                .HasColumnName("content_type");
         });
 
         modelBuilder.Entity<CommentReaction>(p =>
         {
-            MapBaseReaction(p);
-            p.Property(d => d.ContentType)
-                .HasColumnName("content_type")
-                .HasMaxLength(10)
-                .HasDefaultValue("comment");
             p.HasOne(a => a.Comment).WithMany(a => a.Reactions)
                 .HasForeignKey(a => a.ContentId);
+
+            p.Property(e => e.ContentType)
+                .HasColumnType("varchar(50)")
+                .HasColumnName("content_type");
         });
 
         modelBuilder.Entity<PostReaction>(p =>
         {
-            MapBaseReaction(p);
-            p.Property(d => d.ContentType)
-                .HasColumnName("content_type")
-                .HasMaxLength(10)
-                .HasDefaultValue("post");
             p.HasOne(a => a.Post).WithMany(a => a.Reactions)
                 .HasForeignKey(a => a.ContentId);
+
+            p.Property(e => e.ContentType)
+                .HasColumnType("varchar(50)")
+                .HasColumnName("content_type");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -577,6 +579,7 @@ public partial class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbCont
         entity.Property(e => e.UserId).HasColumnName("user_id");
         entity.Property(d => d.ReactionType)
             .HasColumnName("reaction_type")
+            .HasColumnType("smallint")
             .HasMaxLength(10);
     }
 

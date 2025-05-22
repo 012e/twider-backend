@@ -2,21 +2,20 @@ using System.Reflection;
 using Backend.Common.Configuration;
 using Backend.Common.DbContext;
 using Backend.Common.Helpers.Interfaces;
-using Backend.Common.Middlewares;
 using FS.Keycloak.RestApiClient.Api;
 using FS.Keycloak.RestApiClient.Authentication.ClientFactory;
 using FS.Keycloak.RestApiClient.Authentication.Flow;
 using FS.Keycloak.RestApiClient.ClientFactory;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Minio;
+using Swashbuckle.AspNetCore.Filters;
 
-namespace Backend.Common.Helpers;
+namespace Backend.Common.Helpers.Extensions;
 
 public static class ServiceExtensions
 {
@@ -151,6 +150,7 @@ public static class ServiceExtensions
     public static IServiceCollection AddAppServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        // services.AddSignalR();
         return services;
     }
 

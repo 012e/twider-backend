@@ -70,6 +70,7 @@ public class PostReactionHandler : IRequestHandler<PostReactionCommand, ApiResul
             UserId = user.UserId,
             ContentId = request.PostId,
             ReactionType = reactionType,
+            ContentType = "post",
             CreatedAt = DateTime.UtcNow,
         };
 

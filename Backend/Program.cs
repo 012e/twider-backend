@@ -1,4 +1,5 @@
 using Backend.Common.Helpers;
+using Backend.Common.Helpers.Extensions;
 using Backend.Common.Middlewares;
 using Backend.Common.Services;
 using Backend.Features.User;
@@ -49,13 +50,14 @@ if (app.Environment.IsDevelopment())
     app.ConfigureSwagger(configuration);
 }
 
-app.UseHttpsRedirection()
+app
+    .SetupCors()
+    .UseHttpsRedirection()
     .UseExceptionHandler()
     .UseRouting()
     .UseAuthentication()
     .UseAuthorization()
-    .UseAppMiddlewares()
-    .SetupCors();
+    .UseAppMiddlewares();
 
 app.MapEndpoints();
 

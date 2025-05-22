@@ -16,6 +16,8 @@ public class GetPostByIdResponse
     public required int ReactionCount { get; set; } = 0;
     public required int CommentCount { get; set; } = 0;
 
+    public required string? UserReaction { get; set; } = string.Empty;
+
     public class UserDto
     {
         public required Guid UserId { get; set; }

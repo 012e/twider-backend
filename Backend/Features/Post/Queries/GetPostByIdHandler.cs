@@ -1,4 +1,6 @@
 using Backend.Common.DbContext;
+using Backend.Common.Helpers.Types;
+using Backend.Common.Services;
 using Backend.Features.Post.Mappers;
 using Backend.Features.User.Queries;
 using MediatR;
@@ -10,27 +12,43 @@ namespace Backend.Features.Post.Queries;
 public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, ApiResult<GetPostByIdResponse>>
 {
     private readonly ApplicationDbContext _db;
+    private readonly ICurrentUserService _currentUserService;
 
-    public GetPostByIdHandler(ApplicationDbContext db)
+    public GetPostByIdHandler(ApplicationDbContext db, ICurrentUserService currentUserService)
     {
         _db = db;
+        _currentUserService = currentUserService;
     }
 
     public async Task<ApiResult<GetPostByIdResponse>> Handle(GetPostByIdQuery request,
         CancellationToken cancellationToken)
     {
+        var currentUserId = _currentUserService.User!.UserId;
         var post = await _db.Posts
             .Include(p => p.User)
-            .Select(p => new GetPostByIdResponse
+            .Select(b => new
+            {
+                PostId = b.PostId,
+                Content = b.Content,
+                CreatedAt = b.CreatedAt,
+                User = b.User.ToUserDto(),
+                UpdatedAt = b.UpdatedAt,
+                Reactions = b.Reactions.ExtractReactionCount(),
+                ReactionCount = b.Reactions.Count(),
+                CommentCount = b.Comments.Count(),
+                UserReaction = b.Reactions.FirstOrDefault(x => x.UserId == currentUserId)
+            })
+            .Select(b => new GetPostByIdResponse
                 {
-                    PostId = p.PostId,
-                    Content = p.Content,
-                    User = p.User.ToUserDto(),
-                    CreatedAt = p.CreatedAt,
-                    UpdatedAt = p.UpdatedAt,
-                    Reactions = p.Reactions.ExtractReactionCount(),
-                    ReactionCount = p.CommentCount,
-                    CommentCount = p.Reactions.Count()
+                    PostId = b.PostId,
+                    Content = b.Content,
+                    CreatedAt = b.CreatedAt,
+                    User = b.User,
+                    UpdatedAt = b.UpdatedAt,
+                    Reactions = b.Reactions,
+                    ReactionCount = b.ReactionCount,
+                    CommentCount = b.CommentCount,
+                    UserReaction = b.UserReaction == null ? null : b.UserReaction.ReactionType.ToFriendlyString()
                 }
             )
             .FirstOrDefaultAsync(p => p.PostId == request.Id, cancellationToken);

@@ -39,4 +39,16 @@ public static class ReactionTypeHelper
         "care" => ReactionType.Care,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
     };
+
+    public static string ToFriendlyString(this ReactionType value) => value switch
+    {
+        ReactionType.Like => "like",
+        ReactionType.Love => "love",
+        ReactionType.Haha => "haha",
+        ReactionType.Wow => "wow",
+        ReactionType.Sad => "sad",
+        ReactionType.Angry => "angry",
+        ReactionType.Care => "care",
+        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+    };
 }
