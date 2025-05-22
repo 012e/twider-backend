@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Types;
+using Backend.Features.Post.Queries.GetPostById;
 using MediatR;
 
 namespace Backend.Features.Post.Queries;

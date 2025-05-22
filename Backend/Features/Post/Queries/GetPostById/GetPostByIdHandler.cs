@@ -2,12 +2,11 @@ using Backend.Common.DbContext;
 using Backend.Common.Helpers.Types;
 using Backend.Common.Services;
 using Backend.Features.Post.Mappers;
-using Backend.Features.User.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Post.Queries;
+namespace Backend.Features.Post.Queries.GetPostById;
 
 public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, ApiResult<GetPostByIdResponse>>
 {

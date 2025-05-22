@@ -3,6 +3,7 @@ using Backend.Common.Helpers;
 using Backend.Common.Helpers.Types;
 using Backend.Common.Services;
 using Backend.Features.Post.Mappers;
+using Backend.Features.Post.Queries.GetPostById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

@@ -1,7 +1,6 @@
-using Backend.Features.Post.Commands.AddReaction;
 using Riok.Mapperly.Abstractions;
 
-namespace Backend.Features.Post.Queries;
+namespace Backend.Features.Post.Queries.GetPostById;
 
 public class GetPostByIdResponse
 {

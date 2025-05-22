@@ -2,6 +2,7 @@ using Backend.Common.DbContext;
 using Backend.Common.DbContext.Reaction;
 using Backend.Common.Helpers.Types;
 using Backend.Features.Post.Queries;
+using Backend.Features.Post.Queries.GetPostById;
 
 namespace Backend.Features.Post.Mappers;
 

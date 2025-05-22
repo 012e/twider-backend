@@ -7,6 +7,7 @@ using Backend.Features.Post.Commands.DeletePost;
 using Backend.Features.Post.Commands.DeleteReaction;
 using Backend.Features.Post.Commands.UpdatePost;
 using Backend.Features.Post.Queries;
+using Backend.Features.Post.Queries.GetPostById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
