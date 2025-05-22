@@ -8,6 +8,8 @@ using Backend.Features.Post.Commands.DeleteReaction;
 using Backend.Features.Post.Commands.UpdatePost;
 using Backend.Features.Post.Queries;
 using Backend.Features.Post.Queries.GetPostById;
+using Backend.Features.Post.Queries.GetPosts;
+using Backend.Features.Post.Queries.GetPostsByUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +31,34 @@ public class Routes : IEndPoint
         var reaction = app
             .MapGroup("posts")
             .WithTags("Post reactions");
+
+        app.MapGet("/users/{userId:guid}/posts", async ([FromRoute] Guid userid, IMediator mediator) =>
+            {
+                var request = new GetPostByUserQuery
+                {
+                    UserId = userid,
+                    PaginationMeta = new InfiniteCursorPaginationMeta
+                    {
+                        Cursor = null,
+                        PageSize = 10
+                    }
+                };
+
+                Validator.ValidateObject(request, new ValidationContext(request), true);
+
+                var response = await mediator.Send(request);
+
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.Ok(response.Value);
+            })
+            .RequireAuthorization()
+            .Produces<ProblemDetails>(404)
+            .Produces<InfiniteCursorPage<GetPostByIdResponse>>()
+            .WithTags("Users");
 
         post.MapGet("{id:guid}", async (Guid id, IMediator mediator) =>
             {

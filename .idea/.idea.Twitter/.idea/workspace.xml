@@ -11,7 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Services/CurrentUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetUserPosts.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Routes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,7 +353,7 @@
       <workItem from="1747810895607" duration="6651000" />
       <workItem from="1747832267282" duration="15331000" />
       <workItem from="1747906858473" duration="207000" />
-      <workItem from="1747917321499" duration="567000" />
+      <workItem from="1747917321499" duration="4497000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -532,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747906968708</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Minor file organizations">
+      <option name="closed" value="true" />
+      <created>1747918199782</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1747918199782</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +587,8 @@
     <MESSAGE value="Add delete and update comment functionality with validation" />
     <MESSAGE value="Minor refactor for DbContext setup" />
     <MESSAGE value="Refactor reaction handling and enhance post retrieval with user-specific reaction data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor reaction handling and enhance post retrieval with user-specific reaction data" />
+    <MESSAGE value="Minor file organizations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor file organizations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

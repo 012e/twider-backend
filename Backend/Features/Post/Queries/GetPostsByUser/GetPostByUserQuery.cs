@@ -3,12 +3,15 @@ using Backend.Common.Helpers.Types;
 using Backend.Features.Post.Queries.GetPostById;
 using MediatR;
 
-namespace Backend.Features.Post.Queries.GetPosts;
+namespace Backend.Features.Post.Queries.GetPostsByUser;
 
-public class GetPostsQuery : IValidatableObject, IRequest<ApiResult<InfiniteCursorPage<GetPostByIdResponse>>>
+public class GetPostByUserQuery : IRequest<ApiResult<InfiniteCursorPage<GetPostByIdResponse>>>
 {
     [Required]
     public InfiniteCursorPaginationMeta PaginationMeta { get; set; } = new InfiniteCursorPaginationMeta();
+
+    [Required]
+    public Guid UserId { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

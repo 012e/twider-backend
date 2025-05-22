@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Backend.Common.DbContext;
 
 namespace Backend.Common.Services;
