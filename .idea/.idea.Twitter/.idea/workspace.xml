@@ -11,14 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb8beb8-cce9-45db-a235-2ca3c480620a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Common/Helpers/Extensions/ServiceExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/User/Routes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Twitter.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Backend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Backend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPosts/GetPostsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Features/Post/Queries/GetPostsByUser/GetPostByUserHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +101,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Backend: http">
+  <component name="RunManager" selected="Docker.Backend/compose.yaml: Compose Deployment">
     <configuration name="Twitter: http" type="AspireHostConfiguration" factoryName="Aspire Host" activateToolWindowBeforeRun="false">
       <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Twitter/Twitter.csproj" />
       <option name="PROJECT_TFM" value="net8.0" />
@@ -354,7 +351,9 @@
       <workItem from="1747810895607" duration="6651000" />
       <workItem from="1747832267282" duration="15331000" />
       <workItem from="1747906858473" duration="207000" />
-      <workItem from="1747917321499" duration="5970000" />
+      <workItem from="1747917321499" duration="11292000" />
+      <workItem from="1748053016247" duration="44000" />
+      <workItem from="1748053091886" duration="117000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -556,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747921977357</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: get current user info">
+      <option name="closed" value="true" />
+      <created>1747923451640</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1747923451640</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +605,8 @@
     <MESSAGE value="Refactor reaction handling and enhance post retrieval with user-specific reaction data" />
     <MESSAGE value="Minor file organizations" />
     <MESSAGE value="feat: get posts by user" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: get posts by user" />
+    <MESSAGE value="feat: get current user info" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: get current user info" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -640,19 +648,6 @@
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs</url>
-          <line>24</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/Features/User/Queries/GetCurrentLoggedInUserHandler.cs" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="798" />
-            </startOffsets>
-            <endOffsets>
-              <option value="841" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -667,5 +662,9 @@
         <watch expression="((Npgsql.PostgresException) $exception.InnerException).InvariantSeverity" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

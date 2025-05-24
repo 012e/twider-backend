@@ -9,10 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Features.Post.Queries.GetPostsByUser;
 
-public class GetPostByUserHandler : IRequestHandler<GetPostByUserQuery, ApiResult<InfiniteCursorPage<GetPostByIdResponse>>> // <<<>>>
+public class
+    GetPostByUserHandler : IRequestHandler<GetPostByUserQuery,
+    ApiResult<InfiniteCursorPage<GetPostByIdResponse>>> // <<<>>>
 {
-    private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
+    private readonly ApplicationDbContext _db;
 
     public GetPostByUserHandler(ApplicationDbContext db, ICurrentUserService currentUserService)
     {
@@ -20,18 +22,20 @@ public class GetPostByUserHandler : IRequestHandler<GetPostByUserQuery, ApiResul
         _currentUserService = currentUserService;
     }
 
-    public async Task<ApiResult<InfiniteCursorPage<GetPostByIdResponse>>> Handle(GetPostByUserQuery request, CancellationToken cancellationToken)
+    public async Task<ApiResult<InfiniteCursorPage<GetPostByIdResponse>>> Handle(GetPostByUserQuery request,
+        CancellationToken cancellationToken)
     {
         var cursor = request.PaginationMeta.Cursor;
         var pageSize = request.PaginationMeta.PageSize;
         var currentUserId = _currentUserService.User!.UserId;
-        var userExists = await _db.Users.AnyAsync(u => u.UserId == request.UserId);
+        var userExists =
+            await _db.Users.AnyAsync(u => u.UserId == request.UserId, cancellationToken: cancellationToken);
         if (!userExists)
         {
             return ApiResult.Fail(new ProblemDetails
             {
-                Title = "User not found" ,
-                Detail =  $"User with id {request.UserId} not found.",
+                Title = "User not found",
+                Detail = $"User with id {request.UserId} not found.",
                 Status = 404,
             });
         }
@@ -40,6 +44,8 @@ public class GetPostByUserHandler : IRequestHandler<GetPostByUserQuery, ApiResul
             source: _db.Posts
                 .Include(post => post.User)
                 .Where(b => b.UserId == request.UserId)
+                .OrderBy(b => b.CreatedAt)
+                .ThenBy(b => b.PostId)
                 .Select(b => new
                 {
                     Post = b,

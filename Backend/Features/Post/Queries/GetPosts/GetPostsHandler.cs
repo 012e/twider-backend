@@ -10,8 +10,8 @@ namespace Backend.Features.Post.Queries.GetPosts;
 
 public class GetPostsHandler : IRequestHandler<GetPostsQuery, ApiResult<InfiniteCursorPage<GetPostByIdResponse>>>
 {
-    private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
+    private readonly ApplicationDbContext _db;
 
     public GetPostsHandler(ApplicationDbContext db, ICurrentUserService currentUserService)
     {
@@ -29,6 +29,8 @@ public class GetPostsHandler : IRequestHandler<GetPostsQuery, ApiResult<Infinite
         var posts = await InfinitePaginationService.PaginateAsync(
             source: _db.Posts
                 .Include(post => post.User)
+                .OrderBy(b => b.CreatedAt)
+                .ThenBy(b => b.PostId)
                 .Select(b => new
                 {
                     Post = b,
