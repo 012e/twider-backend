@@ -70,12 +70,12 @@ CREATE TABLE posts
 CREATE TABLE media
 (
     media_id         UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
-    post_id          UUID                     NOT NULL REFERENCES posts (post_id) ON DELETE CASCADE,
+    parent_id        UUID,
     media_type       VARCHAR(50)              NOT NULL, -- E.g., 'image/jpeg', 'video/mp4', 'image/gif'
     -- Discriminates between comment, post,... media.
     -- Nullable because when the link is created, it is not known yet
     media_owner_type VARCHAR(50),
-    media_url        VARCHAR(255)             NOT NULL, -- URL to the media file (e.g., S3 link)
+    media_url        VARCHAR(255),
     thumbnail_url    VARCHAR(255),                      -- Optional URL for video/image thumbnails
     uploaded_at      TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -169,7 +169,7 @@ CREATE TABLE message_media
 (
     message_media_id UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
     message_id       UUID                     NOT NULL REFERENCES messages (message_id) ON DELETE CASCADE,
-    media_type       VARCHAR(50)              , -- e.g., 'image/jpeg', 'application/pdf', 'audio/mpeg'
+    media_type       VARCHAR(50),                       -- e.g., 'image/jpeg', 'application/pdf', 'audio/mpeg'
     media_url        VARCHAR(255)             NOT NULL, -- URL to the media file
     file_name        VARCHAR(255),                      -- Optional: original file name
     file_size_bytes  BIGINT,                            -- Optional: file size

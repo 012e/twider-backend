@@ -4,7 +4,7 @@ public abstract class Medium
 {
     public Guid MediaId { get; set; }
 
-    public string MediaType { get; set; } = null!;
+    public string? MediaType { get; set; } = null!;
 
     public virtual string? MediaOwnerType { get; set; }
 

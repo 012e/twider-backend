@@ -28,11 +28,8 @@ public class
             .WithObject(mediaPath.ToString())
         );
 
-        // mediaPath is just a UUID, this is the medium ID; UNRELATED!
-        var mediumId = Guid.NewGuid();
         var medium = new UnknownMedium()
         {
-            MediaId = Guid.NewGuid(),
             MediaPath = mediaPath.ToString(),
         };
         await _db.UnknownMedia.AddAsync(medium, cancellationToken);
@@ -41,7 +38,7 @@ public class
         return ApiResult.Ok(new GenerateUploadUrlResponse
         {
             Url = mediaUrl,
-            MediumId = mediumId
+            MediumId = medium.MediaId,
         });
     }
 }

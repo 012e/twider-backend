@@ -8,4 +8,7 @@ public class CreatePostCommand : IRequest<ApiResult<ItemId>>
 {
     [Required]
     public string Content { get; set; } = null!;
+
+    [Required]
+    public List<Guid> MediaIds { get; set; } = [];
 }
