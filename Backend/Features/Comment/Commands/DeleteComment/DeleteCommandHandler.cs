@@ -3,18 +3,18 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Comment.Commands;
+namespace Backend.Features.Comment.Commands.DeleteComment;
 
-public class UpdateCommentHandler : IRequestHandler<UpdateCommentCommand, ApiResult<Unit>>
+public class DeleteCommandHandler : IRequestHandler<DeleteCommentCommand, ApiResult<Unit>>
 {
     private readonly ApplicationDbContext _db;
 
-    public UpdateCommentHandler(ApplicationDbContext db)
+    public DeleteCommandHandler(ApplicationDbContext db)
     {
         _db = db;
     }
 
-    public async Task<ApiResult<Unit>> Handle(UpdateCommentCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<Unit>> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
     {
         var postExists =
             await _db.Posts.AnyAsync(i => i.PostId == request.PostId, cancellationToken: cancellationToken);
@@ -29,8 +29,9 @@ public class UpdateCommentHandler : IRequestHandler<UpdateCommentCommand, ApiRes
         }
 
         var comment = await _db.Comments
-            .FirstOrDefaultAsync(c => c.CommentId == request.CommentId && c.PostId == request.PostId,
-                cancellationToken);
+            .FirstOrDefaultAsync(
+                c => c.CommentId == request.CommentId && c.PostId == request.PostId,
+                cancellationToken: cancellationToken);
 
         if (comment is null)
         {
@@ -42,10 +43,9 @@ public class UpdateCommentHandler : IRequestHandler<UpdateCommentCommand, ApiRes
             });
         }
 
-        comment.Content = request.Content.Content;
+        _db.Comments.Remove(comment);
 
         await _db.SaveChangesAsync(cancellationToken);
-
         return ApiResult.Ok(Unit.Value);
     }
 }

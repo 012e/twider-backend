@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Features.Comment.Commands;
+namespace Backend.Features.Comment.Commands.CreateComment;
 
 public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiResult<ItemId>>
 {

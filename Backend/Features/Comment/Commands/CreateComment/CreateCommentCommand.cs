@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Types;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Features.Comment.Commands;
+namespace Backend.Features.Comment.Commands.CreateComment;
 
 public class CreateCommentCommand : IRequest<ApiResult<ItemId>>
 {

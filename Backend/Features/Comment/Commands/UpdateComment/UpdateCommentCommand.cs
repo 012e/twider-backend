@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
+using Backend.Features.Comment.Commands.CreateComment;
 using MediatR;
 
-namespace Backend.Features.Comment.Commands;
+namespace Backend.Features.Comment.Commands.UpdateComment;
 
 public class UpdateCommentCommand : IRequest<ApiResult<Unit>>, IValidatableObject
 {
