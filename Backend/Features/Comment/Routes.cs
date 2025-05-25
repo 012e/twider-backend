@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers.Interfaces;
 using Backend.Common.Helpers.Types;
-using Backend.Features.Comment.Commands;
+using Backend.Features.Comment.Commands.AddReaction;
 using Backend.Features.Comment.Commands.CreateComment;
 using Backend.Features.Comment.Commands.DeleteComment;
+using Backend.Features.Comment.Commands.DeleteReaction;
 using Backend.Features.Comment.Commands.UpdateComment;
 using Backend.Features.Comment.Queries;
 using MediatR;
@@ -156,11 +158,68 @@ public class Routes : IEndPoint
 
                     return Results.NoContent();
                 })
-
             .WithName("DeleteComment")
             .RequireAuthorization()
             .Produces(204)
             .Produces<ProblemDetails>(404)
             .Produces<ProblemDetails>(400);
+
+        group.MapPost("posts/{postId:guid}/comments/{commentId:guid}/reactions", async ([FromRoute] Guid postId,
+                [FromRoute] Guid commentId,
+                [FromBody] ReactionTypeDto reactionType, IMediator mediator) =>
+            {
+                var command = new AddReactionCommand
+                {
+                    CommentId = commentId,
+                    PostId = postId,
+                    ReactionType = new AddReactionCommand.ReactionDto
+                    {
+                        ReactionType = reactionType.ReactionType.ToReactionTypeEnum()
+                    }
+                };
+
+                var response = await mediator.Send(command);
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.Created($"/posts/{postId}/comments/{commentId}/reactions", response.Value);
+            })
+            .WithName("AddCommentReaction")
+            .RequireAuthorization()
+            .Produces(201)
+            .Produces<ProblemDetails>(404)
+            .Produces<ProblemDetails>(400);
+
+        group.MapDelete("posts/{postId:guid}/comments/{commentId:guid}/reactions", async (
+                [FromRoute] Guid postId,
+                [FromRoute] Guid commentId, IMediator mediator) =>
+            {
+                var command = new DeleteReactionCommand
+                {
+                    PostId = postId,
+                    CommentId = commentId
+                };
+
+                var response = await mediator.Send(command);
+                if (response.IsFailed)
+                {
+                    return response.ToErrorResponse();
+                }
+
+                return Results.NoContent();
+            })
+            .WithName("RemoveCommentReaction")
+            .RequireAuthorization()
+            .Produces(204)
+            .Produces<ProblemDetails>(404);
+    }
+
+    public class ReactionTypeDto
+    {
+        [Required]
+        [RegularExpression("$(like|love|haha|wow|sad|care)^")]
+        public string ReactionType { get; set; } = null!;
     }
 }

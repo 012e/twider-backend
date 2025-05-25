@@ -6,7 +6,6 @@ using Backend.Features.Post.Commands.CreatePost;
 using Backend.Features.Post.Commands.DeletePost;
 using Backend.Features.Post.Commands.DeleteReaction;
 using Backend.Features.Post.Commands.UpdatePost;
-using Backend.Features.Post.Queries;
 using Backend.Features.Post.Queries.GetPostById;
 using Backend.Features.Post.Queries.GetPosts;
 using Backend.Features.Post.Queries.GetPostsByUser;
@@ -17,11 +16,6 @@ namespace Backend.Features.Post;
 
 public class Routes : IEndPoint
 {
-    public class ReactionTypeDto
-    {
-        public string ReactionType { get; set; } = null!;
-    }
-
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         var post = app
@@ -200,5 +194,12 @@ public class Routes : IEndPoint
             .WithName("RemoveReactionFromPost")
             .Produces<Unit>(204)
             .Produces<ProblemDetails>(404);
+    }
+
+    public class ReactionTypeDto
+    {
+        [Required]
+        [RegularExpression("$(like|love|haha|wow|sad|care)^")]
+        public string ReactionType { get; set; } = null!;
     }
 }
