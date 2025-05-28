@@ -10,13 +10,16 @@ namespace Backend.Features.Post.Commands.CreatePost;
 
 public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<ItemId>>
 {
-    private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
+    private readonly ApplicationDbContext _db;
+    private readonly IPublicUrlGenerator _publicUrlGenerator;
 
-    public CreatePostHandler(ApplicationDbContext db, ICurrentUserService currentUserService)
+    public CreatePostHandler(ApplicationDbContext db, ICurrentUserService currentUserService,
+        IPublicUrlGenerator publicUrlGenerator)
     {
         _db = db;
         _currentUserService = currentUserService;
+        _publicUrlGenerator = publicUrlGenerator;
     }
 
     public async Task<ApiResult<ItemId>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
@@ -46,12 +49,19 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<It
             });
         }
 
+
         _db.UnknownMedia.RemoveRange(media);
-        var postMedia = media.AsQueryable().Select(m => new Common.DbContext.Post.PostMedium
-        {
-            MediaId = m.MediaId,
-            MediaOwnerType = "post",
-        }).ToList();
+        var mediaUrlsTask = media
+            .Select(s => _publicUrlGenerator.GenerateUrlAsync("media", s.Path));
+        var mediaUrls = await Task.WhenAll(mediaUrlsTask);
+
+        var postMedia = media.AsQueryable().Zip(mediaUrls, (medium, url) =>
+            new PostMedium
+            {
+                MediaId = medium.MediaId,
+                Url = url,
+                OwnerType = "post",
+            }).ToList();
 
         var post = _db.Posts.Add(new Common.DbContext.Post.Post
         {

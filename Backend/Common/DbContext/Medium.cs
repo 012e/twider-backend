@@ -4,14 +4,15 @@ public abstract class Medium
 {
     public Guid MediaId { get; set; }
 
-    public string? MediaType { get; set; } = null!;
+    public string? Type { get; set; } = null!;
 
-    public virtual string? MediaOwnerType { get; set; }
+    public virtual string? OwnerType { get; set; }
 
-    public string MediaPath { get; set; } = null!;
+    public string Path { get; set; } = null!;
 
-    [Obsolete]
-    public string? ThumbnailUrl { get; set; }
+    public string? Url { get; set; } = null!;
+
+    [Obsolete] public string? ThumbnailUrl { get; set; }
 
     public DateTime UploadedAt { get; set; }
 }

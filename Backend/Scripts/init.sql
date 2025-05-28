@@ -71,12 +71,13 @@ CREATE TABLE media
 (
     media_id         UUID PRIMARY KEY                  DEFAULT uuid_generate_v4(),
     parent_id        UUID,
-    media_type       VARCHAR(50)              NOT NULL, -- E.g., 'image/jpeg', 'video/mp4', 'image/gif'
+    media_type    VARCHAR(50),  -- E.g., 'image/jpeg', 'video/mp4', 'image/gif'
     -- Discriminates between comment, post,... media.
     -- Nullable because when the link is created, it is not known yet
     media_owner_type VARCHAR(50),
     media_url        VARCHAR(255),
-    thumbnail_url    VARCHAR(255),                      -- Optional URL for video/image thumbnails
+    media_path    VARCHAR(255),
+    thumbnail_url VARCHAR(255), -- Optional URL for video/image thumbnails
     uploaded_at      TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

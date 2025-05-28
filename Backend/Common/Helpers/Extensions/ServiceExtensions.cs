@@ -153,6 +153,7 @@ public static class ServiceExtensions
     {
         services.AddSignalR();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddSingleton<IPublicUrlGenerator, PublicUrlGenerator>();
         return services;
     }
 

@@ -61,7 +61,8 @@ public class
                     Reactions = b.Post.Reactions.ExtractReactionCount(),
                     ReactionCount = b.Post.Reactions.Count(),
                     CommentCount = b.Post.Comments.Count(),
-                    UserReaction = b.UserReaction == null ? null : b.UserReaction.ReactionType.ToFriendlyString()
+                    UserReaction = b.UserReaction == null ? null : b.UserReaction.ReactionType.ToFriendlyString(),
+                    MediaUrls = b.Post.Media.Select(r => r.Url).ToList(),
                 }),
             keySelector: x => x.PostId,
             after: cursor,

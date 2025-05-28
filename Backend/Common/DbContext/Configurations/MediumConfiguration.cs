@@ -14,13 +14,16 @@ public class MediumConfiguration : IEntityTypeConfiguration<Medium>
         entity.Property(e => e.MediaId)
             .HasDefaultValueSql("gen_random_uuid()")
             .HasColumnName("media_id");
-        entity.Property(e => e.MediaOwnerType)
+        entity.Property(e => e.OwnerType)
             .HasMaxLength(50)
             .HasColumnName("media_owner_type");
-        entity.Property(e => e.MediaType)
+        entity.Property(e => e.Type)
             .HasMaxLength(50)
             .HasColumnName("media_type");
-        entity.Property(e => e.MediaPath)
+        entity.Property(e => e.Path)
+            .HasMaxLength(255)
+            .HasColumnName("media_path");
+        entity.Property(e => e.Url)
             .HasMaxLength(255)
             .HasColumnName("media_url");
         entity.Property(e => e.ThumbnailUrl)
@@ -30,7 +33,7 @@ public class MediumConfiguration : IEntityTypeConfiguration<Medium>
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasColumnName("uploaded_at");
 
-        entity.HasDiscriminator(e => e.MediaOwnerType)
+        entity.HasDiscriminator(e => e.OwnerType)
             .HasValue<PostMedium>("post")
             .HasValue<CommentMedium>("comment")
             .HasValue<UnknownMedium>("unknown");
@@ -41,7 +44,7 @@ public class PostMediumConfiguration : IEntityTypeConfiguration<PostMedium>
 {
     public void Configure(EntityTypeBuilder<PostMedium> entity)
     {
-        entity.Property(e => e.MediaOwnerType)
+        entity.Property(e => e.OwnerType)
             .HasMaxLength(50)
             .HasColumnName("media_owner_type")
             .HasDefaultValue("post");
@@ -58,7 +61,7 @@ public class CommentMediumConfiguration : IEntityTypeConfiguration<CommentMedium
 {
     public void Configure(EntityTypeBuilder<CommentMedium> entity)
     {
-        entity.Property(e => e.MediaOwnerType)
+        entity.Property(e => e.OwnerType)
             .HasMaxLength(50)
             .HasColumnName("media_owner_type")
             .HasDefaultValue("comment");
@@ -69,7 +72,7 @@ public class UnknownMediumConfiguration : IEntityTypeConfiguration<UnknownMedium
 {
     public void Configure(EntityTypeBuilder<UnknownMedium> entity)
     {
-        entity.Property(e => e.MediaOwnerType)
+        entity.Property(e => e.OwnerType)
             .HasMaxLength(50)
             .HasColumnName("media_owner_type")
             .HasDefaultValue("unknown");

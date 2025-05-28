@@ -9,8 +9,8 @@ namespace Backend.Features.Media.Commands;
 public class
     GenerateUploadUrlHandler : IRequestHandler<GenerateUploadUrlCommand, ApiResult<GenerateUploadUrlResponse>>
 {
-    private readonly IMinioClient _minioClient;
     private readonly ApplicationDbContext _db;
+    private readonly IMinioClient _minioClient;
 
     public GenerateUploadUrlHandler(IMinioClient minioClient, ApplicationDbContext db)
     {
@@ -30,7 +30,7 @@ public class
 
         var medium = new UnknownMedium()
         {
-            MediaPath = mediaPath.ToString(),
+            Path = mediaPath.ToString(),
         };
         await _db.UnknownMedia.AddAsync(medium, cancellationToken);
         await _db.SaveChangesAsync(cancellationToken);
