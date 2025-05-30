@@ -14,6 +14,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Minio;
+using OpenAI;
+using OpenAI.Embeddings;
+using Qdrant.Client;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Backend.Common.Helpers.Extensions;
@@ -40,6 +43,16 @@ public static class ServiceExtensions
 
         services.AddOptions<MinioOptions>()
             .Bind(configuration.GetSection(MinioOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<QdrantOptions>()
+            .Bind(configuration.GetSection(QdrantOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<OpenAiOptions>()
+            .Bind(configuration.GetSection(OpenAiOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
@@ -154,6 +167,21 @@ public static class ServiceExtensions
         services.AddSignalR();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddSingleton<IPublicUrlGenerator, PublicUrlGenerator>();
+
+        services.AddSingleton<QdrantClient>(provider =>
+        {
+            var qdrantOptions = provider.GetRequiredService<IOptions<QdrantOptions>>().Value;
+            var client = new QdrantClient(qdrantOptions.Url);
+            return client;
+        });
+
+        services.AddSingleton<EmbeddingClient>(provider =>
+        {
+            var openAiOptions = provider.GetRequiredService<IOptions<OpenAiOptions>>().Value;
+            var openAiClient = new OpenAIClient(openAiOptions.ApiKey);
+            return openAiClient.GetEmbeddingClient("text-embedding-3-small");
+        });
+
         return services;
     }
 

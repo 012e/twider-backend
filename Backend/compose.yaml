@@ -26,7 +26,6 @@ services:
 
   minio:
     image: quay.io/minio/minio
-    container_name: minio1
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -37,3 +36,11 @@ services:
       - ./cache/minio/data:/data
     user: "${UID}:${GID}"
     command: server /data --console-address ":9001"
+
+  qdrant:
+    image: qdrant/qdrant:v1.14.1
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - ./cache/qdrant:/qdrant/storage:z
