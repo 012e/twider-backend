@@ -5,6 +5,8 @@ using Backend.Common.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NATS.Client.JetStream;
+using NATS.Client.JetStream.Models;
 
 namespace Backend.Features.Post.Commands.CreatePost;
 
@@ -13,13 +15,26 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<It
     private readonly ICurrentUserService _currentUserService;
     private readonly ApplicationDbContext _db;
     private readonly IPublicUrlGenerator _publicUrlGenerator;
+    private readonly INatsJSContext _js;
 
     public CreatePostHandler(ApplicationDbContext db, ICurrentUserService currentUserService,
-        IPublicUrlGenerator publicUrlGenerator)
+        IPublicUrlGenerator publicUrlGenerator, INatsJSContext js)
     {
         _db = db;
         _currentUserService = currentUserService;
         _publicUrlGenerator = publicUrlGenerator;
+        _js = js;
+    }
+
+    private async Task PublicMessage(Common.DbContext.Post.Post post)
+    {
+        var ack = await _js.PublishAsync($"post.created.{post.PostId}", new
+        {
+            Id = post.PostId,
+            Content = post.Content,
+            MediaUrls = post.Media.Select(m => m.Url).ToList(),
+        });
+        ack.EnsureSuccess();
     }
 
     public async Task<ApiResult<ItemId>> Handle(CreatePostCommand request, CancellationToken cancellationToken)
@@ -71,6 +86,7 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<It
         });
 
         await _db.SaveChangesAsync(cancellationToken);
+        await PublicMessage(post.Entity);
 
         return ApiResult.Ok(new ItemId(post.Entity.PostId));
     }

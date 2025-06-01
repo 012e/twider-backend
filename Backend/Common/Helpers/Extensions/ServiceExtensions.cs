@@ -14,9 +14,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Minio;
-using OpenAI;
-using OpenAI.Embeddings;
-using Qdrant.Client;
+using NATS.Client.JetStream;
+using NATS.Net;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Backend.Common.Helpers.Extensions;
@@ -53,6 +52,11 @@ public static class ServiceExtensions
 
         services.AddOptions<OpenAiOptions>()
             .Bind(configuration.GetSection(OpenAiOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<MlSearchOptions>()
+            .Bind(configuration.GetSection(MlSearchOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
@@ -168,18 +172,19 @@ public static class ServiceExtensions
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddSingleton<IPublicUrlGenerator, PublicUrlGenerator>();
 
-        services.AddSingleton<QdrantClient>(provider =>
+        services.AddSingleton<INatsJSContext>(_ =>
         {
-            var qdrantOptions = provider.GetRequiredService<IOptions<QdrantOptions>>().Value;
-            var client = new QdrantClient(qdrantOptions.Url);
-            return client;
+            var nc = new NatsClient();
+            var js = nc.CreateJetStreamContext();
+            return js;
         });
 
-        services.AddSingleton<EmbeddingClient>(provider =>
+        // Add HttpClient for ML Search Service
+        services.AddHttpClient("MlSearchClient", (serviceProvider, client) =>
         {
-            var openAiOptions = provider.GetRequiredService<IOptions<OpenAiOptions>>().Value;
-            var openAiClient = new OpenAIClient(openAiOptions.ApiKey);
-            return openAiClient.GetEmbeddingClient("text-embedding-3-small");
+            var mlSearchOptions = serviceProvider.GetRequiredService<IOptions<MlSearchOptions>>().Value;
+            client.BaseAddress = new Uri(mlSearchOptions.BaseUrl);
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
         });
 
         return services;
