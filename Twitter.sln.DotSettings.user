@@ -40,6 +40,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Post.PostTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Comment.CommentTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=58c56b00_002Df81e_002D48fd_002Da74f_002Dc8e84271fcf4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Continuous Testing" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

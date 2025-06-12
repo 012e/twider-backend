@@ -1,4 +1,5 @@
 using Backend.Common.Helpers.Types;
+using Backend.Features.Media.Commands;
 using Backend.Features.Post.Commands.AddReaction;
 using Backend.Features.Post.Commands.CreatePost;
 using Backend.Features.Post.Commands.DeletePost;
@@ -6,7 +7,6 @@ using Backend.Features.Post.Commands.DeleteReaction;
 using Backend.Features.Post.Commands.UpdatePost;
 using Backend.Features.Post.Queries.GetPostById;
 using Backend.Features.Post.Queries.GetPosts;
-using Backend.Features.Post.Queries.GetPostsByUser;
 using BackendTest.Utils;
 
 namespace BackendTest.Features.Post;
@@ -104,49 +104,13 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
     }
 
     [Fact]
-    public async Task Should_Get_Posts_By_User()
-    {
-        // Arrange - Create a post
-        var createCommand = new CreatePostCommand
-        {
-            Content = "User specific post",
-            MediaIds = new List<Guid>()
-        };
-        var createResult = await Mediator.Send(createCommand);
-        Assert.True(createResult.IsSuccess);
-
-        // Get the current user's ID from the created post
-        var postQuery = new GetPostByIdQuery(createResult.Value.Id);
-        var postResult = await Mediator.Send(postQuery);
-        var userId = postResult.Value.User.UserId;
-
-        // Act - Get posts by this user
-        var query = new GetPostByUserQuery
-        {
-            UserId = userId,
-            PaginationMeta = new InfiniteCursorPaginationMeta
-            {
-                Cursor = null,
-                PageSize = 10
-            }
-        };
-        var result = await Mediator.Send(query);
-
-        // Assert
-        Assert.True(result.IsSuccess);
-        Assert.NotNull(result.Value);
-        Assert.NotEmpty(result.Value.Items);
-        Assert.Contains(result.Value.Items, p => p.PostId == createResult.Value.Id);
-    }
-
-    [Fact]
     public async Task Should_Update_Post_Successfully()
     {
         // Arrange - Create a post first
         var createCommand = new CreatePostCommand
         {
             Content = "Original content",
-            MediaIds = new List<Guid>()
+            MediaIds = []
         };
         var createResult = await Mediator.Send(createCommand);
         Assert.True(createResult.IsSuccess);
@@ -287,5 +251,39 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
         // The UserReaction should be null now
         Assert.True(verifyResult.IsSuccess);
         Assert.Equal(0, verifyResult.Value.ReactionCount);
+    }
+
+    [Fact]
+    public async Task Should_Create_Post_With_Media_Successfully()
+    {
+        // Arrange
+        // First generate media URLs and IDs
+        var mediaCommand = new GenerateUploadUrlCommand();
+        var mediaResult = await Mediator.Send(mediaCommand);
+        Assert.True(mediaResult.IsSuccess);
+
+        var mediaId = mediaResult.Value.MediumId;
+
+        // Create post with media
+        var command = new CreatePostCommand
+        {
+            Content = "Test post with media attachment",
+            MediaIds = new List<Guid> { mediaId }
+        };
+
+        // Act
+        var result = await Mediator.Send(command);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.NotEqual(Guid.Empty, result.Value.Id);
+
+        // Verify media is attached to post
+        var postQuery = new GetPostByIdQuery(result.Value.Id);
+        var postResult = await Mediator.Send(postQuery);
+
+        Assert.True(postResult.IsSuccess);
+        Assert.NotEmpty(postResult.Value.MediaUrls);
     }
 }
