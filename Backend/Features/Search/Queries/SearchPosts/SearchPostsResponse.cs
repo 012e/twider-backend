@@ -1,16 +1,14 @@
+using Backend.Common.Helpers.Types;
+using Backend.Features.Post.Queries.GetPostById;
+
 namespace Backend.Features.Search.Queries.SearchPosts;
 
-public class SearchPostsResponse
+public class SearchPostsResponse : InfiniteCursorPage<GetPostByIdResponse>
 {
-    public required List<PostSearchResult> Results { get; set; } = [];
-    public required int Total { get; set; }
-    public required int Offset { get; set; }
-    public required int Limit { get; set; }
-}
-
-public class PostSearchResult
-{
-    public required string Id { get; set; } = string.Empty;
-    public required string Content { get; set; } = string.Empty;
-    public required List<string> MediaUrls { get; set; } = [];
+    public SearchPostsResponse(
+        IReadOnlyList<GetPostByIdResponse> items,
+        string? nextCursor,
+        bool hasMore) : base(items, nextCursor, hasMore)
+    {
+    }
 }

@@ -20,7 +20,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         entity.HasIndex(e => e.Username, "users_username_key").IsUnique();
 
         entity.Property(e => e.UserId)
-            .HasDefaultValueSql("gen_random_uuid()")
             .HasColumnName("user_id");
         entity
             .HasIndex(e => e.OauthSub, "oauth_sub")

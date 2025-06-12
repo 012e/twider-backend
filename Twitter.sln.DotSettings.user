@@ -1,4 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAggregateException_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F4363be3555734c96804bc429c863e56ab2e200_003F2a_003Fc494b325_003FAggregateException_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AArgumentNullException_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F4363be3555734c96804bc429c863e56ab2e200_003F36_003Fe1d01539_003FArgumentNullException_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAuthenticationServiceCollectionExtensions_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F7684bf19fcff4c13897be5e8c711509421200_003Fcd_003F14b75021_003FAuthenticationServiceCollectionExtensions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AClientsApi_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fc20e21b8cb8e4287bc38ebef8275d46b1a0e00_003Fa4_003F897bc6bf_003FClientsApi_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -14,6 +15,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIProtocolMappersApiSync_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fc20e21b8cb8e4287bc38ebef8275d46b1a0e00_003Fdb_003Fddfc78e7_003FIProtocolMappersApiSync_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIRealmsAdminApi_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fc20e21b8cb8e4287bc38ebef8275d46b1a0e00_003Fe6_003Fd6d91665_003FIRealmsAdminApi_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AISender_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F32b4a29d026a47f2b70331ba6315ff8f13200_003Fc1_003Fdfba174f_003FISender_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIServiceProvider_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F4a8f59ea280647a78721b2440182e74e1c00_003Ffa_003Fc0e3dac0_003FIServiceProvider_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AJsonConverterFactory_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fc76a3b9ee90d40818185bfd493e0dd8a157a00_003Fa8_003F31608804_003FJsonConverterFactory_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AModelBuilder_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F5c512bcddfe0a529da5f525cbf8fcaee3ce40e1a4706acad85a9544fbe42af_003FModelBuilder_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AMonitor_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fc58cde9f272b41c9ab6d39a0907878beb2e000_003F63_003F6bc14704_003FMonitor_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -29,17 +31,28 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/home/huy/.nuget/packages/schick.keycloak.restapiclient/26.2.0/lib/netstandard2.0/FS.Keycloak.RestApiClient.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2c168f6c_002Dc5e8_002D4e61_002Db9c8_002D9b182f92a6f6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Handle_ShouldCreatePost_WhenUserIsLoggedIn" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2c168f6c_002Dc5e8_002D4e61_002Db9c8_002D9b182f92a6f6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Handle_ShouldCreatePost_WhenUserIsLoggedIn" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Post.Commands.CreatePostHandlerTests.Handle_ShouldCreatePost_WhenUserIsLoggedIn&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke.should_be_able_to_create_post&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=368e02ef_002D7a19_002D49ca_002Db256_002D30aab29dd21d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetCommentsByPostHandlerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=368e02ef_002D7a19_002D49ca_002Db256_002D30aab29dd21d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetCommentsByPostHandlerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Comments.GetCommentsByPostHandlerTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Post.Commands.UpdatePostHandlerTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Comment.Commands.CreateCommentHandlerTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Post.Commands.CreatePostHandlerTests.Handle_ShouldCreatePost_WhenUserIsLoggedIn&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Post.Commands.CreatePostHandlerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=58c56b00_002Df81e_002D48fd_002Da74f_002Dc8e84271fcf4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Continuous Testing" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke.should_be_able_to_create_post&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b3bddd06_002D514c_002D4bfd_002D9cb5_002D598b7029a0fe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="should_be_able_to_create_post #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke.should_be_able_to_create_post&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bb93be51_002D2d86_002D47b7_002D8e03_002D773e4e0a8bd5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="should_be_able_to_create_post" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke.should_be_able_to_create_post&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

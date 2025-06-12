@@ -1,8 +1,5 @@
 using Backend.Common.Helpers;
 using Backend.Common.Helpers.Extensions;
-using Backend.Common.Middlewares;
-using Backend.Common.Services;
-using Backend.Features.User;
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,4 +72,8 @@ void ConfigureJsonOptions(IServiceCollection services)
     {
         options.SerializerOptions.Converters.Add(new ResultJsonConverterFactory());
     });
+}
+
+public partial class Program
+{
 }

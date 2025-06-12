@@ -23,9 +23,9 @@ public class RemoveReactionHandler : IRequestHandler<RemoveReactionCommand, ApiR
         {
             return ApiResult.Fail(new ProblemDetails
             {
-                Title = "Post do not exists",
+                Title = "post_not_found",
                 Status = 404,
-                Detail = $"Post with id {request.PostId} do not exists"
+                Detail = $"Post with id {request.PostId} not found"
             });
         }
 
