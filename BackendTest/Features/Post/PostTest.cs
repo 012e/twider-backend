@@ -1,3 +1,4 @@
+using System.Reflection;
 using Backend.Common.Helpers.Types;
 using Backend.Features.Media.Commands;
 using Backend.Features.Post.Commands.AddReaction;
@@ -257,18 +258,43 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
     public async Task Should_Create_Post_With_Media_Successfully()
     {
         // Arrange
-        // First generate media URLs and IDs
+        // 1. Prepare the image data
+        // Get the directory where the test assembly is running
+        var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var imagePath = Path.Combine(assemblyLocation, "Data", "cat.jpeg");
+
+        if (!File.Exists(imagePath))
+        {
+            // Providing more context in the exception message
+            throw new FileNotFoundException($"The file '{imagePath}' was not found. " +
+                                            "Ensure it's in a 'Data' folder relative to the test assembly's output directory, " +
+                                            "and its 'Copy to Output Directory' property is set to 'Copy if newer' or 'Copy always'.");
+        }
+
+        byte[] originalImageData = await File.ReadAllBytesAsync(imagePath);
+
+        // 2. Generate media URL and ID
         var mediaCommand = new GenerateUploadUrlCommand();
         var mediaResult = await Mediator.Send(mediaCommand);
         Assert.True(mediaResult.IsSuccess);
-
+        Assert.NotNull(mediaResult.Value);
         var mediaId = mediaResult.Value.MediumId;
+        var targetUploadUrl = mediaResult.Value.Url;
 
-        // Create post with media
+        // 3. Upload the fake media to the generated URL
+        using (var httpClient = new HttpClient())
+        {
+            var content = new ByteArrayContent(originalImageData);
+            content.Headers.Add("Content-Type", "image/jpeg");
+            var uploadResponse = await httpClient.PutAsync(targetUploadUrl, content);
+            uploadResponse.EnsureSuccessStatusCode();
+        }
+
+        // 4. Create post with media
         var command = new CreatePostCommand
         {
             Content = "Test post with media attachment",
-            MediaIds = new List<Guid> { mediaId }
+            MediaIds = [mediaId]
         };
 
         // Act
@@ -279,11 +305,22 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
         Assert.NotNull(result.Value);
         Assert.NotEqual(Guid.Empty, result.Value.Id);
 
-        // Verify media is attached to post
+        // 5. Verify media is attached to post and is the same one
         var postQuery = new GetPostByIdQuery(result.Value.Id);
         var postResult = await Mediator.Send(postQuery);
 
         Assert.True(postResult.IsSuccess);
         Assert.NotEmpty(postResult.Value.MediaUrls);
+        Assert.Single(postResult.Value.MediaUrls);
+
+        var uploadedMediaUrl = postResult.Value.MediaUrls.First();
+
+        // Download the uploaded media
+        using (var httpClient = new HttpClient())
+        {
+            byte[] downloadedImageData = await httpClient.GetByteArrayAsync(uploadedMediaUrl);
+            Assert.True(originalImageData.SequenceEqual(downloadedImageData),
+                "The uploaded image bytes do not match the original image bytes.");
+        }
     }
 }
