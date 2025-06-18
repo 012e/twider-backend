@@ -1,3 +1,5 @@
+name: twider-backend
+
 services:
   database:
     image: postgres:16.4

@@ -76,7 +76,8 @@ public class SearchPostsHandler : IRequestHandler<SearchPostsQuery, ApiResult<In
             var content = await response.Content.ReadAsStringAsync(cancellationToken);
             var mlSearchResponse = JsonSerializer.Deserialize<SearchResponse>(content, new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
             });
 
             if (mlSearchResponse == null)
@@ -204,5 +205,5 @@ internal class SearchResult
 {
     public required string Id { get; set; } = string.Empty;
     public required string Content { get; set; } = string.Empty;
-    public required List<string> MediaUrls { get; set; } = [];
+    public required List<string>? MediaUrls { get; set; } = [];
 }

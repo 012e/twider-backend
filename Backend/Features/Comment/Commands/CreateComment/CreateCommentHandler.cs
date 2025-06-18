@@ -1,13 +1,14 @@
 using Backend.Common.DbContext;
 using Backend.Common.Helpers.Types;
 using Backend.Common.Services;
+using Backend.Features.Comment.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Features.Comment.Commands.CreateComment;
 
-public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiResult<ItemId>>
+public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiResult<CommentDto>>
 {
     private readonly ApplicationDbContext _db;
     private readonly ICurrentUserService _currentUserService;
@@ -18,7 +19,7 @@ public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiRes
         _currentUserService = currentUserService;
     }
 
-    public async Task<ApiResult<ItemId>> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<CommentDto>> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
     {
         var user = _currentUserService.User;
         var content = request.Content;
@@ -85,6 +86,29 @@ public class CreateCommentHandler : IRequestHandler<CreateCommentCommand, ApiRes
         _db.Comments.Add(comment);
         await _db.SaveChangesAsync(cancellationToken);
 
-        return ApiResult.Ok(new ItemId(comment.CommentId));
+        // Create CommentDto to return
+        var commentDto = new CommentDto
+        {
+            CommentId = comment.CommentId,
+            Content = comment.Content,
+            CreatedAt = comment.CreatedAt,
+            ParentCommentId = comment.ParentCommentId,
+            TotalReplies = 0, // New comment has no replies
+            User = new CommentDto.UserDto
+            {
+                UserId = user.UserId,
+                OauthSub = user.OauthSub,
+                Username = user.Username,
+                Email = user.Email,
+                ProfilePicture = user.ProfilePicture,
+                Bio = user.Bio,
+                CreatedAt = user.CreatedAt,
+                LastLogin = user.LastLogin,
+                IsActive = user.IsActive,
+                VerificationStatus = user.VerificationStatus
+            }
+        };
+
+        return ApiResult.Ok(commentDto);
     }
 }

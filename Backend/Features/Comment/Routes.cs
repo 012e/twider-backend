@@ -35,11 +35,11 @@ public class Routes : IEndPoint
                         return response.ToErrorResponse();
                     }
 
-                    return Results.Created($"/posts/{command.PostId}/comments/{response.Value}", response.Value);
+                    return Results.Created($"/posts/{command.PostId}/comments/{response.Value.CommentId}", response.Value);
                 })
             .WithName("CreateCommentWithParent")
             .RequireAuthorization()
-            .Produces<ItemId>(201)
+            .Produces<CommentDto>(201)
             .Produces<ProblemDetails>(404)
             .Produces<ProblemDetails>(400);
 
@@ -60,11 +60,11 @@ public class Routes : IEndPoint
                         return response.ToErrorResponse();
                     }
 
-                    return Results.Created($"/posts/{command.PostId}/comments/{response.Value}", response.Value);
+                    return Results.Created($"/posts/{command.PostId}/comments/{response.Value.CommentId}", response.Value);
                 })
             .WithName("CreateComment")
             .RequireAuthorization()
-            .Produces<ItemId>(201)
+            .Produces<CommentDto>(201)
             .Produces<ProblemDetails>(404)
             .Produces<ProblemDetails>(400);
 

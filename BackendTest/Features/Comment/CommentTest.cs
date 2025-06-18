@@ -42,7 +42,9 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         // Assert
         Assert.True(result.IsSuccess);
         Assert.NotNull(result.Value);
-        Assert.NotEqual(Guid.Empty, result.Value.Id);
+        Assert.NotEqual(Guid.Empty, result.Value.CommentId);
+        Assert.Equal("Test comment content", result.Value.Content);
+        Assert.Null(result.Value.ParentCommentId);
     }
 
     [Fact]
@@ -70,7 +72,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var parentCommentResult = await Mediator.Send(parentCommentCommand);
         Assert.True(parentCommentResult.IsSuccess);
-        var parentCommentId = parentCommentResult.Value.Id;
+        var parentCommentId = parentCommentResult.Value.CommentId;
 
         // Create reply command
         var replyCommand = new CreateCommentCommand
@@ -89,7 +91,9 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         // Assert
         Assert.True(result.IsSuccess);
         Assert.NotNull(result.Value);
-        Assert.NotEqual(Guid.Empty, result.Value.Id);
+        Assert.NotEqual(Guid.Empty, result.Value.CommentId);
+        Assert.Equal("Reply to parent comment", result.Value.Content);
+        Assert.Equal(parentCommentId, result.Value.ParentCommentId);
     }
 
     [Fact]
@@ -163,7 +167,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var parentCommentResult = await Mediator.Send(parentCommentCommand);
         Assert.True(parentCommentResult.IsSuccess);
-        var parentCommentId = parentCommentResult.Value.Id;
+        var parentCommentId = parentCommentResult.Value.CommentId;
 
         // Add multiple replies to the parent comment
         for (int i = 0; i < 3; i++)
@@ -248,7 +252,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var commentResult = await Mediator.Send(createCommentCommand);
         Assert.True(commentResult.IsSuccess);
-        var commentId = commentResult.Value.Id;
+        var commentId = commentResult.Value.CommentId;
 
         // Act - Update the comment
         var updateCommand = new UpdateCommentCommand
@@ -306,7 +310,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var commentResult = await Mediator.Send(createCommentCommand);
         Assert.True(commentResult.IsSuccess);
-        var commentId = commentResult.Value.Id;
+        var commentId = commentResult.Value.CommentId;
 
         // Act - Delete the comment
         var deleteCommand = new DeleteCommentCommand
@@ -358,7 +362,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var commentResult = await Mediator.Send(createCommentCommand);
         Assert.True(commentResult.IsSuccess);
-        var commentId = commentResult.Value.Id;
+        var commentId = commentResult.Value.CommentId;
 
         // Act - Add a reaction
         var reactionCommand = new AddReactionCommand
@@ -401,7 +405,7 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         };
         var commentResult = await Mediator.Send(createCommentCommand);
         Assert.True(commentResult.IsSuccess);
-        var commentId = commentResult.Value.Id;
+        var commentId = commentResult.Value.CommentId;
 
         // Add a reaction first
         var addReactionCommand = new AddReactionCommand

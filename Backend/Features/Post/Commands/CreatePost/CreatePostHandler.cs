@@ -66,28 +66,51 @@ public class CreatePostHandler : IRequestHandler<CreatePostCommand, ApiResult<It
 
 
         _db.UnknownMedia.RemoveRange(media);
-        var mediaUrlsTask = media
-            .Select(s => _publicUrlGenerator.GenerateUrlAsync("media", s.Path));
-        var mediaUrls = await Task.WhenAll(mediaUrlsTask);
-
-        var postMedia = media.AsQueryable().Zip(mediaUrls, (medium, url) =>
-            new PostMedium
-            {
-                MediaId = medium.MediaId,
-                Url = url,
-                OwnerType = "post",
-            }).ToList();
-
-        var post = _db.Posts.Add(new Common.DbContext.Post.Post
+        List<Task<string>> mediaUrlsTask;
+        try
         {
-            Content = request.Content,
-            UserId = user.UserId,
-            Media = postMedia,
-        });
+            mediaUrlsTask = media
+                .Select(s => _publicUrlGenerator.GenerateUrlAsync("media", s.Path))
+                .ToList();
+            var mediaUrls = await Task.WhenAll(mediaUrlsTask);
 
-        await _db.SaveChangesAsync(cancellationToken);
-        await PublicMessage(post.Entity);
+            var postMedia = media.AsQueryable().Zip(mediaUrls, (medium, url) =>
+                new PostMedium
+                {
+                    MediaId = medium.MediaId,
+                    Url = url,
+                    OwnerType = "post",
+                }).ToList();
 
-        return ApiResult.Ok(new ItemId(post.Entity.PostId));
+            var post = _db.Posts.Add(new Common.DbContext.Post.Post
+            {
+                Content = request.Content,
+                UserId = user.UserId,
+                Media = postMedia,
+            });
+
+            await _db.SaveChangesAsync(cancellationToken);
+            await PublicMessage(post.Entity);
+
+            return ApiResult.Ok(new ItemId(post.Entity.PostId));
+        }
+        catch (System.IO.FileNotFoundException ex)
+        {
+            return ApiResult.Fail(new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Media file not found",
+                Detail = ex.Message
+            });
+        }
+        catch (Exception ex)
+        {
+            return ApiResult.Fail(new ProblemDetails
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "Error generating media URLs",
+                Detail = ex.Message
+            });
+        }
     }
 }

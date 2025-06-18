@@ -40,7 +40,7 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
         var createCommand = new CreatePostCommand
         {
             Content = "Post to retrieve by ID",
-            MediaIds = new List<Guid>()
+            MediaIds = []
         };
         var createResult = await Mediator.Send(createCommand);
         Assert.True(createResult.IsSuccess);
@@ -322,5 +322,31 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
             Assert.True(originalImageData.SequenceEqual(downloadedImageData),
                 "The uploaded image bytes do not match the original image bytes.");
         }
+    }
+
+    [Fact]
+    public async Task Should_Fail_When_Create_Post_With_Not_Uploaded_Media()
+    {
+        // Arrange: Generate a media ID but do not upload any data
+        var mediaCommand = new GenerateUploadUrlCommand();
+        var mediaResult = await Mediator.Send(mediaCommand);
+        Assert.True(mediaResult.IsSuccess);
+        Assert.NotNull(mediaResult.Value);
+        var mediaId = mediaResult.Value.MediumId;
+
+        // Attempt to create a post with the not-uploaded media
+        var command = new CreatePostCommand
+        {
+            Content = "Test post with not uploaded media",
+            MediaIds = [mediaId]
+        };
+
+        // Act
+        var result = await Mediator.Send(command);
+
+        // Assert: Should fail
+        Assert.False(result.IsSuccess);
+        Assert.Null(result.Value);
+        Assert.NotNull(result.Error);
     }
 }
