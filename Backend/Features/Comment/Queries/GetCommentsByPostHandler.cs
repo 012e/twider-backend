@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Common.Helpers.Types;
-using Backend.Common.Services;
+using Backend.Common.Helpers;
 
 namespace Backend.Features.Comment.Queries;
 
@@ -56,10 +56,49 @@ public class GetCommentsByPostHandler :
         Common.DbContext.Post.Post post, Guid? commentId,
         CancellationToken cancellationToken)
     {
-        var query = _db.Comments
+        // Build the base query
+        var baseQuery = _db.Comments
             .Include(o => o.User)
             .Where(c => c.PostId == post.PostId)
             .Where(c => c.ParentCommentId == commentId)
+            .OrderByDescending(p => p.CreatedAt)
+            .ThenByDescending(p => p.User.CreatedAt)
+            .ThenByDescending(p => p.CommentId);
+
+        // Apply cursor filter if provided
+        IQueryable<Common.DbContext.Post.Comment> filteredQuery = baseQuery;
+        if (!string.IsNullOrEmpty(meta.Cursor))
+        {
+            try
+            {
+                var decodedCursor = CursorEncoder.Decode(meta.Cursor);
+                var cursorCommentId = Guid.Parse(decodedCursor);
+                
+                // Find the cursor comment to get its timestamps
+                var cursorComment = await _db.Comments
+                    .Include(c => c.User)
+                    .Where(c => c.CommentId == cursorCommentId)
+                    .Select(c => new { c.CreatedAt, UserCreatedAt = c.User.CreatedAt, c.CommentId })
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (cursorComment != null)
+                {
+                    // Filter comments that are older than the cursor comment (descending order)
+                    filteredQuery = baseQuery.Where(c => 
+                        c.CreatedAt < cursorComment.CreatedAt || 
+                        (c.CreatedAt == cursorComment.CreatedAt && c.User.CreatedAt < cursorComment.UserCreatedAt) ||
+                        (c.CreatedAt == cursorComment.CreatedAt && c.User.CreatedAt == cursorComment.UserCreatedAt && c.CommentId.CompareTo(cursorComment.CommentId) < 0));
+                }
+            }
+            catch (Exception)
+            {
+                // Invalid cursor format, ignore and start from beginning
+            }
+        }
+
+        // Take one extra item to determine if there are more pages
+        var comments = await filteredQuery
+            .Take(meta.PageSize + 1)
             .Select(c => new CommentDto
             {
                 CommentId = c.CommentId,
@@ -82,15 +121,21 @@ public class GetCommentsByPostHandler :
                     OauthSub = c.User.OauthSub,
                 },
             })
-            .OrderByDescending(p => p.CreatedAt)
-            .ThenByDescending(p => p.User.CreatedAt)
-            .ThenByDescending(p => p.CommentId);
+            .ToListAsync(cancellationToken);
 
-        return await InfinitePaginationService.PaginateAsync(
-            source: query,
-            after: meta.Cursor,
-            limit: meta.PageSize,
-            keySelector: c => c.CommentId
+        // Determine if there are more items and prepare the result
+        var hasMore = comments.Count > meta.PageSize;
+        var itemsToReturn = hasMore ? comments.Take(meta.PageSize).ToList() : comments;
+        
+        // Generate next cursor from the last item
+        var nextCursor = itemsToReturn.Any() 
+            ? CursorEncoder.Encode(itemsToReturn.Last().CommentId.ToString()) 
+            : null;
+
+        return new InfiniteCursorPage<CommentDto>(
+            items: itemsToReturn.ToList(),
+            nextCursor: nextCursor,
+            hasMore: hasMore
         );
     }
 }
