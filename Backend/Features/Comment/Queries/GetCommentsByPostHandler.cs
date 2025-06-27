@@ -22,7 +22,8 @@ public class GetCommentsByPostHandler :
     {
         var paginationMeta = request.Meta;
 
-        var post = await _db.Posts.FirstOrDefaultAsync(p => p.PostId == request.PostId, cancellationToken);
+        var post = await _db.Posts
+            .FirstOrDefaultAsync(p => p.PostId == request.PostId, cancellationToken);
         if (post == null)
         {
             return ApiResult.Fail(new ProblemDetails
@@ -80,7 +81,10 @@ public class GetCommentsByPostHandler :
                     LastLogin = c.User.LastLogin,
                     OauthSub = c.User.OauthSub,
                 },
-            });
+            })
+            .OrderByDescending(p => p.CreatedAt)
+            .ThenByDescending(p => p.User.CreatedAt)
+            .ThenByDescending(p => p.CommentId);
 
         return await InfinitePaginationService.PaginateAsync(
             source: query,

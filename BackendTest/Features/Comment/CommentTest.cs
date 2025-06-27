@@ -431,4 +431,144 @@ public class CommentTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTe
         // Assert
         Assert.True(deleteReactionResult.IsSuccess);
     }
+
+    [Fact]
+    public async Task Should_Return_Correct_Pagination_Data_With_Unique_Comment_Ids()
+    {
+        // Arrange
+        // First create a post to comment on
+        var postCommand = new CreatePostCommand
+        {
+            Content = "Test post for pagination validation",
+            MediaIds = new List<Guid>()
+        };
+        var postResult = await Mediator.Send(postCommand);
+        Assert.True(postResult.IsSuccess);
+        var postId = postResult.Value.Id;
+
+        // Create multiple comments to test pagination
+        var totalComments = 15;
+        var createdCommentIds = new List<Guid>();
+        
+        for (int i = 0; i < totalComments; i++)
+        {
+            var commentCommand = new CreateCommentCommand
+            {
+                PostId = postId,
+                Content = new CommentContent
+                {
+                    Content = $"Test comment {i:D2} for pagination" // Zero-padded for consistent ordering
+                }
+            };
+            var commentResult = await Mediator.Send(commentCommand);
+            Assert.True(commentResult.IsSuccess);
+            createdCommentIds.Add(commentResult.Value.CommentId);
+        }
+
+        // Act - First page
+        var firstPageSize = 5;
+        var firstPageQuery = new GetCommentsByPostQuery(
+            postId,
+            null,
+            new InfiniteCursorPaginationMeta
+            {
+                PageSize = firstPageSize
+            });
+        var firstPageResult = await Mediator.Send(firstPageQuery);
+
+        // Assert first page
+        Assert.True(firstPageResult.IsSuccess);
+        Assert.NotNull(firstPageResult.Value);
+        Assert.Equal(firstPageSize, firstPageResult.Value.Items.Count);
+        Assert.True(firstPageResult.Value.HasMore); // Should have more items
+        Assert.NotNull(firstPageResult.Value.NextCursor); // Should have next cursor
+
+        // Validate all comment IDs in first page are unique GUIDs
+        var firstPageCommentIds = firstPageResult.Value.Items.Select(x => x.CommentId).ToList();
+        Assert.Equal(firstPageSize, firstPageCommentIds.Distinct().Count()); // All IDs should be unique
+        Assert.All(firstPageCommentIds, id => Assert.NotEqual(Guid.Empty, id)); // No empty GUIDs
+
+        // Act - Second page using cursor from first page
+        var secondPageQuery = new GetCommentsByPostQuery(
+            postId,
+            null,
+            new InfiniteCursorPaginationMeta
+            {
+                Cursor = firstPageResult.Value.NextCursor,
+                PageSize = firstPageSize
+            });
+        var secondPageResult = await Mediator.Send(secondPageQuery);
+
+        // Assert second page
+        Assert.True(secondPageResult.IsSuccess);
+        Assert.NotNull(secondPageResult.Value);
+        Assert.Equal(firstPageSize, secondPageResult.Value.Items.Count);
+        Assert.True(secondPageResult.Value.HasMore); // Should still have more items
+        Assert.NotNull(secondPageResult.Value.NextCursor); // Should have next cursor
+
+        // Validate all comment IDs in second page are unique GUIDs
+        var secondPageCommentIds = secondPageResult.Value.Items.Select(x => x.CommentId).ToList();
+        Assert.Equal(firstPageSize, secondPageCommentIds.Distinct().Count()); // All IDs should be unique
+        Assert.All(secondPageCommentIds, id => Assert.NotEqual(Guid.Empty, id)); // No empty GUIDs
+
+        // Validate no overlap between first and second page
+        var overlappingIds = firstPageCommentIds.Intersect(secondPageCommentIds);
+        Assert.Empty(overlappingIds); // No IDs should appear in both pages
+
+        // Act - Third page (final page)
+        var thirdPageQuery = new GetCommentsByPostQuery(
+            postId,
+            null,
+            new InfiniteCursorPaginationMeta
+            {
+                Cursor = secondPageResult.Value.NextCursor,
+                PageSize = firstPageSize
+            });
+        var thirdPageResult = await Mediator.Send(thirdPageQuery);
+
+        // Assert third page
+        Assert.True(thirdPageResult.IsSuccess);
+        Assert.NotNull(thirdPageResult.Value);
+        Assert.Equal(totalComments - (firstPageSize * 2), thirdPageResult.Value.Items.Count); // Remaining items
+        Assert.False(thirdPageResult.Value.HasMore); // Should not have more items
+        Assert.NotNull(thirdPageResult.Value.NextCursor); // Still should have cursor for consistency
+
+        // Validate all comment IDs in third page are unique GUIDs
+        var thirdPageCommentIds = thirdPageResult.Value.Items.Select(x => x.CommentId).ToList();
+        Assert.Equal(thirdPageCommentIds.Count, thirdPageCommentIds.Distinct().Count()); // All IDs should be unique
+        Assert.All(thirdPageCommentIds, id => Assert.NotEqual(Guid.Empty, id)); // No empty GUIDs
+
+        // Validate no overlap between any pages
+        var allPageIds = firstPageCommentIds.Concat(secondPageCommentIds).Concat(thirdPageCommentIds).ToList();
+        Assert.Equal(totalComments, allPageIds.Count); // Should have all comments
+        Assert.Equal(totalComments, allPageIds.Distinct().Count()); // All should be unique
+
+        // Validate all created comments are present in the paginated results
+        var allReturnedIds = allPageIds.ToHashSet();
+        Assert.All(createdCommentIds, id => Assert.Contains(id, allReturnedIds));
+
+        // Validate comment structure integrity
+        var allComments = firstPageResult.Value.Items
+            .Concat(secondPageResult.Value.Items)
+            .Concat(thirdPageResult.Value.Items)
+            .ToList();
+
+        foreach (var comment in allComments)
+        {
+            // Validate comment structure
+            Assert.NotEqual(Guid.Empty, comment.CommentId);
+            Assert.NotNull(comment.Content);
+            Assert.NotEmpty(comment.Content);
+            Assert.True(comment.Content.StartsWith("Test comment")); // Should match our pattern
+            Assert.Null(comment.ParentCommentId); // These are top-level comments
+            Assert.Equal(0, comment.TotalReplies); // No replies added
+            Assert.True(comment.CreatedAt > DateTime.MinValue);
+            
+            // Validate user data
+            Assert.NotNull(comment.User);
+            Assert.NotEqual(Guid.Empty, comment.User.UserId);
+            Assert.NotNull(comment.User.Username);
+            Assert.NotNull(comment.User.OauthSub);
+        }
+    }
 }
