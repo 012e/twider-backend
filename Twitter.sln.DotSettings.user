@@ -55,9 +55,9 @@
     &lt;TestId&gt;xUnit::C4D135C3-F65B-4AAC-B03B-DD755636950E::net8.0::BackendTest.Features.Smoke.should_be_able_to_create_post&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b3bddd06_002D514c_002D4bfd_002D9cb5_002D598b7029a0fe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="should_be_able_to_create_post #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b3bddd06_002D514c_002D4bfd_002D9cb5_002D598b7029a0fe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="should_be_able_to_create_post #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;ProjectFolder&gt;C4D135C3-F65B-4AAC-B03B-DD755636950E/d:Features&lt;/ProjectFolder&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bb93be51_002D2d86_002D47b7_002D8e03_002D773e4e0a8bd5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="should_be_able_to_create_post" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bb93be51_002D2d86_002D47b7_002D8e03_002D773e4e0a8bd5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="should_be_able_to_create_post" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;ProjectFolder&gt;C4D135C3-F65B-4AAC-B03B-DD755636950E/d:Features&lt;/ProjectFolder&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

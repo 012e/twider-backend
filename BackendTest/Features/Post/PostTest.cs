@@ -274,7 +274,7 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
         byte[] originalImageData = await File.ReadAllBytesAsync(imagePath);
 
         // 2. Generate media URL and ID
-        var mediaCommand = new GenerateUploadUrlCommand();
+        var mediaCommand = new GenerateUploadUrlCommand { ContentType = "image/jpeg" };
         var mediaResult = await Mediator.Send(mediaCommand);
         Assert.True(mediaResult.IsSuccess);
         Assert.NotNull(mediaResult.Value);
@@ -328,7 +328,7 @@ public class PostTest(IntegrationTestFactory factory) : BaseCqrsIntegrationTest(
     public async Task Should_Fail_When_Create_Post_With_Not_Uploaded_Media()
     {
         // Arrange: Generate a media ID but do not upload any data
-        var mediaCommand = new GenerateUploadUrlCommand();
+        var mediaCommand = new GenerateUploadUrlCommand { ContentType = "image/jpeg" };
         var mediaResult = await Mediator.Send(mediaCommand);
         Assert.True(mediaResult.IsSuccess);
         Assert.NotNull(mediaResult.Value);

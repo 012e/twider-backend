@@ -11,9 +11,9 @@ public class Routes : IEndPoint
         var group = app
             .MapGroup("media")
             .WithTags("Media");
-        group.MapPost("/generate-medium-url", async (IMediator mediator) =>
+        group.MapPost("/generate-medium-url", async (GenerateUploadUrlCommand command, IMediator mediator) =>
             {
-                var response = await mediator.Send(new GenerateUploadUrlCommand());
+                var response = await mediator.Send(command);
                 if (response.IsFailed)
                 {
                     return response.ToErrorResponse();

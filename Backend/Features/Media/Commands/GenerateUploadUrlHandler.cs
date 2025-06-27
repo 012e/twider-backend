@@ -22,10 +22,16 @@ public class
         CancellationToken cancellationToken)
     {
         var mediaPath = Guid.NewGuid();
+        var headers = new Dictionary<string, string>
+        {
+            ["Content-Type"] = request.ContentType
+        };
+        
         var mediaUrl = await _minioClient.PresignedPutObjectAsync(new PresignedPutObjectArgs()
             .WithBucket("media")
             .WithExpiry(1000)
             .WithObject(mediaPath.ToString())
+            .WithHeaders(headers)
         );
 
         var medium = new UnknownMedium()
