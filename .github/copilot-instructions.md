@@ -65,5 +65,14 @@ This is a modern, production-grade backend for a Twitter-like social platform, w
 - `Backend/Common/Configuration/` — All config objects
 - `Backend/Common/Helpers/Types/` — Pagination, result, and utility types
 
+## How to implement a feature
+
+- Step 1: Read all related code to what the user intended to create You are a competent programmer, competent programmers are not lazy.
+- Step 2: Read the related data layer setup (EF Core used) at Common/DbContext
+- Step 2: Implement a command handler (Queries for reads or  Commands for mutations) in the folder Features/<Feature group name>/<Command name>Handler
+- Step 3: Implement a minimal Route to expose the created feature inside Features/<Feature group name>/Routes.cs
+- Step 4: Take a look at other integration test files to learn the coding guideline and write a exhausive integration test for the feature. The tests must cover all possible cases
+
 ---
 **This file is for LLMs and Copilot tools. Be exhaustive, concise, and always follow the project’s architecture and best practices.**
+

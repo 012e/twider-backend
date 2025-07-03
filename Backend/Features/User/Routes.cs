@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Backend.Common.Helpers;
 using Backend.Common.Helpers.Interfaces;
+using Backend.Common.Helpers.Types;
 using Backend.Features.User.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,21 @@ public class Routes : IEndPoint
             .MapGroup("users")
             .WithTags("Users");
 
-        group.MapGet("{id}", async (int id, IMediator mediator) =>
+        group.MapGet("{id:guid}", async (Guid id, IMediator mediator) =>
                 {
                     var query = new GetUserByIdQuery
                     {
                         Id = id
                     };
                     Validator.ValidateObject(query, new ValidationContext(query), validateAllProperties: true);
-                    return await mediator.Send(query);
+                    var result = await mediator.Send(query);
+                    
+                    if (result.IsFailed)
+                    {
+                        return result.ToErrorResponse();
+                    }
+                    
+                    return Results.Ok(result.Value);
                 }
             )
             .WithName("GetUserById")
