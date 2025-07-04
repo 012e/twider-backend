@@ -1,4 +1,5 @@
 using Backend.Common.DbContext;
+using Backend.Common.Helpers;
 using Backend.Common.Helpers.Types;
 using Backend.Common.Services;
 using Backend.Features.Post.Mappers;
@@ -40,35 +41,77 @@ public class
             });
         }
 
-        var posts = await InfinitePaginationService.PaginateAsync(
-            source: _db.Posts
-                .Include(post => post.User)
-                .Where(b => b.UserId == request.UserId)
-                .OrderBy(b => b.CreatedAt)
-                .ThenBy(b => b.PostId)
-                .Select(b => new
+        // Build the base query (order by newest first to match test expectations)
+        var baseQuery = _db.Posts
+            .Include(post => post.User)
+            .Include(post => post.Media)
+            .Where(b => b.UserId == request.UserId)
+            .OrderByDescending(b => b.CreatedAt)
+            .ThenBy(b => b.PostId);
+
+        // Apply cursor filter if provided
+        IQueryable<Backend.Common.DbContext.Post.Post> filteredQuery = baseQuery;
+        if (!string.IsNullOrEmpty(cursor))
+        {
+            try
+            {
+                var decodedCursor = CursorEncoder.Decode(cursor);
+                var cursorParts = decodedCursor.Split('|');
+                if (cursorParts.Length == 2)
                 {
-                    Post = b,
-                    UserReaction = b.Reactions.FirstOrDefault(x => x.UserId == currentUserId)
-                })
-                .Select(b => new GetPostByIdResponse
-                {
-                    PostId = b.Post.PostId,
-                    Content = b.Post.Content,
-                    CreatedAt = b.Post.CreatedAt,
-                    User = b.Post.User.ToUserDto(),
-                    UpdatedAt = b.Post.UpdatedAt,
-                    Reactions = b.Post.Reactions.ExtractReactionCount(),
-                    ReactionCount = b.Post.Reactions.Count(),
-                    CommentCount = b.Post.Comments.Count(),
-                    UserReaction = b.UserReaction == null ? null : b.UserReaction.ReactionType.ToFriendlyString(),
-                    MediaUrls = b.Post.Media.Select(r => r.Url).ToList(),
-                }),
-            keySelector: x => x.PostId,
-            after: cursor,
-            limit: pageSize
+                    var cursorCreatedAt = DateTime.Parse(cursorParts[0], null, System.Globalization.DateTimeStyles.RoundtripKind);
+                    var cursorPostId = Guid.Parse(cursorParts[1]);
+                    
+                    // Filter posts that are older than the cursor (descending order)
+                    filteredQuery = baseQuery.Where(p => 
+                        p.CreatedAt < cursorCreatedAt || 
+                        (p.CreatedAt == cursorCreatedAt && p.PostId.CompareTo(cursorPostId) > 0));
+                }
+            }
+            catch (Exception)
+            {
+                // Invalid cursor format, ignore and start from beginning
+            }
+        }
+
+        // Take one extra item to determine if there are more pages
+        var posts = await filteredQuery
+            .Take(pageSize + 1)
+            .Select(b => new
+            {
+                Post = b,
+                UserReaction = b.Reactions.FirstOrDefault(x => x.UserId == currentUserId)
+            })
+            .Select(b => new GetPostByIdResponse
+            {
+                PostId = b.Post.PostId,
+                Content = b.Post.Content,
+                CreatedAt = b.Post.CreatedAt,
+                User = b.Post.User.ToUserDto(),
+                UpdatedAt = b.Post.UpdatedAt,
+                Reactions = b.Post.Reactions.ExtractReactionCount(),
+                ReactionCount = b.Post.Reactions.Count(),
+                CommentCount = b.Post.Comments.Count(),
+                UserReaction = b.UserReaction == null ? null : b.UserReaction.ReactionType.ToFriendlyString(),
+                MediaUrls = b.Post.Media.Select(r => r.Url).ToList(),
+            })
+            .ToListAsync(cancellationToken);
+
+        // Determine if there are more items and prepare the result
+        var hasMore = posts.Count > pageSize;
+        var itemsToReturn = hasMore ? posts.Take(pageSize).ToList() : posts;
+        
+        // Generate next cursor from the last item (CreatedAt|PostId format)
+        var nextCursor = itemsToReturn.Any() 
+            ? CursorEncoder.Encode($"{itemsToReturn.Last().CreatedAt:O}|{itemsToReturn.Last().PostId}") 
+            : null;
+
+        var result = new InfiniteCursorPage<GetPostByIdResponse>(
+            items: itemsToReturn.ToList(),
+            nextCursor: nextCursor,
+            hasMore: hasMore
         );
 
-        return ApiResult.Ok(posts);
+        return ApiResult.Ok(result);
     }
 }
