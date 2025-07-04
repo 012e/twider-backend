@@ -6,6 +6,8 @@ BASE_URL = "http://localhost:5224"
 
 
 def insert_post(access_token: str, content: str):
+    if (content is None or content.strip() == ""):
+        return
     repsonse = requests.post(
         BASE_URL + "/posts",
         json={"content": content},
